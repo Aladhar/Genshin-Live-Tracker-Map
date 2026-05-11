@@ -4,6 +4,19 @@
 
 namespace TianLi::Genshin
 {
+    namespace
+    {
+        cv::Rect make_relative_rect(const cv::Size& size, double left, double top, double width, double height)
+        {
+            return {
+                static_cast<int>(size.width * left),
+                static_cast<int>(size.height * top),
+                static_cast<int>(size.width * width),
+                static_cast<int>(size.height * height),
+            };
+        }
+    } // namespace
+
     tianli::global::GenshinHandle func_get_handle(HWND& in)
     {
         static tianli::global::GenshinHandle out;
@@ -149,65 +162,21 @@ namespace TianLi::Genshin
         }
         x = genshin_handle.size_frame.width;
         y = genshin_handle.size_frame.height;
-        // 派蒙可能性区域计算参数
-        int paimon_mayArea_left = 0;
-        int paimon_mayArea_top = 0;
-        int paimon_mayArea_width = static_cast<int>(x * 0.10);
-        int paimon_mayArea_height = static_cast<int>(y * 0.10);
-        // 派蒙可能性区域
-        cv::Rect Area_Paimon_mayArea(paimon_mayArea_left, paimon_mayArea_top, paimon_mayArea_width, paimon_mayArea_height);
-        genshin_handle.rect_paimon_maybe = Area_Paimon_mayArea;
-
-        // 小地图标定可能性区域计算参数
-        int miniMap_Cailb_mayArea_left = static_cast<int>(x * 0.08);
-        int miniMap_Cailb_mayArea_top = 0;
-        int miniMap_Cailb_mayArea_width = static_cast<int>(x * 0.10);
-        int miniMap_Cailb_mayArea_height = static_cast<int>(y * 0.10);
-        // 小地图标定可能性区域
-        cv::Rect Area_MiniMap_Cailb_mayArea(miniMap_Cailb_mayArea_left, miniMap_Cailb_mayArea_top, miniMap_Cailb_mayArea_width, miniMap_Cailb_mayArea_height);
-        genshin_handle.rect_minimap_cailb_maybe = Area_MiniMap_Cailb_mayArea;
-
-        // 小地图可能性区域计算参数
-        int miniMap_mayArea_left = 0;
-        int miniMap_mayArea_top = 0;
-        int miniMap_mayArea_width = static_cast<int>(x * 0.18);
-        int miniMap_mayArea_height = static_cast<int>(y * 0.22);
-        // 小地图可能性区域
-        cv::Rect Area_MiniMap_mayArea(miniMap_mayArea_left, miniMap_mayArea_top, miniMap_mayArea_width, miniMap_mayArea_height);
-        genshin_handle.rect_minimap_maybe = Area_MiniMap_mayArea;
-
-        // UID可能性区域计算参数
-        int UID_mayArea_left = static_cast<int>(x * 0.88);
-        int UID_mayArea_top = static_cast<int>(y * 0.97);
-        int UID_mayArea_width = x - UID_mayArea_left;
-        int UID_mayArea_height = y - UID_mayArea_top;
-        // UID可能性区域
-        cv::Rect Area_UID_mayArea(UID_mayArea_left, UID_mayArea_top, UID_mayArea_width, UID_mayArea_height);
-        genshin_handle.rect_uid_maybe = Area_UID_mayArea;
+        const cv::Size frame_size(x, y);
+        genshin_handle.rect_paimon_maybe = make_relative_rect(frame_size, 0.00, 0.00, 0.10, 0.10);
+        genshin_handle.rect_minimap_cailb_maybe = make_relative_rect(frame_size, 0.08, 0.00, 0.10, 0.10);
+        genshin_handle.rect_minimap_maybe = make_relative_rect(frame_size, 0.00, 0.00, 0.18, 0.22);
+        genshin_handle.rect_uid_maybe = make_relative_rect(frame_size, 0.88, 0.97, 0.12, 0.03);
 
         int UID_Rect_x = cvCeil(x - x * (1.0 - 0.865));
         int UID_Rect_y = cvCeil(y - 1080.0 * (1.0 - 0.9755));
         int UID_Rect_w = cvCeil(1920 * 0.11);
         int UID_Rect_h = cvCeil(1920 * 0.0938 * 0.11);
         genshin_handle.rect_uid = cv::Rect(UID_Rect_x, UID_Rect_y, UID_Rect_w, UID_Rect_h);
-
-        // 左侧已获取物品可能性区域计算参数
-        int leftGetItems_mayArea_left = static_cast<int>(x * 0.570);
-        int leftGetItems_mayArea_top = static_cast<int>(y * 0.250);
-        int leftGetItems_mayArea_width = static_cast<int>(x * 0.225);
-        int leftGetItems_mayArea_height = static_cast<int>(y * 0.500);
-        // 左侧已获取物品可能性区域
-        cv::Rect Area_LeftGetItems_mayArea(leftGetItems_mayArea_left, leftGetItems_mayArea_top, leftGetItems_mayArea_width, leftGetItems_mayArea_height);
-        genshin_handle.rect_left_give_items_maybe = Area_LeftGetItems_mayArea;
-
-        // 右侧可捡取物品可能性区域计算参数
-        int rightGetItems_mayArea_left = static_cast<int>(x * 0.050);
-        int rightGetItems_mayArea_top = static_cast<int>(y * 0.460);
-        int rightGetItems_mayArea_width = static_cast<int>(x * 0.160);
-        int rightGetItems_mayArea_height = static_cast<int>(y * 0.480);
-        // 右侧可捡取物品可能性区域
-        cv::Rect Area_RightGetItems_mayArea(rightGetItems_mayArea_left, rightGetItems_mayArea_top, rightGetItems_mayArea_width, rightGetItems_mayArea_height);
-        genshin_handle.rect_right_pick_items_maybe = Area_RightGetItems_mayArea;
+        genshin_handle.rect_left_give_items_maybe = make_relative_rect(frame_size, 0.570, 0.250, 0.225, 0.500);
+        genshin_handle.rect_left_give_items = genshin_handle.rect_left_give_items_maybe;
+        genshin_handle.rect_right_pick_items_maybe = make_relative_rect(frame_size, 0.050, 0.460, 0.160, 0.480);
+        genshin_handle.rect_right_pick_items = genshin_handle.rect_right_pick_items_maybe;
     }
 
     void update_genshin_handle(const HWND& old_handle, tianli::global::GenshinHandle& out_genshin_handle)

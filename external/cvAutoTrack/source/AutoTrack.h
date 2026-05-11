@@ -29,6 +29,7 @@ public:
     bool GetRotation(double& a);
 
     bool GetUID(int& uid);
+    bool GetRewardDetectionsJson(char* json_buff, int buff_size);
     bool GetAllInfo(double& x, double& y, int& mapId, double& a, double& r, int& uid);
 
     bool startServe();

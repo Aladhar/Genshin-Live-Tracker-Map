@@ -20,6 +20,7 @@ public:
     cv::Mat PaimonTemplate;
     cv::Mat MinimapCailbTemplate;
     cv::Mat StarTemplate;
+    cv::Mat PrimogemTemplate;
     cv::Mat UID;
     cv::Mat UIDnumber[10];
 

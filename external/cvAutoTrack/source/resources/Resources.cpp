@@ -9,7 +9,8 @@
 Resources::Resources()
 {
     PaimonTemplate = TianLi::Resources::Load::load_image("paimon");
-    StarTemplate = TianLi::Resources::Load::load_image("star");
+    PrimogemTemplate = TianLi::Resources::Load::load_image("star");
+    StarTemplate = PrimogemTemplate.clone();
     MinimapCailbTemplate = TianLi::Resources::Load::load_image("cailb");
     UID = TianLi::Resources::Load::load_image("uid_");
     UIDnumber[0] = TianLi::Resources::Load::load_image("uid0");

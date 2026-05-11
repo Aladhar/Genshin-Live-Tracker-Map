@@ -137,6 +137,7 @@ extern "C"
     bool CVAUTOTRACK_API GetDirection(double& a);
     bool CVAUTOTRACK_API GetRotation(double& a);
     bool CVAUTOTRACK_API GetUID(int& uid);
+    bool CVAUTOTRACK_API GetRewardDetectionsJson(char* json_buff, int buff_size);
     bool CVAUTOTRACK_API GetAllInfo(double& x, double& y, int& mapId, double& a, double& r, int& uid);
     bool CVAUTOTRACK_API DebugCapture();
     bool CVAUTOTRACK_API DebugCapturePath(const char* path);
@@ -214,6 +215,7 @@ extern "C"
         bool (*GetDirection)(double&);
         bool (*GetRotation)(double&);
         bool (*GetUID)(int&);
+        bool (*GetRewardDetectionsJson)(char*, int);
         bool (*GetAllInfo)(double&, double&, int&, double&, double&, int&);
 
         // 调试接口
@@ -248,6 +250,7 @@ extern "C"
         bool (*GetDirection)(double&);
         bool (*GetRotation)(double&);
         bool (*GetUID)(int&);
+        bool (*GetRewardDetectionsJson)(char*, int);
         bool (*GetAllInfo)(double&, double&, int&, double&, double&, int&);
 
         // 错误处理接口

@@ -155,6 +155,12 @@ bool __stdcall GetUID(int& uid)
         InitResource();
     INSTALL_DUMP(_at->GetUID(uid));
 }
+bool __stdcall GetRewardDetectionsJson(char* json_buff, int buff_size)
+{
+    if (_inited == false)
+        InitResource();
+    INSTALL_DUMP(_at->GetRewardDetectionsJson(json_buff, buff_size));
+}
 bool __stdcall GetAllInfo(double& x, double& y, int& mapId, double& a, double& r, int& uid)
 {
     if (_inited == false)
@@ -228,6 +234,7 @@ cvAutoTrackContextV1* create_cvAutoTrack_context_v1()
     context->GetDirection = GetDirection;
     context->GetRotation = GetRotation;
     context->GetUID = GetUID;
+    context->GetRewardDetectionsJson = GetRewardDetectionsJson;
     context->GetAllInfo = GetAllInfo;
     context->DebugCapture = DebugCapture;
     context->GetLastErr = GetLastErr;
@@ -281,6 +288,12 @@ cvAutoTrackContextV2* create_cvAutoTrack_context_v2()
         }
         else
         {
+            if (cmd == "reward.detect")
+            {
+                if (_inited == false)
+                    InitResource();
+                return _at->GetRewardDetectionsJson(result_buff, result_size);
+            }
             if (auto gui = global::shareder<debugger>::get(); gui)
             {
                 gui->call(cmd, args);
@@ -314,6 +327,7 @@ cvAutoTrackContextV2* create_cvAutoTrack_context_v2()
     context->GetDirection = GetDirection;
     context->GetRotation = GetRotation;
     context->GetUID = GetUID;
+    context->GetRewardDetectionsJson = GetRewardDetectionsJson;
     context->GetAllInfo = GetAllInfo;
     // context->DebugCapture = DebugCapture;
     context->GetLastErr = GetLastErr;

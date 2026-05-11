@@ -26,3 +26,6 @@ Notes
 
 - Use a region (`--region left,top,width,height`) to capture only the UI area where reward popups appear to reduce noise and save disk/CPU.
 - Start with conservative capture interval (0.5s) and increase/decrease as needed.
+- The runtime tracker normalizes UI search regions from client-size ratios instead of hardcoded 1440p pixels. The current left reward stack ROI is `x=0.570, y=0.250, w=0.225, h=0.500` of the client area.
+- On a `2560x1440` client, that reward ROI maps to roughly `x=1459, y=360, w=576, h=720`.
+- The intended flow is: detect a Primogem reward inside that ROI, read its amount, then pair the event with the closest map marker near the live-tracker position.
