@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.yuanshen.data.mapper.HistoryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="site.yuanshen.data.entity.History">
+        <id column="id" property="id"/>
+        <result column="creator_id" property="creatorId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="content" property="content"/>
+        <result column="md5" property="md5"/>
+        <result column="t_id" property="tId"/>
+        <result column="type" property="type"/>
+        <result column="ipv4" property="ipv4"/>
+        <result column="edit_type" property="editType" typeHandler="com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler"/>
+        <result column="version" property="version"/>
+        <result column="updater_id" property="updaterId"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        history.creator_id,
+        history.create_time,
+        history.del_flag,
+        history.id,
+        history.content,
+        history.md5,
+        history.t_id,
+        history.type,
+        history.ipv4,
+        history.edit_type,
+        history.version,
+        history.updater_id,
+        history.update_time
+    </sql>
+
+</mapper>

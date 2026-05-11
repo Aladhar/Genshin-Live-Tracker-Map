@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    include:
+      - base
+      - env-prod
+      - log-prod
+      - doc-prod
+      - database-prod
+      - datasource-prod
+      - websocket-prod
+      - image-prod

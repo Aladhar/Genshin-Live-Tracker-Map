@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.yuanshen.data.mapper.IconMapper">
+
+    <select id="getIcon" resultMap="BaseResultMap">
+        SELECT i.*
+        FROM icon i
+        WHERE i.tag = #{tagName}
+        <if test="!withDeleted">
+            and i.del_flag = false
+        </if>
+    </select>
+
+    <update id="undeleteIcon">
+        UPDATE icon
+        SET del_flag = false
+        WHERE id = #{iconId}
+    </update>
+
+    <select id="selectPageIcon"
+            resultMap="BaseResultMap"
+            parameterType="site.yuanshen.data.dto.IconSearchDto">
+        <bind
+            name="searchTag"
+            value="searchDto.tag != null and searchDto.tag != '' ? '%' + searchDto.tag + '%' : ''" />
+        select i.*
+        from icon i
+        <if test="searchDto.typeIdList != null and searchDto.typeIdList.size > 0">
+            left join icon_type_link itl on i.id = itl.icon_id
+        </if>
+        <where>
+             i.del_flag = false
+            <if test="searchDto.typeIdList != null and searchDto.typeIdList.size > 0">
+                and itl.del_flag = false
+            </if>
+            <if test="searchDto.typeIdList != null and searchDto.typeIdList.size > 0">
+                and itl.type_id in
+                <foreach collection="searchDto.typeIdList" open="(" separator="," close=")" item="typeId">
+                    #{typeId}
+                </foreach>
+            </if>
+            <if test="searchDto.iconIdList != null and searchDto.iconIdList.size > 0">
+                and i.id in
+                <foreach collection="searchDto.iconIdList" open="(" separator="," close=")" item="iconId">
+                    #{iconId}
+                </foreach>
+            </if>
+            <if test="searchDto.creator != null">
+                and i.creator_id = #{searchDto.creator}
+            </if>
+            <if test="searchTag != null and searchTag != ''">
+                and i.tag LIKE #{searchTag}
+            </if>
+        </where>
+    </select>
+
+</mapper>

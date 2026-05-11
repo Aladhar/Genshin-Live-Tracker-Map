@@ -1,0 +1,187 @@
+[tasks.default]
+alias = "help"
+
+## Sub-commands
+# dataenv: provide data environments
+[tasks.dataenv] # !! startup data environments
+script = '''
+#!@duckscript
+!include_files ./makefile/util.env.ds ./makefile/util.docker.ds
+prepare_envvars
+check_env
+
+ENV_FILE = get_env ENV_FILE
+PROJECT_NAME = get_env PROJECT_NAME
+
+docker_down "${ENV_FILE}" "${PROJECT_NAME}" "./composer/dataenv.yml"
+docker_up "${ENV_FILE}" "${PROJECT_NAME}" "./composer/dataenv.yml"
+'''
+
+# api: service api
+[tasks.api] # !! build & daemon api
+dependencies = [
+    { name = "api-build" },
+    { name = "api-run" }
+]
+
+[tasks.api-build] # >!! build api
+script = '''
+#!@duckscript
+!include_files ./makefile/util.env.ds ./makefile/util.docker.ds
+prepare_envvars
+check_env
+
+ENV_FILE = get_env ENV_FILE
+PROJECT_NAME = get_env PROJECT_NAME
+
+replace_env_values_in_file ${ENV_FILE} ./config/api/application-datasource-tpl.yml ./cache/application-datasource.yml
+replace_env_values_in_file ${ENV_FILE} ./config/api/application-image-tpl.yml ./cache/application-image.yml
+replace_env_values_in_file ${ENV_FILE} ./config/api/application-websocket-tpl.yml ./cache/application-websocket.yml
+replace_env_values_in_file ${ENV_FILE} ./config/api/application-oauth-tpl.yml ./cache/application-oauth.yml
+replace_env_values_in_file ${ENV_FILE} ./config/api/application-nacos-tpl.yml ./cache/application-nacos.yml
+
+docker_build "${ENV_FILE}" "${PROJECT_NAME}" "./composer/api.yml"
+'''
+
+[tasks.api-run] # >!! start api
+script = '''
+#!@duckscript
+!include_files ./makefile/util.env.ds ./makefile/util.docker.ds
+prepare_envvars
+check_env
+
+ENV_FILE = get_env ENV_FILE
+PROJECT_NAME = get_env PROJECT_NAME
+
+docker_down "${ENV_FILE}" "${PROJECT_NAME}" "./composer/api.yml"
+docker_up "${ENV_FILE}" "${PROJECT_NAME}" "./composer/api.yml"
+'''
+
+# img-local: image local host
+[tasks.img-local] # !! build & run image local host
+dependencies = [
+    { name = "img-local-build" },
+    { name = "img-local-run" }
+]
+
+[tasks.img-local-build] # >!! build image local host
+script = '''
+#!@duckscript
+!include_files ./makefile/util.env.ds ./makefile/util.docker.ds
+prepare_envvars
+check_env
+
+ENV_FILE = get_env ENV_FILE
+PROJECT_NAME = get_env PROJECT_NAME
+
+docker_build "${ENV_FILE}" "${PROJECT_NAME}" "./composer/img-local.yml"
+'''
+
+[tasks.img-local-run] # >!! run image local host
+script = '''
+#!@duckscript
+!include_files ./makefile/util.env.ds ./makefile/util.docker.ds
+prepare_envvars
+check_env
+
+ENV_FILE = get_env ENV_FILE
+PROJECT_NAME = get_env PROJECT_NAME
+
+docker_down "${ENV_FILE}" "${PROJECT_NAME}" "./composer/img-local.yml"
+docker_up "${ENV_FILE}" "${PROJECT_NAME}" "./composer/img-local.yml"
+'''
+
+# img-alist: image alist host
+[tasks.img-alist] # !! build & run image alist host
+dependencies = [
+    { name = "img-alist-minio-build" },
+    { name = "img-alist-dash-build" },
+    { name = "img-alist-dash-run" },
+]
+
+[tasks.img-alist-minio] # >!! build & run image alist host (minio)
+dependencies = [
+    { name = "img-alist-minio-build" },
+    { name = "img-alist-minio-run" }
+]
+
+[tasks.img-alist-minio-build] # >!! build image alist host (minio)
+script = '''
+#!@duckscript
+!include_files ./makefile/util.env.ds ./makefile/util.docker.ds
+prepare_envvars
+check_env
+
+ENV_FILE = get_env ENV_FILE
+PROJECT_NAME = get_env PROJECT_NAME
+
+docker_build "${ENV_FILE}" "${PROJECT_NAME}" "./composer/img-alist-minio.yml"
+'''
+
+[tasks.img-alist-minio-run] # >!! run image alist host (minio)
+script = '''
+#!@duckscript
+!include_files ./makefile/util.env.ds ./makefile/util.docker.ds
+prepare_envvars
+check_env
+
+ENV_FILE = get_env ENV_FILE
+PROJECT_NAME = get_env PROJECT_NAME
+
+docker_down "${ENV_FILE}" "${PROJECT_NAME}" "./composer/img-alist-minio.yml"
+docker_up "${ENV_FILE}" "${PROJECT_NAME}" "./composer/img-alist-minio.yml"
+'''
+
+[tasks.img-alist-dash-build] # >!! build image alist host (minio + alist)
+script = '''
+#!@duckscript
+!include_files ./makefile/util.env.ds ./makefile/util.docker.ds
+prepare_envvars
+check_env
+
+ENV_FILE = get_env ENV_FILE
+PROJECT_NAME = get_env PROJECT_NAME
+
+docker_build "${ENV_FILE}" "${PROJECT_NAME}" "./composer/img-alist-dash.yml"
+'''
+
+[tasks.img-alist-dash-run] # >!! run image alist host (minio + alist)
+script = '''
+#!@duckscript
+!include_files ./makefile/util.env.ds ./makefile/util.docker.ds
+prepare_envvars
+check_env
+
+ENV_FILE = get_env ENV_FILE
+PROJECT_NAME = get_env PROJECT_NAME
+
+docker_down "${ENV_FILE}" "${PROJECT_NAME}" "./composer/img-alist-dash.yml"
+docker_up "${ENV_FILE}" "${PROJECT_NAME}" "./composer/img-alist-dash.yml"
+'''
+
+# help
+[tasks.help]
+script = '''
+#!@duckscript
+!include_files  ./makefile/util.env.ds ./makefile/util.help.ds
+prepare_envvars
+
+## Start script
+banner = readfile ./makefile/Makefile.banner.txt
+echo ${banner}
+
+# Generate commands
+cmds = get_help_commands
+
+env_file = get_env ENV_FILE
+echo Current env file:
+println -c magenta " ${env_file}"
+
+echo Available commands:
+print_help_commands ${cmds}
+release ${cmds}
+
+echo What do you want? >>>
+cmd_name = read
+exec cargo make ${cmd_name}
+'''

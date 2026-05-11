@@ -1,0 +1,69 @@
+<script setup lang="ts">
+import { useData, withBase } from 'vitepress'
+import { computed } from 'vue'
+import { useLocalized } from '@/hooks/useLocalized'
+import DocReaction from './DocReaction.vue'
+
+const { showReaction = true } = defineProps<{
+  showReaction?: boolean
+}>()
+
+const { theme, page } = useData()
+const { formatDate, message } = useLocalized()
+
+const editLink = computed(() => !import.meta.env.DEV
+  ? 'https://github.com/kongying-tavern/docs/edit/main/src/:path'.replace(
+      /:path/g,
+      page.value.filePath,
+    )
+  : `${window.location.origin}/__open-in-editor?file=${encodeURIComponent(`./src/${page.value.filePath}`)}`,
+)
+
+const items = computed(() => {
+  return [
+    {
+      label: import.meta.env.DEV ? message.value.forum.labels.openInEditor : message.value.asideLinks.editLink,
+      icon: 'i-lucide:square-pen',
+      href: editLink.value,
+    },
+    {
+      label: message.value.asideLinks.translateThisPage,
+      icon: 'i-lucide:languages',
+      href: withBase('_translations'),
+    },
+  ]
+})
+</script>
+
+<template>
+  <div
+    class="font-[var(--vp-font-family-subtitle)] pt-5 border-color-[var(--vp-c-divider)] border-none hidden space-y-6 !mt-5 lg:block"
+  >
+    <div class="space-y-3">
+      <div
+        class="text-xs text-color-[var(--vp-c-text-2)] mb-12 flex shrink-0 flex-col gap-1 transition-10"
+      >
+        <p v-if="page?.lastUpdated">
+          {{ theme.lastUpdatedText }}
+          {{ formatDate(page?.lastUpdated) }}
+        </p>
+
+        <VPLink
+          v-for="item in items"
+          :key="item.label"
+          class="vp-link underline-offset-2 flex gap-1.5 transition-200 items-center [&:not(:first-child)]:pt-1 hover:underline"
+          :href="item.href"
+          rel="noopener noreferrer"
+          target="_blank"
+          :no-icon="true"
+        >
+          <span class="flex-shrink-0 h-4 w-4" :class="item.icon" />
+          <span>
+            {{ item.label }}
+          </span>
+        </VPLink>
+      </div>
+      <DocReaction v-if="showReaction" v-motion-slide-right variant="card" />
+    </div>
+  </div>
+</template>

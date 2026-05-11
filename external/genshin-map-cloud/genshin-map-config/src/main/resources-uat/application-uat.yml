@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    include:
+      - base
+      - env-uat
+      - log-uat
+      - doc-uat
+      - database-uat
+      - datasource-uat
+      - websocket-uat
+      - image-uat

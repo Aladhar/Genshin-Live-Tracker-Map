@@ -1,0 +1,42 @@
+{
+  "name": "yuanshenmap-v3",
+  "version": "0.0.1",
+  "description": "A Quasar Project",
+  "productName": "Quasar App",
+  "author": "blacklotus <595272421@qq.com>",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --fix --ext .js,.vue ./",
+    "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "test": "echo \"No test specified\" && exit 0",
+    "dev": "quasar dev",
+    "build": "quasar build"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.16.5",
+    "@vue/compiler-sfc": "^3.3.4",
+    "@vueuse/core": "^10.3.0",
+    "axios": "^0.21.1",
+    "leaflet": "^1.7.1",
+    "leaflet.featuregroup.subgroup": "^1.0.2",
+    "leaflet.markercluster": "^1.5.3",
+    "lodash": "^4.17.21",
+    "pinia": "^2.0.11",
+    "quasar": "^2.12.3",
+    "vue": "^3.3.4",
+    "vue-i18n": "^9.0.0",
+    "vue-router": "^4.2.4"
+  },
+  "devDependencies": {
+    "@intlify/vite-plugin-vue-i18n": "^3.3.1",
+    "@quasar/app-vite": "^1.0.0",
+    "autoprefixer": "^10.4.2",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-vue": "^9.0.0",
+    "prettier": "^3.0.2"
+  },
+  "packageManager": "pnpm@8.10.0+sha512.9c2cb83f2b6cf6a25d8c58300bf99197c7ef3be84cf3e766f29054b40b83b42f8aaba6fcc314a9ecf27c00f7ce80a757bb4c608800e7adbe2d29dc5c7056f5be"
+}

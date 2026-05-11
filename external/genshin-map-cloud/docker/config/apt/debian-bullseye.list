@@ -1,0 +1,3 @@
+deb https://mirrors.aliyun.com/debian/ bullseye main non-free non-free-firmware
+deb https://mirrors.aliyun.com/debian-security/ bullseye-security main non-free non-free-firmware
+deb https://mirrors.aliyun.com/debian/ bullseye-updates main non-free non-free-firmware

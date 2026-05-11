@@ -1,0 +1,969 @@
+@use 'sass:color';
+
+$area_colors: (
+  C_APPLE: #308bf3,
+  C_VELURIYAM: #60FFB5,
+  C_SIMULANKA: #F4ABFD,
+  C_LY: #FFC700,
+  C_MD: #00FFD1,
+  C_DQ: #8F00FF,
+  C_XM: #ADFF00,
+  C_FD: #52e5ff,
+  C_NT: #fa4a4a,
+  C_ZD: #ade5db,
+  C_NDKL: #aeaeae,
+);
+
+@mixin active-highlight-style {
+  @each $area_code, $area_color in $area_colors {
+    &.area_#{$area_code} {
+      $final_color: color.adjust($area_color, $lightness: -15%);
+      background: linear-gradient(180deg, transparent 0%, $final_color 98.73%);
+    }
+  }
+}
+
+@mixin active-bar-style {
+  width: 72rem;
+  opacity: 1;
+
+  @each $area_code, $area_color in $area_colors {
+    &.area_#{$area_code} {
+      background: $area_color;
+    }
+  }
+}
+
+@mixin active-bg-style {
+  width: 45rem;
+  height: 45rem;
+  transform: translateY(0rem);
+  filter: blur(20rem);
+
+  @each $area_code, $area_color in $area_colors {
+    &.area_#{$area_code} {
+      background: color.adjust($area_color, $lightness: -10%);
+    }
+  }
+}
+
+@mixin animation($options...) {
+  $browser-prefixes: (
+    '-webkit-',
+    '-moz-',
+    '-ms-',
+    '-o-',
+    ''
+  );
+  $option-default: (
+    name: animation,
+    duration: 1,
+    delay: 0,
+    direction: normal,
+    fillMode: none,
+    playState: running,
+    easingFunction: linear,
+    iterationCount: infinite,
+    pending: false,
+  );
+
+  @each $option in $options {
+    $option: map-merge($option-default, $option);
+    $name: map-get($option, name);
+    $kf: map-get($option, keyframes);
+    $kfLen: length($kf);
+    $duration: map-get($option, duration);
+    $delay: map-get($option, delay);
+    $direction: map-get($option, direction);
+    $fillMode: map-get($option, fillMode);
+    $playState: map-get($option, playState);
+    $easingFunction: map-get($option, easingFunction);
+    $iterationCount: map-get($option, iterationCount);
+    $pending: map-get($option, pending);
+
+    @each $browser-prefix in $browser-prefixes {
+      @#{$browser-prefix}keyframes #{$name} {
+        @each $frame, $props in $kf {
+          #{$frame}% {
+            @each $k, $v in $props {
+              #{$k}: #{$v};
+            }
+          }
+        }
+      }
+
+      @if $pending {
+        // 不添加动画名，用于手动设置
+        #{$browser-prefix}animation: #{$duration}s #{$easingFunction} #{$delay}s #{$iterationCount} #{$direction} #{$fillMode} #{$playState};
+      } @else {
+        #{$browser-prefix}animation: #{$duration}s #{$easingFunction} #{$delay}s #{$iterationCount} #{$direction} #{$fillMode} #{$playState} #{$name};
+      }
+    }
+  }
+}
+
+@mixin keystroke-motion {
+  $motion-x: 20rem;
+  $motion-x-time: .2;
+  $motion-y: 10rem;
+  $motion-y-time: .2;
+  $motion-rotate-deg: 90deg;
+  $motion-rotate-time: .5;
+
+  $motions: (
+    (
+      name: key_arrow_up,
+      animateProps: (
+        translate: 0 (-1 * $motion-y),
+      ),
+      duration: $motion-y-time,
+    ),
+    (
+      name: key_arrow_down,
+      animateProps: (
+        translate: 0 ($motion-y),
+      ),
+      duration: $motion-y-time,
+    ),
+    (
+      name: key_arrow_left,
+      animateProps: (
+        translate: (-1 * $motion-x) 0,
+      ),
+      duration: $motion-x-time,
+    ),
+    (
+      name: key_arrow_right,
+      animateProps: (
+        translate: ($motion-x) 0,
+      ),
+      duration: $motion-x-time,
+    ),
+    (
+      name: key_a,
+      animateProps: (
+        rotate: (-1 * $motion-rotate-deg),
+      ),
+      duration: $motion-rotate-time,
+    ),
+    (
+      name: key_b,
+      animateProps: (
+        rotate: ($motion-rotate-deg),
+      ),
+      duration: $motion-rotate-time,
+    ),
+  );
+
+  @each $motion in $motions {
+    $name: map-get($motion, name);
+    $animateProps: map-get($motion, animateProps);
+    $duration: map-get($motion, duration);
+
+    &.#{$name} {
+      @include animation(
+        (
+          name: #{$name},
+          keyframes: (
+            0: (),
+            50: $animateProps,
+            100: ()
+          ),
+          duration: $duration,
+          easingFunction: ease-in-out,
+          iterationCount: 1,
+        )
+      )
+    }
+  }
+}
+
+//各个选择器的样式
+//地区选择器的样式
+.area_selector {
+  position: absolute;
+  width: 100vw;
+  height: 0;
+  top: 0;
+  right: 0;
+  z-index: 2000;
+  user-select: none;
+
+  .area_selector_container {
+    font-family: HYWH;
+    font-weight: 400;
+    width: 100%;
+    height: 100%;
+    top: 6rem;
+    position: relative;
+
+    .area_selector_fold {
+      position: absolute;
+      min-width: 356rem;
+      height: 96rem;
+      right: 28rem;
+      top: 18rem;
+      // cursor: pointer;
+
+      @media screen and (min-width:850px) {
+        z-index: 2001;
+      }
+
+      .area_switch_btn {
+        min-width: 160rem;
+        height: 36rem;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 19rem;
+        margin-top: 4rem;
+
+        .area_switch_btn_icon {
+          width: 34rem;
+          height: 34rem;
+          background: url(/imgs/compass_icon.png) no-repeat;
+          background-size: 100% 100%;
+          margin-left: 12rem;
+        }
+
+        .area_switch_btn_text {
+          height: 29rem;
+          font-size: 24rem;
+          line-height: 30rem;
+          color: #ffffff;
+          margin-left: 4rem;
+        }
+      }
+
+      .area_name {
+        font-size: 38rem;
+        line-height: 48rem;
+        color: #ffffff;
+        margin-left: 8rem;
+      }
+
+      .selected_area_child_name {
+        font-size: 26rem;
+        line-height: 32rem;
+        color: #ffc700;
+        margin-left: 60rem;
+        text-align: right;
+        overflow: hidden;
+        width: 300rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .area_icon {
+        position: relative;
+        width: 96rem;
+        height: 96rem;
+        margin-left: 16rem;
+
+        .color_bg {
+          @include active-bg-style;
+          position: absolute;
+          inset: 50% 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+
+    .area_selector_unfold.orientation-landscape {
+      position: absolute;
+      z-index: 9999;
+      width: 100%;
+      height: 157rem;
+      top: -157rem;
+      opacity: 0;
+      -webkit-transition: all .45s;
+      -moz-transition: all .45s;
+      -ms-transition: all .45s;
+      -o-transition: all .45s;
+      transition: all .45s;
+      transition-timing-function: cubic-bezier(1, 0, 0, 1);
+
+      &.on {
+        top: 0;
+        opacity: 1;
+        -webkit-transition: all .25s;
+        -moz-transition: all .25s;
+        -ms-transition: all .25s;
+        -o-transition: all .25s;
+        transition: all .25s;
+        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+      }
+
+      .area_selector_background {
+        position: absolute;
+        height: 128rem;
+        left: 0rem;
+        right: 0rem;
+        top: 0rem;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0) 100%);
+
+        @media screen and (max-width:850px) {
+          background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0.5) 100%);
+        }
+      }
+
+      .area_selector_line {
+        position: absolute;
+        height: 6rem;
+        left: 360rem;
+        right: 360rem;
+        top: 134rem;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 51.04%, rgba(255, 255, 255, 0) 100%);
+      }
+
+      .area_selector_icon {
+        display: block;
+        position: absolute;
+        top: calc(50% - 20rem);
+        left: calc(50% - 20rem);
+        width: 40rem;
+        height: 40rem;
+        background: url(/imgs/compass_icon.png) no-repeat;
+        background-size: 100% 100%;
+
+        &.key_motion {
+          @include keystroke-motion;
+        }
+      }
+
+      .area_type_container {
+        position: relative;
+        width: auto;
+        height: 128rem;
+        display: flex;
+
+        // cursor: pointer;
+        .area_icon_bg {
+          -webkit-transition: all .15s;
+          -moz-transition: all .15s;
+          -ms-transition: all .15s;
+          -o-transition: all .15s;
+          transition: all .15s;
+          position: absolute;
+          margin: auto;
+          background: transparent;
+          transform: translateY(0rem);
+          width: 10rem;
+          height: 10rem;
+        }
+
+        .active_bg {
+          -webkit-transition: all .15s;
+          -moz-transition: all .15s;
+          -ms-transition: all .15s;
+          -o-transition: all .15s;
+          transition: all .15s;
+          position: absolute;
+          width: 95.79rem;
+          height: 124.906rem;
+          background: transparent;
+          transform: perspective(32rem) rotateX(-5deg) translateY(15rem);
+          filter: blur(9rem);
+        }
+
+        .active {
+          -webkit-transition: all .15s;
+          -moz-transition: all .15s;
+          -ms-transition: all .15s;
+          -o-transition: all .15s;
+          transition: all .15s;
+          position: absolute;
+          width: 0rem;
+          height: 6rem;
+          bottom: 0rem;
+          margin: auto;
+          background: transparent;
+          opacity: 0;
+        }
+
+        &.on {
+          .area_icon {
+            height: 90rem;
+            width: 90rem;
+          }
+
+          .active_bg {
+            @include active-highlight-style;
+          }
+
+          .active {
+            @include active-bar-style;
+          }
+        }
+
+        &:hover {
+          .area_icon_bg {
+            @include active-bg-style()
+          }
+        }
+
+        &:active {
+          .active {
+            @include active-bar-style()
+          }
+        }
+
+        .area_icon {
+          height: 72rem;
+          width: 72rem;
+          -webkit-transition: all .1s;
+          -moz-transition: all .1s;
+          -ms-transition: all .1s;
+          -o-transition: all .1s;
+          transition: all .1s;
+        }
+      }
+
+      .child_selector {
+        width: 100%;
+        opacity: 0;
+        transform: scaleX(0);
+        pointer-events: none;
+        -webkit-transition: all .45s;
+        -moz-transition: all .45s;
+        -ms-transition: all .45s;
+        -o-transition: all .45s;
+        transition: all .45s;
+        transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+        &.onshow {
+          opacity: 1;
+          transform: scaleX(1);
+          -webkit-transition: all .45s;
+          -moz-transition: all .45s;
+          -ms-transition: all .45s;
+          -o-transition: all .45s;
+          transition: all .45s;
+          transition-timing-function: cubic-bezier(1, 0, 0, 1);
+        }
+
+        &.on {
+          opacity: 1;
+          transform: scaleX(1);
+          -webkit-transition: all .45s;
+          -moz-transition: all .45s;
+          -ms-transition: all .45s;
+          -o-transition: all .45s;
+          transition: all .45s;
+          transition-timing-function: cubic-bezier(0, 1, 0, 1);
+        }
+
+        &.off {
+          opacity: 0;
+          transform: scaleX(0);
+          -webkit-transition: all .45s;
+          -moz-transition: all .45s;
+          -ms-transition: all .45s;
+          -o-transition: all .45s;
+          transition: all .45s;
+          transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        .area_name {
+          width: 420rem;
+          height: 56rem;
+          margin: 20rem auto 0;
+          background: url(/imgs/area_name_bg.png) no-repeat;
+          background-size: 100% 100%;
+
+          span {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 56rem;
+            font-size: 28rem;
+            color: #ffffff;
+          }
+        }
+
+        .child_area_list {
+          margin-top: 8rem;
+
+          .child_area {
+            -webkit-transition: all .15s;
+            -moz-transition: all .15s;
+            -ms-transition: all .15s;
+            -o-transition: all .15s;
+            transition: all .15s;
+            padding: 0rem 24rem 0rem;
+            background: rgba(0, 0, 0, 0.5);
+            // border: 4rem solid transparent;
+            border-radius: 20.5rem;
+            color: #ffffff;
+            font-size: 24rem;
+            // cursor: pointer;
+            margin-left: 6rem;
+            margin-right: 6rem;
+            height: 38rem;
+            line-height: 40rem;
+            pointer-events: all;
+            outline: 2rem solid transparent;
+
+            p {
+              margin: 0;
+            }
+
+            &:hover {
+              outline: 2rem solid #fffaed;
+            }
+
+            &:active {
+              outline: 3rem solid #fffaed;
+            }
+
+            &.on {
+              outline: 4rem solid #fffaed;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.area_selector_unfold.orientation-portrait {
+  position: relative;
+  $button-size: 60rem;
+
+  .parent_selector {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12rem;
+
+    .area_button {
+      position: relative;
+    }
+
+    .area_icon {
+      border-radius: $button-size / 2;
+      height: $button-size;
+      width: $button-size;
+      border: 3rem solid #111;
+      background-color: #666;
+      overflow: hidden;
+
+      .bg {
+        @include active-bg-style;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 80% !important;
+        height: 80% !important;
+        overflow: hidden;
+      }
+
+      .icon {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .child_selector {
+    position: absolute;
+    transform: translateX(-100%);
+    left: -20rem;
+    top: 0;
+
+    &.on {
+      display: block;
+      -webkit-transition: all .45s;
+      -moz-transition: all .45s;
+      -ms-transition: all .45s;
+      -o-transition: all .45s;
+      transition: all .45s;
+      transition-timing-function: cubic-bezier(0, 1, 0, 1);
+    }
+
+    &.off {
+      display: none;
+      -webkit-transition: all .45s;
+      -moz-transition: all .45s;
+      -ms-transition: all .45s;
+      -o-transition: all .45s;
+      transition: all .45s;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    .child_area_list {
+      .child_area {
+        padding: 0rem 24rem 0rem;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 20.5rem;
+        color: #ffffff;
+        font-size: 20rem;
+        margin-top: 10rem;
+        margin-bottom: 10rem;
+        height: 38rem;
+        line-height: 40rem;
+        pointer-events: all;
+        outline: 2rem solid transparent;
+        white-space: nowrap;
+        text-align: center;
+
+        &:hover {
+          outline: 3rem solid #fffaed;
+        }
+
+        &:active {
+          outline: 3rem solid #fffaed;
+        }
+
+        &.on {
+          outline: 4rem solid #fffaed;
+        }
+      }
+    }
+  }
+}
+
+//物品选择器的样式
+@keyframes item_selector_on {
+  from {
+    right: -355rem;
+  }
+
+  to {
+    right: 24rem;
+  }
+}
+
+@keyframes item_selector_off {
+  from {
+    right: 24rem;
+  }
+
+  to {
+    right: -355rem;
+  }
+}
+
+.item_selector {
+  position: absolute;
+  top: 136rem;
+  right: 24rem;
+  bottom: 0rem;
+  z-index: 2000;
+  user-select: none;
+
+  .item_selector_main {
+    position: relative;
+    height: 100%;
+
+    .fold_btn {
+      position: absolute;
+      width: 120rem;
+      height: 73rem;
+      left: -102rem;
+      top: 12rem;
+      background: url(/imgs/fold_btn_bg.png) no-repeat;
+      background-size: 100% 100%;
+      // cursor: pointer;
+      z-index: -1;
+
+      .fold_btn_arrow {
+        position: absolute;
+        top: 15rem;
+        left: 46rem;
+        width: 42rem;
+        height: 42rem;
+        background: url(/imgs/fold_arrow_right.png) no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .fold_btn_arrow.on {
+        width: 42rem;
+        height: 42rem;
+        background: url(/imgs/fold_arrow_left.png) no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+
+    .item_selector_container {
+      height: 100%;
+
+      .item_selector_header {
+        width: 401rem;
+        height: 88rem;
+        background: url(/imgs/Menu_bac_top.png) no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .item_selector_body {
+        width: 401rem;
+        height: calc(100% - 218rem - 84rem);
+        margin-top: -2rem;
+        background: url(/imgs/Menu_bac_mid.png) repeat;
+        background-size: 100% 100%;
+      }
+
+      .item_selector_footer {
+        width: 401rem;
+        height: 218rem;
+        margin-top: -2rem;
+        background: url(/imgs/Menu_bac_down.png) no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+
+    .item_selector_list_container_background {
+      position: absolute;
+      height: 6rem;
+      left: 34rem;
+      right: 23rem;
+      top: 16rem;
+      background: #B6A9A3;
+      border-radius: 4.80322rem 4.80322rem 0rem 0rem;
+    }
+
+    .item_selector_list_container {
+      position: absolute;
+      left: 26rem;
+      right: 15rem;
+      top: 22rem;
+      bottom: 44rem;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+      background: #f2f0eb;
+      border-radius: 6rem;
+    }
+
+    .item_selector_item {
+      width: 338rem;
+      margin: 6rem auto;
+      background: #ffffff;
+      border: 1rem solid #ddd8d3;
+      box-sizing: border-box;
+      border-radius: 3rem;
+
+      .item_header {
+        width: 100%;
+        height: 48rem;
+        // cursor: pointer;
+
+        .item_name {
+          margin-left: 8rem;
+          font-weight: bold;
+          font-size: 21rem;
+          color: #2c3241;
+        }
+
+        .item_fold_btn {
+          width: 20rem;
+          height: 20rem;
+          margin: 0 14rem 5rem 0;
+          background: url(/imgs/treasure_fold_down.png) no-repeat;
+          background-size: 100% 100%;
+        }
+
+        .item_fold_btn.on {
+          background: url(/imgs/treasure_fold_up.png) no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+
+      .item_body {
+        border-top: 1rem solid #ddd8d3;
+        padding: 0 0 0 4rem;
+
+        .q-pa-sm {
+          padding: 9rem 0 0 6rem;
+        }
+
+        .item_option {
+          width: 155rem;
+          height: 48rem;
+          background: #f6f6f6;
+          margin: 8rem 0 0 6rem;
+          // cursor: pointer;
+          outline: 1rem solid transparent;
+          border-radius: 2rem;
+          -webkit-background-clip: padding;
+          -moz-background-clip: padding;
+          background-clip: padding-box;
+          -webkit-transition: all .25s;
+          -moz-transition: all .25s;
+          -ms-transition: all .25s;
+          -o-transition: all .25s;
+          transition: all .25s;
+
+          &:hover {
+            background: #FFFFFF;
+            outline: 1rem solid #B6A9A3;
+            -webkit-transition: all .25s;
+            -moz-transition: all .25s;
+            -ms-transition: all .25s;
+            -o-transition: all .25s;
+            transition: all .25s;
+          }
+
+          .item_option_avatar {
+            width: 48rem;
+            height: 48rem;
+            padding: 4rem;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 2rem 0 0 2rem;
+          }
+
+          .item_option_title {
+            display: block;
+            width: 235%;
+            font-size: 40rem;
+            font-weight: bold;
+            color: #817472;
+            margin: 3rem 0 0 6rem;
+            transform: scale(0.4);
+            transform-origin: 0% 0%;
+          }
+
+          .item_option_count {
+            display: block;
+            width: 235%;
+            font-size: 30rem;
+            font-weight: bold;
+            color: #c2b9b8;
+            margin: -38rem 0 0 6rem;
+            transform: scale(0.4);
+            transform-origin: 0% 0%;
+          }
+
+          .item_option_progress {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 4rem;
+            background: rgba(0, 0, 0, 0.05);
+
+            .item_option_progress_bar {
+              display: block;
+              height: 100%;
+              background: #00fff0;
+            }
+          }
+        }
+
+        .item_option:last-child {
+          margin: 8rem 0 9rem 6rem;
+        }
+
+        .item_option:first-child {
+          margin: 9rem 0 0 6rem;
+        }
+
+        .item_option:nth-child(2) {
+          margin: 9rem 0 0 6rem;
+        }
+
+        .item_option.on {
+          background: #424b63;
+
+          .item_option_avatar {
+            background: rgba(255, 255, 255, 0.1);
+          }
+
+          .item_option_title {
+            color: #f2f0eb;
+          }
+
+          .item_option_progress {
+            background: rgba(255, 255, 255, 0.05);
+          }
+        }
+      }
+    }
+  }
+
+  animation: item_selector_on 1s forwards;
+}
+
+.item_selected_wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20rem;
+  position: absolute;
+  top: 100rem;
+  right: 400rem;
+  bottom: 32rem;
+  z-index: 5000;
+
+  .area_selector_foreign {
+    height: 100%;
+  }
+
+  .item_selected_bar {
+    position: relative;
+    width: 56rem;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 3rem solid rgba(0, 0, 0, 0.3);
+    border-radius: 32rem;
+    box-sizing: border-box;
+
+    .close-all {
+      position: absolute;
+      top: -3rem;
+      left: -3rem;
+      width: 56rem;
+      height: 56rem;
+      background: url(/imgs/btn_close.png) no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .item_list {
+      position: absolute;
+      margin-top: 56rem;
+      margin-bottom: 25rem;
+      left: -3rem;
+      right: -8rem;
+      bottom: -3rem;
+      top: -3rem;
+
+      .item {
+        position: relative;
+        width: 55.5rem;
+        height: 55.5rem;
+        margin: 16rem auto 16rem 0;
+        background: rgba(0, 0, 0, 0.3);
+        border: 3rem solid rgba(0, 0, 0, 0.3);
+        border-radius: 28rem;
+
+        &:hover .item_close {
+          opacity: 1;
+          -webkit-transition: all .5s;
+          -moz-transition: all .5s;
+          -ms-transition: all .5s;
+          -o-transition: all .5s;
+          transition: all .5s;
+        }
+
+        .item_close {
+          opacity: 0;
+          position: absolute;
+          z-index: 5001;
+          right: -8rem;
+          top: -8rem;
+          width: 24rem;
+          height: 24rem;
+          background: url(/imgs/btn_close_mini.png) no-repeat;
+          background-size: 100% 100%;
+          -webkit-transition: all .5s;
+          -moz-transition: all .5s;
+          -ms-transition: all .5s;
+          -o-transition: all .5s;
+          transition: all .5s;
+        }
+      }
+    }
+  }
+}
+
+.item_selector.off {
+  animation: item_selector_off 1s forwards;
+}

@@ -1,0 +1,24 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": [
+    "types/**/*",
+    "src/**/*"
+  ],
+  "exclude": [
+    "./src/api/protobuf/compiled.js"
+  ],
+  "compilerOptions": {
+    "incremental": true,
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "checkJs": true,
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext", "WebWorker", "ESNext.AsyncIterable", "DOM.AsyncIterable"],
+    "types": ["element-plus/global", "vite-plugin-pwa/client", "vite-plugin-pwa/vue"],
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}

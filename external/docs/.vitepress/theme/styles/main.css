@@ -1,0 +1,273 @@
+@import "./theme.css";
+@import "./vp-vars.css";
+@import "./ui/tooltip.css";
+@import "./ui/timeline.css";
+@import "./ui/kbd.css";
+@import "./ui/demo.css";
+@import "./animation.css";
+@import "./fonts.css";
+@import "vue-sonner/style.css";
+
+@view-transition {
+  navigation: auto;
+}
+
+:root {
+  text-autospace: normal;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1,
+.outline-title,
+div.VPHomeHero > div > div.main > p.text,
+.header-anchor::before {
+  font-family: var(--vp-font-family-title);
+}
+
+button,
+summary,
+strong,
+h2,
+h3,
+h4,
+h5,
+h6,
+kbd,
+thead,
+.VPButton,
+[data-menu-item],
+[data-radix-vue-collection-item],
+.custom-block-title,
+.VPLocalNavOutlineDropdown,
+.doc-info-left,
+.subtitle,
+.vp-link,
+.lead,
+.timeline-dot-title,
+div.VPHomeHero > div > div.main > p.tagline {
+  font-family: var(--vp-font-family-subtitle);
+}
+
+.vp-doc h2 {
+  border: none;
+  margin-top: 10px;
+}
+
+.vp-doc h2:first-child {
+  border-top: 1px;
+}
+
+.vp-doc figure {
+  text-align: center;
+}
+
+.vp-doc figure figcaption {
+  font-weight: bold;
+  line-height: 1.5;
+  padding: 0.3rem 0;
+  color: var(--vp-fig-light-text);
+}
+
+html.dark .vp-doc figure figcaption {
+  color: var(--vp-fig-text);
+}
+
+.VPNav {
+  font-family: var(--vp-font-family-subtitle);
+}
+
+.title {
+  font-family: var(--vp-font-family-title);
+}
+
+.VPMenuLink .link {
+  line-height: 28px !important;
+}
+
+.VPMenu .items > :not(.VPMenuLink).title {
+  font-weight: bold;
+  color: var(--vp-c-brand-1);
+}
+
+.VPSidebarGroup .link {
+  padding: 3px 0 !important;
+}
+
+.VPLocalNav {
+  padding-top: 0 !important;
+  margin-top: var(--vp-layout-top-height);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+
+.banner > .text > a {
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition:
+    color 0.25s,
+    opacity 0.25s;
+}
+
+.reached-top {
+  top: var(--vp-layout-top-height) !important;
+}
+
+.banner ~ .reached-top {
+  top: 0px !important;
+}
+
+.VPNav {
+  transition:
+    background-color 0.5s,
+    top 0.35s ease-out !important;
+}
+
+textarea {
+  font-family: var(--vp-font-family-base);
+}
+
+#app a:focus-visible,
+#app button:focus-visible,
+#app input[type="checkbox"]:focus-visible {
+  --at-apply: outline-1 outline-primary ring-2 ring-primary;
+}
+
+.VPSidebar::-webkit-scrollbar {
+  background: transparent;
+  height: 8px;
+  width: 8px;
+  margin-right: 8px;
+}
+
+.VPSidebar::-webkit-scrollbar-corner {
+  width: 4px;
+}
+
+.VPSidebar::-webkit-scrollbar-thumb {
+  background-clip: content-box;
+  background-color: var(--vp-button-alt-bg);
+  border: 2px solid transparent;
+  border-radius: 4px;
+}
+
+.VPSidebar::-webkit-scrollbar-track {
+  background-color: var(--vp-c-bg);
+}
+
+#app > div > div.VPLocalNav > div > div > div.outline {
+  outline-style: none !important;
+}
+
+.vp-doc .color-swatch {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  min-width: 12px;
+  min-height: 12px;
+  font-size: inherit;
+  border: 0;
+  border-radius: 2px;
+  margin: 0 3px 0 6px;
+  cursor: pointer;
+}
+
+#VPContent {
+  background-color: var(--vp-c-bg);
+}
+
+#VPContent
+  > div
+  > div
+  > div.aside
+  > div.aside-container
+  > div
+  > div
+  > nav
+  > div {
+  padding-left: 0;
+}
+
+.outline-marker {
+  display: none;
+}
+
+.outline-link.active {
+  font-family: var(--vp-font-family-subtitle);
+}
+
+#VPContent
+  > div
+  > div
+  > div.aside
+  > div.aside-container
+  > div
+  > div
+  > div.VPDocAsideOutline.has-outline
+  > div {
+  border: none;
+}
+
+.load-error::after {
+  content: "图片被派蒙吃掉了！" !important;
+  text-align: center;
+  line-height: 10;
+  background-color: var(--vp-c-bg-alt) !important;
+  animation: none !important;
+}
+
+.prev-next {
+  margin-top: 1em;
+}
+
+.edit-info {
+  display: none !important;
+}
+
+/* CSS Variables for spoiler colors */
+:root {
+  --vp-spoiler-color-1: var(--vp-c-text-1);
+  --vp-spoiler-color-2: var(--vp-c-text-2);
+  --vp-spoiler-color-3: var(--vp-c-text-3);
+}
+
+/* Inline spoiler styles for ScratchToReveal component */
+.inline-spoiler {
+  display: inline-block;
+  vertical-align: baseline;
+  margin: 0 2px;
+  border-radius: 4px;
+  cursor: help;
+}
+
+.inline-spoiler canvas {
+  border-radius: 4px;
+  vertical-align: top;
+}
+
+/* Focus styles for accessibility - no outline */
+.inline-spoiler:focus {
+  outline: none;
+}
+
+/* Text alignment classes for spoiler - removed since we now use inline styles */
+
+.VPDocAsideOutline.has-outline > .content {
+  border: none;
+}
+
+.VPDocAsideOutline.has-outline > .content > .outline-marker {
+  border-radius: 4px;
+  width: 4px;
+  left: 0px;
+}

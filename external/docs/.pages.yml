@@ -1,0 +1,8 @@
+media:
+  input: src/public
+  output: /
+content:
+  - name: zh
+    label: src
+    type: collection
+    path: src

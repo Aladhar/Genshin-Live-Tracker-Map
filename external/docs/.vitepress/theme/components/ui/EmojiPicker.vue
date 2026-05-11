@@ -1,0 +1,247 @@
+<script setup lang="ts">
+import type { PopoverContentProps } from 'radix-vue'
+import type { HTMLAttributes } from 'vue'
+import { useLocalStorage } from '@vueuse/core'
+import { computed, ref, watch, watchEffect } from 'vue'
+import { Button } from '@/components/ui/button'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { cn } from '@/lib/utils'
+import EmojiData from '~/_data/emojis.json'
+
+import { useEmojiPreload } from '~/composables/useGlobalEmojiPreloader'
+
+export interface EmojiItem {
+  preset: string
+  emojiPlaceholder: string
+  emoji: string
+  width: number
+  height: number
+}
+
+defineOptions({
+  inheritAttrs: false,
+})
+
+const props = withDefaults(
+  defineProps<PopoverContentProps & { class?: HTMLAttributes['class'], recordCount?: number }>(),
+  {
+    align: 'center',
+    side: 'top',
+    sideOffset: 50,
+    disableUpdateOnLayoutShift: true,
+    recordCount: 8,
+  },
+)
+
+const emit = defineEmits<{
+  (e: 'select', arg1: EmojiItem): void
+}>()
+
+const recentEmojis = useLocalStorage<Record<string, string[]>>('RECENT_EMOJIS', {})
+
+// 立即修复无效的初始值
+if (!import.meta.env.SSR) {
+  if (typeof recentEmojis.value !== 'object' || recentEmojis.value === null || Array.isArray(recentEmojis.value)) {
+    recentEmojis.value = {}
+  }
+}
+
+// 验证并自动重置对象类型
+watchEffect(() => {
+  if (typeof recentEmojis.value !== 'object' || recentEmojis.value === null || Array.isArray(recentEmojis.value)) {
+    recentEmojis.value = {}
+  }
+})
+
+const isOpen = ref(false)
+const activePresetIndex = ref(0)
+
+const emojiPreloader = useEmojiPreload()
+
+function handleTriggerHover() {
+  emojiPreloader.smartPreload()
+}
+
+watch(isOpen, opened => opened && emojiPreloader.preloadAllGroupsTop(30))
+const currentPreset = computed(() => EmojiData[activePresetIndex.value] || null)
+const currentEmojiList = computed<Record<string, string>>(() => {
+  const list = EmojiData[activePresetIndex.value]?.list || []
+  return Object.fromEntries(
+    list.map(item => [Object.keys(item)[0], Object.values(item)[0]]),
+  )
+})
+
+// 过滤空值并限制最大数量
+const recentEmojisFiltered = computed(() => {
+  const currentPresetName = currentPreset.value?.presets
+  if (!currentPresetName) {
+    return []
+  }
+
+  return (recentEmojis.value[currentPresetName] || [])
+    .filter(emoji => emoji && typeof emoji === 'string')
+    .slice(0, props.recordCount)
+})
+
+function selectEmoji(emoji: string) {
+  if (!emoji || typeof emoji !== 'string') {
+    return
+  }
+
+  emit('select', {
+    emoji,
+    emojiPlaceholder: `:${emoji}:`,
+    preset: currentPreset.value.presets,
+    width: currentPreset.value.width,
+    height: currentPreset.value.height,
+  })
+
+  // 更新最近使用的表情
+  const currentPresetName = currentPreset.value.presets
+  if (!currentPresetName) {
+    return
+  }
+
+  const presetEmojis = recentEmojis.value[currentPresetName] || []
+  const newPresetEmojis = presetEmojis.filter(e => e !== emoji)
+  newPresetEmojis.unshift(emoji)
+
+  recentEmojis.value = {
+    ...recentEmojis.value,
+    [currentPresetName]: newPresetEmojis.slice(0, 8),
+  }
+}
+
+function nextPreset() {
+  if (activePresetIndex.value < EmojiData.length - 1) {
+    activePresetIndex.value++
+  }
+}
+
+function prevPreset() {
+  if (activePresetIndex.value > 0) {
+    activePresetIndex.value--
+  }
+}
+
+function deleteRecentEmoji(emoji: string) {
+  if (!emoji || typeof emoji !== 'string') {
+    return
+  }
+
+  const currentPresetName = currentPreset.value.presets
+  if (!currentPresetName) {
+    return
+  }
+
+  recentEmojis.value = {
+    ...recentEmojis.value,
+    [currentPresetName]: (recentEmojis.value[currentPresetName] || []).filter(e => e !== emoji),
+  }
+}
+</script>
+
+<template>
+  <Popover v-model:open="isOpen">
+    <PopoverTrigger as-child>
+      <slot name="trigger">
+        <Button
+          variant="ghost"
+          :class="cn('h-8 w-6 border border-[var(--vp-c-gutter)] border-solid bg-transparent', $props.class)"
+          @mouseenter="handleTriggerHover"
+        >
+          <span class="i-custom:emoji c-[var(--vp-c-text-2)] icon-btn size-4" />
+        </Button>
+      </slot>
+    </PopoverTrigger>
+    <PopoverContent v-bind="{ ...$props }" class="p-0 size-fit">
+      <div
+        class="c-[var(--vp-c-text-1)] border rounded-lg bg-[var(--vp-c-bg-elv)] flex flex-col h-[270px] w-[360px] shadow"
+      >
+        <div class="p-2 flex flex-1 flex-col overflow-hidden">
+          <div v-if="recentEmojisFiltered.length > 0" class="mb-2">
+            <p class="text-sm font-bold">
+              最近使用
+            </p>
+            <TransitionGroup
+              name="emoji-shift" tag="div"
+              class="emoji-grid-inner gap-1 grid grid-cols-8 grid-rows-1 max-h-32px overflow-hidden"
+            >
+              <Button
+                v-for="emoji in recentEmojisFiltered" :key="emoji" variant="ghost" class="text-lg p-0 h-8 w-8"
+                @click="selectEmoji(emoji)" @dblclick="deleteRecentEmoji(emoji)"
+              >
+                <Emoji :emoji="emoji" :width="currentPreset.width" :height="currentPreset.height" />
+              </Button>
+            </TransitionGroup>
+          </div>
+          <p class="text-sm font-bold">
+            {{ currentPreset.presets }}
+          </p>
+          <div class="emoji-list gap-1 grid grid-cols-8 overflow-auto">
+            <Button
+              v-for="(emoji, key) in currentEmojiList" :key="key" variant="ghost" class="text-lg p-1 size-fit"
+              @click="selectEmoji(emoji)"
+            >
+              <Emoji :emoji="emoji" :width="currentPreset.width" :height="currentPreset.height" />
+            </Button>
+          </div>
+        </div>
+        <div class="p-2 bg-[var(--vp-c-bg-alt)] flex h-10 w-full items-center justify-between">
+          <div class="flex gap-2 overflow-auto">
+            <Button
+              v-for="(preset, index) in EmojiData" :key="preset.presets" variant="ghost" class="p-1 size-fit"
+              @click="() => { activePresetIndex = index; }"
+            >
+              <Emoji :emoji="preset.logo" :height="25" :width="25" />
+            </Button>
+          </div>
+          <div class="ml-4 flex gap-1">
+            <Button variant="ghost" class="w-4" :disabled="activePresetIndex === 0" @click="prevPreset">
+              <span class="i-lucide:chevron-left icon-btn" />
+            </Button>
+            <Button
+              variant="ghost" class="w-4" :disabled="activePresetIndex === EmojiData.length - 1"
+              @click="nextPreset"
+            >
+              <span class="i-lucide:chevron-right icon-btn" />
+            </Button>
+          </div>
+        </div>
+      </div>
+    </PopoverContent>
+  </Popover>
+</template>
+
+<style scoped>
+::-webkit-scrollbar {
+  display: none;
+}
+
+.emoji-shift-enter-active,
+.emoji-shift-leave-active {
+  transition: all 0.3s ease;
+}
+
+.emoji-shift-enter-from {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.emoji-shift-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.emoji-shift-move {
+  transition: all 0.3s ease;
+}
+
+.emoji-grid-inner>*:nth-child(n+9) {
+  display: none;
+}
+</style>

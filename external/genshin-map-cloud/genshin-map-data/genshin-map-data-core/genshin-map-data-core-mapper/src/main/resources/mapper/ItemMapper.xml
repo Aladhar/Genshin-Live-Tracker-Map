@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.yuanshen.data.mapper.ItemMapper">
+
+    <select id="selectPageItem"
+            resultType="site.yuanshen.data.entity.Item"
+            parameterType="site.yuanshen.data.dto.ItemSearchDto">
+        <bind
+            name="itemSearchName"
+            value="itemSearchDto.name != null and itemSearchDto.name != '' ? '%' + itemSearchDto.name + '%' : ''" />
+        select * from item where id in
+        (select distinct i.id
+        from item i
+        <if test="itemSearchDto.typeIdList != null">
+            left join item_type_link itl on i.id = itl.item_id
+        </if>
+        <where>
+            i.del_flag = false
+            <if test="itemSearchDto.typeIdList != null">
+                and itl.del_flag = false
+            </if>
+            <if test="itemSearchDto.typeIdList != null and itemSearchDto.typeIdList.size > 0">
+                and itl.type_id in
+                <foreach collection="itemSearchDto.typeIdList" open="(" separator="," close=")" item="typeId">
+                    #{typeId}
+                </foreach>
+            </if>
+            <if test="itemSearchDto.areaIdList != null and itemSearchDto.areaIdList.size > 0">
+                and i.area_id in
+                <foreach collection="itemSearchDto.areaIdList" open="(" separator="," close=")" item="areaId">
+                    #{areaId}
+                </foreach>
+            </if>
+            <if test="itemSearchDto.hiddenFlagList != null and itemSearchDto.hiddenFlagList.size > 0">
+                and i.hidden_flag in
+                <foreach collection="itemSearchDto.hiddenFlagList" open="(" separator="," close=")" item="hiddenFlag">
+                    #{hiddenFlag}
+                </foreach>
+            </if>
+            <if test="itemSearchDto.specialFlag != null">
+                <choose>
+                    <when test="itemSearchDto.specialFlag == 0">
+                        and i.special_flag = 0
+                    </when>
+                    <otherwise>
+                        and (i.special_flag &amp; #{itemSearchDto.specialFlag}) != 0
+                    </otherwise>
+                </choose>
+            </if>
+            <if test="itemSearchName != null and itemSearchName != ''">
+                and i.name LIKE #{itemSearchName}
+            </if>
+        </where>
+        )
+        <choose>
+            <when test="ew.customSqlSegment == null or ew.customSqlSegment == ''">
+                ORDER BY id ASC
+            </when>
+            <otherwise>
+                ${ew.customSqlSegment},id ASC
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="selectListWithLargeIn" resultType="site.yuanshen.data.entity.Item">
+        with id_list as ( select unnest(${unnest}::bigint[]) "id2")
+        select
+        <if test="ew.SqlSelect == null or ew.SqlSelect == ''">
+            <include refid="Base_Column_List"/>
+        </if>
+        ${ew.SqlSelect}
+        from
+        item, id_list
+        <if test="ew.customSqlSegment == null or ew.customSqlSegment == ''">
+            where true
+        </if>
+        ${ew.customSqlSegment} and del_flag = false and item.id=id_list.id2
+    </select>
+
+    <select id="selectWithLargeCustomIn" resultType="site.yuanshen.data.entity.Item">
+        with id_list as ( select unnest(${unnest}::bigint[]) "${column}2")
+        select
+        <if test="ew.SqlSelect == null or ew.SqlSelect == ''">
+            <include refid="Base_Column_List"/>
+        </if>
+        ${ew.SqlSelect}
+        from
+        item, id_list
+        <if test="ew.customSqlSegment == null or ew.customSqlSegment == ''">
+            where true
+        </if>
+        ${ew.customSqlSegment} and del_flag = false and item.${column} = id_list."${column}2"
+    </select>
+
+
+</mapper>

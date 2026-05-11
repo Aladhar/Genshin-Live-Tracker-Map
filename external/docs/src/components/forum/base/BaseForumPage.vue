@@ -1,0 +1,110 @@
+<script setup lang="ts">
+import type { StoreGeneric } from 'pinia'
+import type { Component } from 'vue'
+import type ForumAPI from '@/apis/forum/api'
+import type { ForumStore } from '~/types/forum/simplified'
+import { computed, provide, toRef } from 'vue'
+import ForumAside from '../ForumAside.vue'
+import ForumLayout from '../ForumLayout.vue'
+import ForumTopicMenubar from '../ForumTopicMenubar.vue'
+import ForumTopicsList from '../ForumTopicsList.vue'
+import { FORUM_STORE_KEY, FORUM_TOPIC_CAN_LOAD_MORE, FORUM_TOPIC_FILTER_KEY, FORUM_TOPIC_LOADING_KEY, FORUM_TOPIC_SORT_KEY } from '../shared'
+import ForumLoadState from '../ui/ForumLoadState.vue'
+
+// 导入BroadcastChannelSync以确保模块初始化
+import '~/services/events/BroadcastChannelSync'
+
+interface ForumAsideProps {
+  showButton?: boolean
+  contactUs?: boolean
+}
+
+interface Props {
+  store: ForumStore | StoreGeneric
+  renderData: ForumAPI.Topic[] | ForumAPI.Post[]
+  showMenubar?: boolean
+  showAside?: boolean
+  headerComponent?: Component
+  asideProps?: ForumAsideProps
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  showMenubar: true,
+  showAside: true,
+  asideProps: () => ({}),
+})
+
+// Access store properties directly (don't destructure to maintain reactivity)
+const store = props.store
+
+// Provide context for child components using toRef to maintain reactivity
+provide(FORUM_TOPIC_SORT_KEY, toRef(store, 'sort'))
+provide(FORUM_TOPIC_FILTER_KEY, toRef(store, 'filter'))
+provide(FORUM_TOPIC_LOADING_KEY, toRef(store, 'loading'))
+provide(FORUM_TOPIC_CAN_LOAD_MORE, toRef(store, 'canLoadMore'))
+provide(FORUM_STORE_KEY, store as ForumStore)
+provide('searchTopics', store.searchTopics)
+
+// Loading state for topics list
+const isTopicsLoading = computed(() => {
+  // store.loading is already a reactive value, don't use .value
+  return typeof store.loading === 'boolean' ? store.loading : store.loading?.value || false
+})
+</script>
+
+<template>
+  <ClientOnly>
+    <ForumLayout>
+      <template #header>
+        <component
+          :is="headerComponent"
+          v-if="headerComponent"
+          v-bind="$attrs"
+        />
+        <slot name="header" />
+      </template>
+
+      <template #content>
+        <slot name="content-before" />
+
+        <ForumTopicMenubar v-if="showMenubar" />
+        <Separator
+          v-if="showMenubar"
+          div
+          class="mt-2"
+        />
+
+        <slot name="content-main">
+          <ForumTopicsList
+            :data="renderData"
+            :loading="isTopicsLoading"
+            :load-more="store.loadMoreTopics"
+            :refresh-data="store.loadForumData"
+          />
+
+          <ForumLoadState
+            :loading="isTopicsLoading"
+            :text="store.loadStateMessage"
+          />
+        </slot>
+
+        <slot name="content-after" />
+      </template>
+
+      <template #aside>
+        <slot name="aside">
+          <ForumAside
+            v-if="showAside"
+            v-bind="asideProps"
+          />
+        </slot>
+      </template>
+    </ForumLayout>
+
+    <slot name="teleport" />
+  </ClientOnly>
+</template>
+
+<style scoped>
+/* Add any base page specific styles here */
+</style>

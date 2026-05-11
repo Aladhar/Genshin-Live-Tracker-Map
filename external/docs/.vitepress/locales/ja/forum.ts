@@ -1,0 +1,331 @@
+import type { CustomConfig } from '../types'
+
+const forum: CustomConfig['forum'] = {
+  loadMore: 'もっと読む',
+  noMore: 'これ以上ありません',
+  loadError: '読み込み失敗',
+  exceededRateLimitWarning:
+    'Gitee APIの最大リクエストレート制限に達しました。ログインして再試行してください',
+
+  translate: {
+    translateText: '翻訳',
+    translateInfo: '翻訳は Meta Seq2Seq モデルによって提供されています',
+    error: '翻訳に失敗しました',
+    limit: '最大リクエスト数に達しました',
+    loading: '翻訳中...',
+  },
+  topic: {
+    official: '公式',
+    author: '作成者',
+    showMore: 'もっと見る',
+    backToFeedbackForum: 'フォーラムに戻る',
+    menu: {
+      giteeLink: 'Giteeリンク',
+      toOriginal: '元のテキストに移動',
+      hideFeedback: {
+        text: 'フィードバックを隠す',
+        success: '隠しました',
+        fail: '隠すのに失敗しました',
+      },
+      deleteComment: {
+        text: 'コメントを削除',
+        success: '削除しました',
+        fail: '削除に失敗しました',
+      },
+      closeFeedback: {
+        text: 'フィードバックを閉じる',
+        success: '閉じました',
+        fail: '閉じるのに失敗しました',
+      },
+      copyLink: {
+        text: 'リンクをコピー',
+        success: 'コピーされました',
+        fail: 'コピーに失敗しました',
+      },
+      changeType: {
+        text: 'タイプを変更',
+        to: '変更先',
+      },
+      modifyTags: {
+        text: 'タグを修正',
+      },
+      pinTopic: {
+        pin: 'トピックを固定',
+        unpin: '固定を解除',
+      },
+      commentArea: {
+        open: 'コメントを開く',
+        close: 'コメントを閉じる',
+      },
+      reopenFeedback: {
+        text: 'フィードバックを再開',
+      },
+      cancelTopic: {
+        text: 'トピックをキャンセル',
+      },
+    },
+    type: {
+      sug: '提案',
+      bug: 'バグ',
+      feat: '機能',
+      ann: 'お知らせ',
+    },
+    state: {
+      open: '開放中',
+      closed: '閉鎖中',
+      rejected: '却下',
+      progressing: '進行中',
+    },
+    backToTeamBlog: 'ブログに戻る',
+    backToPrevPage: '前のページに戻る',
+  },
+  auth: {
+    login: 'ログイン',
+    logout: 'ログアウト',
+    loginMsg: 'Giteeでログイン',
+    logoutMsg: 'Giteeからログアウト',
+    loginTips: 'ログインして再試行',
+    loginToCheck: '%login して確認 (・ω・)',
+    jumpToGiteeTips: 'Giteeで認証します',
+    loginSuccess: 'ログイン成功',
+    logoutSuccess: 'ログアウト完了',
+    loginFail: 'ログイン失敗',
+    logoutFail: 'ログアウト失敗',
+    loginAlert: 'ログイン通知',
+    loginAlertMsg: 'Giteeで認証',
+    notGiteeAccountMsg: 'Giteeアカウントがない？%signup',
+    clickToGiteeSignup: 'Gitee登録',
+    callback: {
+      title: 'Giteeの認証でログインしています...',
+      description: 'しばらくお待ちください。元のページにリダイレクトされます',
+      steps: {
+        init: '認証パラメータの解析',
+        token: 'アクセストークンの取得',
+        session: 'ユーザーセッションの確立',
+        sso: 'SSOステータスの同期',
+        redirect: 'ページリダイレクトの準備',
+      },
+      status: {
+        pending: '待機中',
+        processing: '処理中',
+        completed: '完了',
+        failed: '失敗',
+      },
+      error: {
+        title: '認証失敗',
+        retry: '再試行',
+      },
+    },
+  },
+  aside: {
+    contactUs: {
+      title: 'お問い合わせ',
+      desc: '地図機能の不具合や緊急問題はQQグループにご連絡ください',
+      qrcodeLink: 'https://jq.qq.com/?_wv=1027&k=nbveGrfQ',
+    },
+    teamBlog: {
+      text: 'チームブログ',
+      items: [
+        {
+          text: '原神マップクライアント更新ログ',
+          link: '#',
+        },
+        {
+          text: '原神マップウェブ版更新ログ',
+          link: '#',
+        },
+      ],
+    },
+    suggest: {
+      text: 'おすすめ',
+      items: [],
+    },
+    info: [
+      {
+        text: 'Gitee技術サポート提供',
+        link: 'https://gitee.com',
+      },
+    ],
+  },
+  comment: {
+    comment: 'コメント',
+    commentSuccess: 'コメント成功：',
+    commentFail: 'コメント失敗：',
+    commentAfterLogin: '%login してコメントしてください (・ω・)',
+    commentCount: 'コメント',
+    placeholder: 'コメントを入力してください~',
+    loadMoreComment: 'もっと読む',
+    noComment: 'コメントがありません',
+    noMoreComment: 'これ以上コメントはありません',
+    loadingComment: 'コメント読み込み中...',
+    reply: '返信',
+    commentsClosed: 'コメントは閉じられました',
+  },
+  header: {
+    sort: {
+      created: '作成日',
+      updated: '更新日',
+      notesCount: 'コメント数',
+    },
+    search: {
+      placeholder: 'Search',
+      allRelatedContentCount: '件の関連フィードバック',
+    },
+    navigation: {
+      allFeedback: '全フィードバック',
+      bugFeedback: 'バグ報告',
+      featFeedback: '機能提案',
+      closedFeedback: '終了済み',
+      faq: {
+        title: 'よくある質問',
+        items: [
+          {
+            text: 'アラートダイアログ',
+            link: '/docs/components/alert-dialog',
+            desc: '重要な内容を通知し、応答を要求するモーダルダイアログ。',
+          },
+        ],
+      },
+    },
+  },
+  publish: {
+    tags: {
+      issue: {
+        typos: '誤字',
+        display: '表示問題',
+        login: 'ログイン問題',
+        performance: 'パフォーマンス問題',
+        translation: '翻訳問題',
+        other: 'その他',
+        pin: 'ピンの問題',
+        docs: 'ドキュメント問題',
+      },
+      platforms: {
+        all: '全プラットフォームで再現可能',
+        web: 'ウェブ版の問題',
+        client: 'クライアント版の問題',
+      },
+    },
+    title: 'フィードバックを投稿',
+    type: {
+      sug: '提案',
+      bug: 'バグ',
+      feat: '機能',
+      ann: 'お知らせ',
+    },
+    tagsInput: {
+      searchTags: 'タグを検索',
+      maxTagsLimit: 'タグの上限に達しました',
+      noResultsFound: '該当なし',
+    },
+    publishSuccess: 'フィードバック送信成功：',
+    publishFail: 'フィードバック送信失敗：',
+    publishLoading: '送信中...',
+    form: {
+      title: {
+        text: 'タイトル',
+        placeholder: '',
+      },
+      type: {
+        text: 'ラベル',
+        placeholder: '',
+      },
+      content: {
+        text: '内容',
+        placeholder: '',
+      },
+      upload: {
+        text: 'エラーのスクリーンショットをアップロードする',
+        tip: '%range 枚までのスクリーンショットをアップロード (最大 %size MB)',
+        fail: '%filename アップロード失敗',
+        violation:
+          '不適切な画像！関連のない画像はアップロードしないでください。',
+        paste: {
+          hint: '画像を直接貼り付けることができます',
+          formatNotSupported: 'クリップボードの画像形式はサポートされていません',
+          sizeExceed: '画像サイズ %size MB が制限 %maxSize MB を超えています',
+          formatError: 'サポートされていない画像形式: %format',
+        },
+      },
+    },
+  },
+  user: {
+    menu: {
+      giteePage: 'Giteeプロフィール',
+      giteeAccountInfo: 'Giteeアカウント情報',
+    },
+    myFeedback: {
+      title: '私のフィードバック',
+    },
+  },
+  readMore: 'もっと詳しく知る',
+  validation: {
+    errors: {
+      titleRequired: 'タイトルが必要です',
+      contentRequired: 'コンテンツが必要です',
+      authorRequired: '作成者が必要です',
+      tooManyTags: 'タグが多すぎます（最大10個）',
+      contentTooShort: 'コンテンツは最低 {min} 文字必要です',
+      contentTooLong: 'コンテンツは最大 {max} 文字以下にしてください',
+      tagsRequired: '最低 {min} 個のタグが必要です',
+      tooManyTagsLimit: 'タグは最大 {max} 個まで許可されています',
+      tagTooLong: 'タグ "{tag}" は最大文字数 {maxLength} を超えています',
+      commentEmpty: 'コメントは空にできません',
+      invalidImageFormat: 'JPEG、PNG、GIF、WebP形式の画像のみ許可されています',
+      validationError: 'バリデーションエラーが発生しました',
+      invalidFile: '無効なファイル',
+      fileValidationFailed: 'ファイルの検証に失敗しました',
+    },
+  },
+  errors: {
+    tooManyRequests: 'リクエストが多すぎます。後でもう一度お試しください',
+    serverError: 'サーバーエラー、もう一度お試しください',
+    notFound: 'リソースが見つかりません',
+    operationFailed: '{operation} 失敗: {message}',
+    unknownError: '不明なエラー',
+    networkError: 'ネットワーク接続に失敗しました',
+    permissionDenied: 'アクセス権限がありません',
+    operationFailedRetry: '操作に失敗しました。後でもう一度お試しください',
+    serverNoResponse: 'サーバーが応答していません。後でもう一度お試しください',
+    noResponse: '応答がありません。後でもう一度お試しください',
+    networkRequestFailed: 'ネットワークリクエストが失敗しました。ローカルデータを表示しています',
+    cannotLoadData: 'データを読み込めません',
+    sortDataLoadFailed: 'ソートデータの読み込みに失敗しました',
+    cannotDoToSelf: '自分に対してはこの操作を実行できません',
+    followFailed: 'フォローに失敗しました。後でもう一度お試しください',
+    unfollowSuccess: 'フォロー解除が成功しました',
+    followSuccess: 'フォローが成功しました',
+    permissionInsufficientAnnouncement: '権限不足：管理者のみがアナウンスメント型のコンテンツを投稿できます',
+    ssoRefreshTokenFailed: 'interknot.site: トークンの更新に失敗しました。不完全なデータが返されました',
+  },
+  labels: {
+    resolved: '解決済み',
+    submitBug: 'バグ報告',
+    submitSuggestion: '提案',
+    teamBlog: 'チームブログ',
+    userManual: 'ユーザーマニュアル',
+    joinCommunity: 'コミュニティに参加',
+    writeThoughts: 'あなたの考えを書いてください...',
+    shareExperience: 'あなたの経験を共有してください...',
+    askQuestion: 'あなたの質問を投稿してください...',
+    pasteError: '貼り付けファイルの処理中にエラーが発生しました',
+    lazyPerson: 'この人は怠け者で、何も書いていません〜',
+    unknown: '不明',
+    fetchUserFailed: 'ユーザープロフィールの取得に失敗しました',
+    myFeedback: '私のフィードバック',
+    submittedFeedback: '送信されたフィードバック',
+    personalHomepage: 'の個人ホームページ',
+    imageLoadFailed: '画像の読み込みに失敗しました',
+    follow: 'フォロー',
+    following: 'フォロー中',
+    unfollow: 'フォロー解除',
+    posts: '投稿',
+    joinTime: '参加日',
+    privateMessage: 'メッセージ',
+    commentLabelSuccess: 'コメントラベルが正常に更新されました',
+    login: 'ログイン',
+    openInEditor: 'エディターで開く',
+  },
+}
+
+export default forum

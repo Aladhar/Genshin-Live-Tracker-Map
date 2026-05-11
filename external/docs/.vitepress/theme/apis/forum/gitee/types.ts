@@ -1,0 +1,30 @@
+import type { Hooks } from 'ky'
+import type ForumAPI from '../api'
+
+export enum GiteeApiErrorType {
+  RateLimitExceeded = 'Rate Limit Exceeded',
+  MissingPaginationParams = 'Missing Pagination Params',
+  Unauthorized = 'Unauthorized',
+  ApiError = 'Gitee Api Error',
+}
+
+export type HttpMethod = 'get' | 'post' | 'patch' | 'delete' | 'put'
+
+export interface ApiCallParams {
+  params?: Record<string, string | number | boolean | string[]>
+  body?: Record<string, unknown> | FormData
+  hooks?: Hooks
+  useCache?: boolean
+  throwHttpErrors?: boolean
+}
+
+export type ApiCallResult<T> = Promise<
+  [T, undefined] | [T, ForumAPI.PaginationParams]
+>
+
+export interface ErrorHandler {
+  match: string
+  state: number[]
+  errorName: GiteeApiErrorType
+  getErrorMessage: (text: string) => string
+}

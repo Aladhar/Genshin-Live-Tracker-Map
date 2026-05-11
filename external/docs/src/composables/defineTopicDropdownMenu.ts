@@ -1,0 +1,138 @@
+import type { ComputedRef, Ref } from 'vue'
+import type { CustomConfig } from '../../.vitepress/locales/types'
+import type ForumAPI from '@/apis/forum/api'
+import type { FORUM } from '~/components/forum/types'
+import { computed, ref } from 'vue'
+import { issues } from '@/apis/forum/gitee'
+import { useRuleChecks } from '~/composables/useRuleChecks'
+import { useTopicManger } from '~/composables/useTopicManger'
+import { forumEvents } from '~/services/events/SimpleEventManager'
+import { useTopicTagsEditor } from './useTopicTagsEditor'
+
+// @unocss-include
+export function defineTopicDropdownMenu(topicData: ForumAPI.Topic, message: Ref<CustomConfig>): ComputedRef<FORUM.TopicDropdownMenu[]> {
+  if (!topicData)
+    return computed(() => [])
+
+  const { toggleCloseTopic, toggleHideTopic, togglePinedTopic, toggleTopicType, toggleTopicCommentArea } = useTopicManger(topicData, message)
+  const { hasAnyPermissions } = useRuleChecks(topicData.user.id)
+
+  const [closeState, toggleClose] = toggleCloseTopic()
+  const [hideState, toggleHide] = toggleHideTopic()
+
+  const { openTopicTagsEditorDialog } = useTopicTagsEditor()
+
+  const menuLabels = ref(message.value.forum.topic.menu)
+
+  const hasManagePermission = hasAnyPermissions('manage_feedback')
+  const hasEditPermission = hasAnyPermissions('edit_feedback')
+  const topicTypeEnum: Exclude<ForumAPI.TopicType, null>[] = ['FEAT', 'BUG', 'ANN'] as const
+
+  const openOnGitee = () => issues.openTopicOnGitee(topicData.id)
+
+  function handleToggleCloseTopic() {
+    toggleClose()
+    // The events are now emitted directly from useTopicManger
+  }
+
+  function handleToggleHideTopic() {
+    toggleHide()
+    // The events are now emitted directly from useTopicManger
+  }
+
+  const noAnyPermissionItems = computed<FORUM.TopicDropdownMenu[]>(() => {
+    return [
+      {
+        type: 'item',
+        id: 'gitee-link',
+        order: 1,
+        label: menuLabels.value.giteeLink,
+        icon: 'i-lucide:cable',
+        action: openOnGitee,
+      },
+    ].filter(Boolean) as FORUM.TopicDropdownMenu[]
+  })
+
+  const needManagePermissionItems = computed<FORUM.TopicDropdownMenu[]>(() => {
+    if (!hasManagePermission.value)
+      return []
+
+    return [
+      {
+        type: 'separator',
+      },
+      {
+        type: 'submenu',
+        label: menuLabels.value.changeType.text,
+        icon: 'i-lucide:settings',
+        items: topicTypeEnum.filter(val => val !== topicData.type).map(
+          val => ({
+            id: `change-topic-${val}`,
+            type: 'item',
+            label: `${menuLabels.value.changeType.to} ${message.value.forum.topic.type[val.toLowerCase() as keyof typeof message.value.forum.topic.type] || val}`,
+            action: () => {
+              toggleTopicType(val)
+              forumEvents.topicTypeChanged(topicData.id, val)
+            },
+          }),
+        ),
+      },
+      {
+        id: 'tags-topic',
+        type: 'item',
+        label: menuLabels.value.modifyTags.text,
+        icon: 'i-lucide-tags',
+        action: () => openTopicTagsEditorDialog(topicData),
+      },
+      {
+        id: 'pinned-topic',
+        type: 'item',
+        label: topicData.pinned ? menuLabels.value.pinTopic.unpin : menuLabels.value.pinTopic.pin,
+        icon: topicData.pinned ? 'i-lucide:pin-off' : 'i-lucide:pin',
+        action: () => {
+          togglePinedTopic()
+          forumEvents.topicPinned(topicData.id, !topicData.pinned)
+        },
+      },
+      {
+        id: 'close-comment-topic',
+        type: 'item',
+        label: topicData.commentCount === -1 ? menuLabels.value.commentArea.open : menuLabels.value.commentArea.close,
+        icon: topicData.commentCount === -1 ? 'i-lucide:message-circle' : 'i-lucide:message-circle-off',
+        action: toggleTopicCommentArea,
+      },
+      {
+        id: 'hide-topic',
+        type: 'item',
+        label: hideState ? menuLabels.value.hideFeedback.text : menuLabels.value.cancelTopic.text,
+        icon: hideState ? 'i-lucide:eye-off' : 'i-lucide:eye',
+        action: handleToggleHideTopic,
+      },
+    ]
+  })
+
+  const needEditPermissionItems = computed<FORUM.TopicDropdownMenu[]>(() => {
+    if (!hasEditPermission.value)
+      return []
+
+    return [
+      {
+        type: 'separator',
+      },
+      {
+        type: 'item',
+        id: 'close-feedback',
+        label: closeState ? menuLabels.value.closeFeedback.text : menuLabels.value.reopenFeedback.text,
+        icon: closeState ? 'i-lucide:square-x' : 'i-lucide:undo',
+        action: handleToggleCloseTopic,
+        class: 'c-red opacity-90 hover:c-red hover:opacity-100',
+      },
+    ]
+  })
+
+  return computed(() => [
+    ...noAnyPermissionItems.value,
+    ...needManagePermissionItems.value,
+    ...needEditPermissionItems.value,
+  ])
+}

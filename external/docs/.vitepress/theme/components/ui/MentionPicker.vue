@@ -1,0 +1,128 @@
+<script setup lang="ts">
+import type { PopoverContentProps } from 'radix-vue'
+import type { HTMLAttributes } from 'vue'
+import type ForumAPI from '@/apis/forum/api'
+import { useLocalStorage } from '@vueuse/core'
+import { shuffle } from 'lodash-es'
+import { computed, ref, watchEffect } from 'vue'
+import { Button } from '@/components/ui/button'
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from '@/components/ui/command'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { cn } from '@/lib/utils'
+
+import feedbackRepoMember from '~/_data/feedbackMemberList.json'
+import TeamMember from '~/_data/teamMemberList.json'
+
+defineOptions({
+  inheritAttrs: false,
+})
+
+const props = withDefaults(
+  defineProps<PopoverContentProps & { class?: HTMLAttributes['class'], searchTerm?: string, showSearch?: boolean, open?: boolean, items?: ForumAPI.User[], recordCount?: number }>(),
+  {
+    align: 'start',
+    side: 'bottom',
+    disableUpdateOnLayoutShift: true,
+    open: false,
+    recordCount: 4,
+    searchTerm: '12',
+    showSearch: true,
+  },
+)
+
+const emit = defineEmits<{
+  (e: 'select', user: ForumAPI.User): void
+}>()
+
+const isOpen = ref(props.open)
+
+const officialMember = shuffle(props.items ? props.items : [...feedbackRepoMember.data, ...TeamMember.data])
+
+const recentMention = useLocalStorage<ForumAPI.User[]>('RECENT_MENTION', [])
+
+// 立即修复无效的初始值
+if (!import.meta.env.SSR && !Array.isArray(recentMention.value)) {
+  recentMention.value = []
+}
+
+// 验证并自动重置数组类型
+watchEffect(() => {
+  if (!Array.isArray(recentMention.value)) {
+    recentMention.value = []
+  }
+})
+const OfficialMemberFiltered = computed(() => officialMember.filter((val): val is ForumAPI.User => {
+  const valAsUser = val as ForumAPI.User
+  return valAsUser.id !== undefined && !recentMention.value.map(val => val.id).includes(valAsUser.id)
+}))
+
+const recentMentionFiltered = computed(() => {
+  return recentMention.value
+    .filter(item => item && item.id && item.username)
+    .slice(0, props.recordCount)
+})
+
+function selectMention(member: ForumAPI.User) {
+  if (!member || !member.id || !member.username)
+    return
+
+  emit('select', member)
+
+  // 更新最近提及列表
+  const newRecentMention = recentMention.value.filter(item => item && item.id !== member.id)
+  newRecentMention.unshift(member)
+  recentMention.value = newRecentMention.slice(0, 4)
+}
+</script>
+
+<template>
+  <Popover v-model:open="isOpen">
+    <PopoverTrigger as-child>
+      <slot name="trigger">
+        <Button
+          variant="ghost"
+          :class="cn('h-8 w-6 border border-[var(--vp-c-gutter)] border-solid bg-transparent', $props.class)"
+        >
+          <span class="i-custom:mention c-[var(--vp-c-text-2)] icon-btn size-4" />
+        </Button>
+      </slot>
+    </PopoverTrigger>
+    <PopoverContent v-bind="{ ...$props }" class="p-0 size-fit">
+      <Command class="border rounded-lg max-w-[250px] shadow-md">
+        <CommandInput v-if="showSearch" :auto-focus="false" placeholder="Search..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup v-if="recentMentionFiltered.length > 0" heading="Recent">
+            <CommandItem v-for="item in recentMentionFiltered" :key="item.id" :value="item.username" @select="selectMention(item)">
+              <User size="sm" :name="item.username" :description="`@${item.login}`" :avatar="{ src: item.avatar, icon: 'i-lucide-image' }" />
+            </CommandItem>
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup v-if="OfficialMemberFiltered.length > 0" heading="Official">
+            <CommandItem v-for="item in OfficialMemberFiltered" :key="item.id" :value="item.username" @select="selectMention(item)">
+              <User size="sm" :name="item.username" :description="`@${item.login}`" :avatar="{ src: item.avatar, icon: 'i-lucide-image' }" />
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </Command>
+    </PopoverContent>
+  </Popover>
+</template>
+
+<style scoped>
+::-webkit-scrollbar {
+  display: none;
+}
+</style>
