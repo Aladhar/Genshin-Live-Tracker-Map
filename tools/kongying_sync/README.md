@@ -13,6 +13,7 @@ What is synced:
 - `data/webapp.json`: latest public `https://assets.yuanshen.site/webapp.json`.
 - `data/map_summary.json`: compact list of tile regions, plugin configs, layered maps, and latest-term coverage.
 - `reports/live_map_sync_report.md`: source/coverage/blocker report.
+- `reports/map_implementation_rundown.md`: present/missing map areas and the implementation checklist.
 
 The report cross-references Kongying's official docs/changelogs first:
 
