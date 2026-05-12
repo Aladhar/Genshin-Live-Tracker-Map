@@ -120,6 +120,13 @@ The repo has the data snapshot, but these runtime features are not implemented y
 - Review queue UI/file for uncertain detections.
 - Map update command that regenerates the snapshot and compares it against the previous snapshot.
 
+## Knowledge Gaps
+
+The checkbox tracker has a dedicated knowledge-gap section:
+`tools/kongying_sync/reports/map_implementation_checklist.md`.
+
+The biggest unknowns are the authenticated Kongying response schemas, the allowed local source for marker data, the exact coordinate/layer transform for real pins, the stable chest/oculus category ids, and real reward-popup visual variants across resolutions/languages.
+
 ## What To Implement Next
 
 1. Add a Kongying marker import path.

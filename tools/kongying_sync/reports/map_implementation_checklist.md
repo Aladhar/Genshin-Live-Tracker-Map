@@ -161,6 +161,39 @@ Keep this checklist boring and literal. If a feature only works with smoke-test 
 - [ ] Nearest-pin real-data area/layer tests.
 - [ ] Snapshot diff tests.
 
+## Knowledge Gaps To Resolve
+
+Check these only when the unknown is answered and documented.
+
+- [ ] Exact authenticated response schema for `/area/get/list` is known.
+- [ ] Exact authenticated response schema for `/item_type/get/list_all` is known.
+- [ ] Exact authenticated response schema for `/item/get/list` is known.
+- [ ] Exact authenticated response schema for `/icon/get/list` is known.
+- [ ] Exact authenticated response schema for `/marker_doc/list_page_bin_md5` is known.
+- [ ] Safe local source for Kongying marker data is chosen: official export, local client cache, or allowed local token flow.
+- [ ] Kongying Windows client cache/export file locations are known.
+- [ ] Kongying Windows client cache/export file formats are known.
+- [ ] Kongying marker coordinate system is mapped to our `MapPosition` coordinates.
+- [ ] Coordinate transforms are verified per major map family: Teyvat, event maps, underground maps, and layered overlays.
+- [ ] Active `areaKey` source is known for live use.
+- [ ] Active layer source is known for live use.
+- [ ] Pin id stability across Kongying hot updates is known.
+- [ ] Marker completion/update format is known if we later want to write reversible local suggestions back to a map file.
+- [ ] Chest item type ids/names are known from official data.
+- [ ] Oculus item type ids/names are known from official data.
+- [ ] Reward-bearing non-chest item categories are known from official data.
+- [ ] Respawnable versus one-time marker rules are known from official data.
+- [ ] Live item counts by region/category are available from an allowed source.
+- [ ] Exact meaning of 2026-01-14 "Moon IV" resource update is known.
+- [ ] Whether "Moon IV" resources are public tile/layer data or auth-gated marker/item data is known.
+- [ ] Reward popup visual variants are collected for common resolutions.
+- [ ] Reward popup visual variants are collected for supported UI languages.
+- [ ] Oculus pickup/reward visual pattern is verified from screenshot/video references.
+- [ ] Primogem reward crop bounds are calibrated with real gameplay screenshots, not only synthetic fixtures.
+- [ ] Kongying API rate limits and acceptable local use constraints are known.
+- [ ] Importer redaction rules are verified against real export/cache samples without storing account data.
+- [ ] Minimum data needed for 100% map parity is documented as a concrete file/table list.
+
 ## Current Claim
 
 - [x] Public Kongying map/layer shell is current from official public config.
