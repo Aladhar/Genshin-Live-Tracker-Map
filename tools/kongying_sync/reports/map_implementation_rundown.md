@@ -2,6 +2,8 @@
 
 Generated from the current official public Kongying snapshot in `tools/kongying_sync/data/webapp.json` and the API probe report in `tools/kongying_sync/reports/live_map_sync_report.md`.
 
+For quick status edits, use `tools/kongying_sync/reports/map_implementation_checklist.md`. Flip `[ ]` to `[x]` when an item is implemented.
+
 ## Current Status
 
 This repo now has Kongying's latest public map shell:
