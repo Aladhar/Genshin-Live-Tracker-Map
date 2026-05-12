@@ -1,0 +1,186 @@
+{
+  "officialSources": {
+    "webapp": "https://assets.yuanshen.site/webapp.json",
+    "apiBase": "https://cloud.yuanshen.site/api",
+    "docsEnglish": "https://yuanshen.site/docs/en/",
+    "docsChinese": "https://yuanshen.site/docs/",
+    "clientChangelog": "https://yuanshen.site/docs/blog/posts/changelog-client",
+    "hotUpdateLog": "https://yuanshen.site/docs/blog/posts/hotupdatelog-client",
+    "webChangelog": "https://yuanshen.site/docs/blog/posts/changelog-web",
+    "githubOrgDevReferenceOnly": "https://github.com/kongying-tavern"
+  },
+  "publicConfigSynced": true,
+  "tileCount": 36,
+  "pluginCount": 33,
+  "latestOfficialTermStatus": {
+    "A:MD:SHENDIAN": true,
+    "A:MD:FENGXISHAN": true,
+    "空之神殿": true,
+    "远古圣山": true,
+    "FAVONIUS_KNIGHT_RUIN": true,
+    "https://tiles.yuanshen.site/d/underground/6.5/": true,
+    "https://tiles.yuanshen.site/d/underground/6.3/": true,
+    "https://tiles.yuanshen.site/d/underground/6.2/": true,
+    "https://tiles.yuanshen.site/d/underground/6.0/": true,
+    "伦波岛": true,
+    "希汐岛": true,
+    "帕哈岛": true,
+    "HIISI_ISLAND": true,
+    "LEMPO_ISLAND": true,
+    "PAHA_ISLE": true,
+    "A:NDKL:NDKL": true,
+    "A:NDKL:NDKL2": true
+  },
+  "officialLogCoverage": [
+    {
+      "id": "hotfix-2026-04-07-6.5",
+      "date": "2026-04-07",
+      "source": "https://yuanshen.site/docs/blog/posts/hotupdatelog-client",
+      "note": "Kongying hot update says 6.5 resources and some base-map resources were updated.",
+      "present": true,
+      "terms": {
+        "https://tiles.yuanshen.site/d/underground/6.5/": true,
+        "A:MD:SHENDIAN": true,
+        "A:MD:FENGXISHAN": true
+      }
+    },
+    {
+      "id": "hotfix-2026-04-08-sky-temple-library",
+      "date": "2026-04-08",
+      "source": "https://yuanshen.site/docs/blog/posts/hotupdatelog-client",
+      "note": "Kongying hot update says Sky Temple library layered resources were updated.",
+      "present": true,
+      "terms": {
+        "空之神殿": true,
+        "MAHAVAIPULYA_CHAMBER_LIB_FL4": true,
+        "MAHAVAIPULYA_CHAMBER_LIB_FL1": true
+      }
+    },
+    {
+      "id": "hotfix-2026-04-09-ancient-sacred-mountain",
+      "date": "2026-04-09",
+      "source": "https://yuanshen.site/docs/blog/posts/hotupdatelog-client",
+      "note": "Kongying hot update references Ancient Sacred Mountain cloud/resource fixes.",
+      "present": true,
+      "terms": {
+        "远古圣山": true,
+        "ANCIENT_SACRED_MT": true,
+        "SACRED_MT_HEART": true
+      }
+    },
+    {
+      "id": "client-2025-12-03-6.2-layer",
+      "date": "2025-12-03",
+      "source": "https://yuanshen.site/docs/blog/posts/changelog-client",
+      "note": "Kongying client changelog says one 6.2 underground layer was added.",
+      "present": true,
+      "terms": {
+        "https://tiles.yuanshen.site/d/underground/6.2/": true
+      }
+    },
+    {
+      "id": "hotfix-2025-09-10-6.0-nod-krai",
+      "date": "2025-09-10",
+      "source": "https://yuanshen.site/docs/blog/posts/hotupdatelog-client",
+      "note": "Kongying hot update says 6.0 regions/resources were added.",
+      "present": true,
+      "terms": {
+        "A:NDKL:NDKL": true,
+        "伦波岛": true,
+        "希汐岛": true,
+        "帕哈岛": true,
+        "LEMPO_ISLAND": true,
+        "HIISI_ISLAND": true,
+        "PAHA_ISLE": true
+      }
+    },
+    {
+      "id": "web-2025-09-10-nod-krai-icon",
+      "date": "2025-09-10",
+      "source": "https://yuanshen.site/docs/blog/posts/changelog-web",
+      "note": "Kongying web changelog says the Nod-Krai icon was added.",
+      "present": true,
+      "terms": {
+        "A:NDKL:NDKL": true,
+        "A:NDKL:NDKL2": true
+      }
+    },
+    {
+      "id": "hotfix-2025-07-29-5.8",
+      "date": "2025-07-29",
+      "source": "https://yuanshen.site/docs/blog/posts/hotupdatelog-client",
+      "note": "Kongying hot update says 5.8 regions/resources were added.",
+      "present": true,
+      "terms": {
+        "A:NT:NATA5": true,
+        "https://tiles.yuanshen.site/d/underground/5.8/": true
+      }
+    }
+  ],
+  "authGatedLogSignals": [
+    {
+      "id": "web-2026-01-06-new-point-api",
+      "date": "2026-01-06",
+      "source": "https://yuanshen.site/docs/blog/posts/changelog-web",
+      "note": "Kongying web changelog says point acquisition now supports the new point data API.",
+      "requiredApiProbe": "item.list"
+    },
+    {
+      "id": "hotfix-2026-01-14-moon-four-resources",
+      "date": "2026-01-14",
+      "source": "https://yuanshen.site/docs/blog/posts/hotupdatelog-client",
+      "note": "Kongying hot update says Moon IV related resources were updated; these are not exposed in public webapp tile config.",
+      "requiredApiProbe": "item.list"
+    },
+    {
+      "id": "live-marker-item-icon-export",
+      "date": "latest",
+      "source": "https://cloud.yuanshen.site/api",
+      "note": "Chest, oculus, item, icon, and marker parity requires official marker/item/icon endpoints or an official client cache/export.",
+      "requiredApiProbe": "marker_doc.md5"
+    }
+  ],
+  "apiProbeResults": [
+    {
+      "name": "area.list",
+      "method": "POST",
+      "path": "/area/get/list",
+      "status": 401,
+      "ok": false,
+      "reason": "requires authorization"
+    },
+    {
+      "name": "item_type.list_all",
+      "method": "POST",
+      "path": "/item_type/get/list_all",
+      "status": 401,
+      "ok": false,
+      "reason": "requires authorization"
+    },
+    {
+      "name": "item.list",
+      "method": "POST",
+      "path": "/item/get/list",
+      "status": 401,
+      "ok": false,
+      "reason": "requires authorization"
+    },
+    {
+      "name": "icon.list",
+      "method": "POST",
+      "path": "/icon/get/list",
+      "status": 401,
+      "ok": false,
+      "reason": "requires authorization"
+    },
+    {
+      "name": "marker_doc.md5",
+      "method": "GET",
+      "path": "/marker_doc/list_page_bin_md5",
+      "status": 401,
+      "ok": false,
+      "reason": "requires authorization"
+    }
+  ],
+  "verificationLimit": "Public webapp tile/layer config was synced. Full item/pin/marker parity cannot be claimed without an official authenticated export or client cache, because live API read endpoints returned authorization errors without a bearer token."
+}

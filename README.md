@@ -14,6 +14,22 @@ python3 -m tools.reward_detector.scripts.generate_synthetic_assets
 python3 -m pytest tools/reward_detector/smoke_tests -q
 ```
 
+## Kongying live map sync
+
+The official public Kongying map/layer snapshot and update report live in
+`tools/kongying_sync`.
+
+```bash
+python3 -m tools.kongying_sync.sync_live_map
+python3 -m pytest tools/kongying_sync/smoke_tests -q
+```
+
+The sync uses Kongying official docs, release notes, hot-update logs, and
+`https://assets.yuanshen.site/webapp.json` as source of truth. GitHub is kept
+as source/dev reference only. Full chest/oculus/item/pin parity still needs an
+official authenticated export or local client cache because the live marker and
+item APIs return authorization errors without a bearer token.
+
 ## Windows exe build
 
 The native Windows project is `external/cvAutoTrack`. It builds a DLL named
