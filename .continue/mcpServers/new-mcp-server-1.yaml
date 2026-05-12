@@ -1,10 +1,156 @@
-name: New MCP server
+name: Development MCP Suite
 version: 0.0.1
 schema: v1
+
+
+
+
 mcpServers:
-  - name: New MCP server
-    command: npx
-    args:
-      - -y
-      - <your-mcp-server>
-    env: {}
+- name: duckduckgo-search
+  command: uvx
+  args:
+    - duckduckgo-mcp-server
+
+
+
+
+- name: fetch
+  command: uvx
+  args:
+    - mcp-server-fetch
+
+
+
+
+- name: github
+  command: docker
+  args:
+    - run
+    - -i
+    - --rm
+    - -e
+    - GITHUB_PERSONAL_ACCESS_TOKEN
+    - ghcr.io/github/github-mcp-server
+  env:
+    GITHUB_PERSONAL_ACCESS_TOKEN: "YOUR_GITHUB_TOKEN_HERE"
+
+
+
+
+- name: brave-search
+  command: npx
+  args:
+    - -y
+    - "@brave/brave-search-mcp-server"
+    - "--transport"
+    - "stdio"
+  env:
+    BRAVE_API_KEY: "YOUR_BRAVE_API_KEY_HERE"
+
+
+
+
+- name: sequential-thinking
+  command: npx
+  args:
+    - -y
+    - "@modelcontextprotocol/server-sequential-thinking"
+
+
+
+
+- name: filesystem
+  command: npx
+  args:
+    - -y
+    - "@modelcontextprotocol/server-filesystem"
+    - "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map"
+
+
+
+
+- name: memory
+  command: npx
+  args:
+    - -y
+    - "@modelcontextprotocol/server-memory"
+
+
+
+
+- name: git
+  command: uvx
+  args:
+    - mcp-server-git
+    - "--repository"
+    - "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map"
+
+
+
+
+- name: browser-playwright
+  command: npx
+  args:
+    - "@playwright/mcp@latest"
+
+
+
+
+# Shell: safer cross-platform shell MCP with command approval / whitelist
+- name: shell
+  command: npx
+  args:
+    - -y
+    - "super-shell-mcp"
+
+
+
+
+# Vision / OCR: local macOS OCR using Apple Vision Framework
+- name: vision-ocr
+  command: npx
+  args:
+    - -y
+    - "@tuannvm/vision-mcp-server"
+
+
+
+
+# Logging: read/tail/search local log files
+- name: local-logs
+  command: npx
+  args:
+    - -y
+    - "local-logs-mcp-server"
+  env:
+    LOGS_DIR: "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/logs"
+
+
+
+
+# Node runner + npm scripts + server logs
+- name: node-runner
+  command: npx
+  args:
+    - -y
+    - "mcp-node@latest"
+  env:
+    DISABLE_NOTIFICATIONS: "false"
+    EVAL_DIRECTORIES: "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map"
+
+
+
+
+# Java profiler, useful if your project has Java/Maven parts
+- name: java-profiler
+  command: npx
+  args:
+    - -y
+    - "javaperf"
+
+
+
+
+
+
+

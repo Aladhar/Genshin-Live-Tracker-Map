@@ -199,3 +199,4 @@ Check these only when the unknown is answered and documented.
 - [x] Public Kongying map/layer shell is current from official public config.
 - [ ] Live Kongying pins/items/markers are 100% current.
 - [ ] Full chest/oculus completion helper is ready for real imported Kongying marker data.
+- [ ] Make the Chest/ Anemo Primogem Detector working with the new map implementation.
