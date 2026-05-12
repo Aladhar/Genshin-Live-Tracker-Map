@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-05-12T12:32:58-0700",
+  "safety": "screenshot-only; no memory reads, injection, gameplay automation, or account upload",
+  "detection": {
+    "detected": true,
+    "confidence": 1.0,
+    "kind": "primogem_reward",
+    "roiName": "reward_stack",
+    "roi": [
+      307,
+      72,
+      269,
+      209
+    ],
+    "match": {
+      "template": "primogem_icon",
+      "score": 0.9999998807907104,
+      "scale": 1.0,
+      "rect": [
+        53,
+        36,
+        32,
+        32
+      ]
+    },
+    "amount": 5,
+    "amountScore": 1.0,
+    "notes": []
+  },
+  "position": {
+    "x": 100.0,
+    "y": 100.0,
+    "mapId": 1
+  },
+  "pinInference": {
+    "pin": {
+      "id": "chest-near",
+      "kind": "chest",
+      "title": "Common Chest",
+      "x": 106.0,
+      "y": 98.0,
+      "mapId": 1
+    },
+    "distance": 6.324555,
+    "confidence": 1.0,
+    "action": "auto_mark_candidate",
+    "reason": "high confidence nearest matching pin"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "pins": [
+    {
+      "id": "chest-near",
+      "kind": "chest",
+      "title": "Common Chest",
+      "x": 106,
+      "y": 98,
+      "mapId": 1
+    },
+    {
+      "id": "oculus-near",
+      "kind": "oculus",
+      "title": "Pyroculus",
+      "x": 132,
+      "y": 102,
+      "mapId": 1
+    },
+    {
+      "id": "chest-far",
+      "kind": "chest",
+      "title": "Precious Chest",
+      "x": 400,
+      "y": 500,
+      "mapId": 1
+    }
+  ]
+}

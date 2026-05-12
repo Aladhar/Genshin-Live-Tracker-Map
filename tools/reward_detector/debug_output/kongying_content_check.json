@@ -1,0 +1,121 @@
+{
+  "officialSources": [
+    {
+      "name": "Kongying docs",
+      "url": "https://yuanshen.site/docs/en/",
+      "role": "official product/docs source"
+    },
+    {
+      "name": "Client hot update log",
+      "url": "https://yuanshen.site/docs/en/blog/posts/hotupdatelog-client",
+      "role": "official client/map/resource hot updates"
+    },
+    {
+      "name": "Client release notes",
+      "url": "https://yuanshen.site/docs/en/blog/posts/changelog-client",
+      "role": "official client release notes"
+    },
+    {
+      "name": "Kongying GitHub org",
+      "url": "https://github.com/kongying-tavern",
+      "role": "source/dev reference only"
+    },
+    {
+      "name": "cvAutoTrack",
+      "url": "https://github.com/GengGode/cvAutoTrack",
+      "role": "source/dev reference for screenshot-only tracking"
+    }
+  ],
+  "status": [
+    {
+      "term": "Hiisi Island",
+      "present": true,
+      "source": "2025-09-10-35 hot update",
+      "expected": "latest map/resources area in official hot update log",
+      "matches": [
+        "external/docs/src/en/blog/posts/hotupdatelog-client.md"
+      ]
+    },
+    {
+      "term": "Lempo Isle",
+      "present": true,
+      "source": "2025-09-10-35 hot update",
+      "expected": "latest map/resources area in official hot update log",
+      "matches": [
+        "external/docs/src/en/blog/posts/hotupdatelog-client.md"
+      ]
+    },
+    {
+      "term": "Paha Isle",
+      "present": true,
+      "source": "2025-09-10-35 hot update",
+      "expected": "latest map/resources area in official hot update log",
+      "matches": [
+        "external/docs/src/en/blog/posts/hotupdatelog-client.md"
+      ]
+    },
+    {
+      "term": "Easybreeze Holiday Resort",
+      "present": true,
+      "source": "2025-07-29-848 hot update",
+      "expected": "new map/resources plus layered-map scaling controls",
+      "matches": [
+        "external/docs/src/en/blog/posts/hotupdatelog-client.md"
+      ]
+    },
+    {
+      "term": "version 5.6",
+      "present": true,
+      "source": "2025-05-07-118 hot update",
+      "expected": "version 5.6 map/resources",
+      "matches": [
+        "external/docs/src/en/blog/posts/hotupdatelog-client.md"
+      ]
+    },
+    {
+      "term": "layered map",
+      "present": true,
+      "source": "web/client logs",
+      "expected": "layered map references and controls",
+      "matches": [
+        "external/docs/src/en/index.md",
+        "external/docs/src/en/blog/posts/hotupdatelog-client.md",
+        "external/docs/src/en/blog/posts/changelog-client.md",
+        "external/docs/src/en/blog/posts/changelog-web.md"
+      ]
+    },
+    {
+      "term": "chest",
+      "present": true,
+      "source": "map item categories",
+      "expected": "chest item/pin references",
+      "matches": [
+        "external/docs/src/en/index.md",
+        "external/docs/src/en/blog/posts/hotupdatelog-client.md",
+        "external/docs/src/en/blog/posts/changelog-client.md",
+        "external/docs/src/en/blog/posts/changelog-web.md",
+        "external/map_front_v3/src/components/item_selector.vue"
+      ]
+    },
+    {
+      "term": "oculus",
+      "present": true,
+      "source": "map item categories",
+      "expected": "oculus item/pin references",
+      "matches": [
+        "external/docs/src/en/blog/posts/hotupdatelog-client.md",
+        "external/docs/src/en/blog/posts/changelog-client.md",
+        "external/docs/src/en/blog/posts/changelog-web.md",
+        "external/docs/src/en/manual/client/position-tracking.md",
+        "external/map_register_v3/src/shared/iconStyle.ts"
+      ]
+    }
+  ],
+  "checklist": [
+    "Fetch/export live Kongying area, item, icon, marker, and tile/plugin config data from official endpoints or client cache.",
+    "Compare live export against local source tree before editing vendored repos.",
+    "Verify newest areas include maps, layered maps, resources, chests, oculi, and hot-update metadata.",
+    "Use GitHub repositories only to understand schemas and source behavior; do not treat repo age as live-data freshness.",
+    "Keep any marker completion writes local/reviewable unless detection confidence is high."
+  ]
+}
