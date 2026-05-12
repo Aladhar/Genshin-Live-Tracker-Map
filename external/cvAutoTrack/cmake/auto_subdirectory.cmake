@@ -1,5 +1,5 @@
 
-# 获取所有的子目录名称
+# Get every child directory name.
 macro(get_subdectory_name dir result)
     file(GLOB sub_dirs RELATIVE ${dir} ${dir}/*)
     set(sub_dir_names "")
@@ -11,7 +11,7 @@ macro(get_subdectory_name dir result)
     set(${result} ${sub_dir_names})
 endmacro()
 
-# 返回子目录下是否存在CMakelists.txt
+# Check whether a child directory contains CMakeLists.txt.
 macro(has_cmakelists_file dir has_cmakelists)
     set(${has_cmakelists} OFF)
     file(GLOB is_exist_cmakelists_file RELATIVE ${dir} ${dir}/CMakeLists.txt)
@@ -20,7 +20,7 @@ macro(has_cmakelists_file dir has_cmakelists)
     endif()
 endmacro()
 
-# 自动添加所有包含CMakeLists.txt的子目录
+# Add every child directory that contains CMakeLists.txt.
 macro(auto_subdirectory)
     set(dir ${CMAKE_CURRENT_SOURCE_DIR})
     get_subdectory_name(${dir} sub_dir_names)

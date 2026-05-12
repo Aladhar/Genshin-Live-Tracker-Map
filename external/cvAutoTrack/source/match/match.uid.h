@@ -30,7 +30,7 @@ void uid_calculation(Resources& res,cv::Mat& giUIDRef, int& uid, tianli::global:
 
     double minVal, maxVal;
     cv::Point minLoc, maxLoc;
-    // 寻找最佳匹配位置
+    // Find the best matching position.
     cv::minMaxLoc(matchTmp, &minVal, &maxVal, &minLoc, &maxLoc);
     if (maxVal > 0.75)
     {
@@ -56,7 +56,7 @@ void uid_calculation(Resources& res,cv::Mat& giUIDRef, int& uid, tianli::global:
 
                 double minVali, maxVali;
                 cv::Point minLoci, maxLoci;
-                // 寻找最佳匹配位置
+                // Find the best matching position.
                 cv::minMaxLoc(matchTmp, &minVali, &maxVali, &minLoci, &maxLoci);
 
                 tmplis[i] = maxVali;
@@ -84,7 +84,7 @@ void uid_calculation(Resources& res,cv::Mat& giUIDRef, int& uid, tianli::global:
     if (_uid == 0)
     {
         config.error = true;
-        config.err = { 8, "未能在UID区域检测到有效UID" };
+        config.err = { 8, "Failed to detect a valid UID in the UID area" };
         return;
     }
     uid = _uid;

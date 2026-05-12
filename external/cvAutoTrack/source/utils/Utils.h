@@ -1,7 +1,9 @@
 #pragma once
 #include <random>
 
-#define NOMINMAX
+#ifndef NOMINMAX
+    #define NOMINMAX
+#endif
 #include <windows.h>
 
 namespace TianLi::Utils

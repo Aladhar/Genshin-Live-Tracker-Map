@@ -7,7 +7,9 @@
 #include <imgui_impl_win32.h>
 #include <imgui_internal.h>
 #define WINDLE_LEAN_AND_MEAN
-#define NOMINMAX
+#ifndef NOMINMAX
+    #define NOMINMAX
+#endif
 #include <windows.h>
 
 // Forward declare message handler from imgui_impl_win32.cpp

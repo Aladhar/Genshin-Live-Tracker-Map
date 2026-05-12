@@ -1,4 +1,4 @@
-# 添加pch
+# Add precompiled headers.
 macro(include_pch target)
     target_precompile_headers(${target} PRIVATE
         "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_CURRENT_SOURCE_DIR}/pch.h>"

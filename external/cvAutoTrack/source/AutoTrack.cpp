@@ -62,12 +62,12 @@ namespace
     {
         if (buff == nullptr || buff_size < 1)
         {
-            err = { 291, "缓存区为空指针或是缓存区大小为小于1" };
+            err = { 291, "Buffer pointer is null or buffer size is less than 1" };
             return false;
         }
         if (static_cast<int>(text.size()) >= buff_size)
         {
-            err = { 292, "缓存区大小不足" };
+            err = { 292, "Buffer is too small" };
             return false;
         }
         strcpy_s(buff, buff_size, text.c_str());
@@ -288,13 +288,13 @@ bool AutoTrack::DebugCapturePath(const char* path_buff, int buff_size)
 {
     if (path_buff == NULL || buff_size < 1)
     {
-        err = { 251, "路径缓存区为空指针或是路径缓存区大小为小于1" };
+        err = { 251, "Path buffer pointer is null or path buffer size is less than 1" };
         return false;
     }
 
     if (genshin_screen.img_screen.empty())
     {
-        err = { 252, "画面为空" };
+        err = { 252, "Frame is empty" };
         return false;
     }
     cv::Mat out_info_img = genshin_screen.img_screen.clone();
@@ -302,33 +302,33 @@ bool AutoTrack::DebugCapturePath(const char* path_buff, int buff_size)
     {
         case tianli::frame::frame_source::source_type::bitblt:
             {
-                // 绘制paimon Rect
+                // Draw Paimon rect.
                 cv::rectangle(out_info_img, genshin_paimon.rect_paimon, cv::Scalar(0, 0, 255), 2);
-                // 绘制miniMap Rect
+                // Draw minimap rect.
                 cv::rectangle(out_info_img, genshin_minimap.rect_minimap, cv::Scalar(0, 0, 255), 2);
                 cv::Rect Avatar = genshin_minimap.rect_avatar;
                 Avatar.x += genshin_minimap.rect_minimap.x;
                 Avatar.y += genshin_minimap.rect_minimap.y;
 
-                // 绘制avatar Rect
+                // Draw avatar rect.
                 cv::rectangle(out_info_img, Avatar, cv::Scalar(0, 0, 255), 2);
-                // 绘制UID Rect
+                // Draw UID rect.
                 cv::rectangle(out_info_img, genshin_handle.rect_uid, cv::Scalar(0, 0, 255), 2);
                 break;
             }
         case tianli::frame::frame_source::source_type::window_graphics:
             {
-                // 绘制paimon Rect
+                // Draw Paimon rect.
                 cv::rectangle(out_info_img, genshin_paimon.rect_paimon, cv::Scalar(0, 0, 255), 2);
-                // 绘制miniMap Rect
+                // Draw minimap rect.
                 cv::rectangle(out_info_img, genshin_minimap.rect_minimap, cv::Scalar(0, 0, 255), 2);
                 cv::Rect Avatar = genshin_minimap.rect_avatar;
                 Avatar.x += genshin_minimap.rect_minimap.x;
                 Avatar.y += genshin_minimap.rect_minimap.y;
 
-                // 绘制avatar Rect
+                // Draw avatar rect.
                 cv::rectangle(out_info_img, Avatar, cv::Scalar(0, 0, 255), 2);
-                // 绘制UID Rect
+                // Draw UID rect.
                 cv::rectangle(out_info_img, genshin_handle.rect_uid, cv::Scalar(0, 0, 255), 2);
             }
     }
@@ -349,7 +349,7 @@ bool AutoTrack::DebugCapturePath(const char* path_buff, int buff_size)
 
     if (!rel)
     {
-        err = { 252, std::string("保存画面失败，请检查文件路径是否合法") + std::string(path_buff) };
+        err = { 252, std::string("Failed to save frame. Check whether the file path is valid: ") + std::string(path_buff) };
         return false;
     }
 
@@ -362,7 +362,7 @@ bool AutoTrack::GetTransformOfMap(double& x, double& y, double& a, int& mapId)
     int mapId2 = 0;
     if (!genshin_minimap.is_init_finish)
     {
-        init(); // 初始化
+        init();
     }
 
     if (!GetPositionOfMap(x2, y2, mapId2))
@@ -390,13 +390,13 @@ bool AutoTrack::GetPosition(double& x, double& y)
     }
     if (getMiniMapRefMat() == false)
     {
-        // err = { 1001, "获取坐标时，没有识别到paimon" };
+        // err = { 1001, "Paimon was not detected while getting position" };
         return false;
     }
 
     if (genshin_minimap.img_minimap.empty())
     {
-        err = { 5, "原神小地图区域为空" };
+        err = { 5, "Genshin minimap area is empty" };
         return false;
     }
     genshin_minimap.config.is_find_paimon = true;
@@ -414,7 +414,7 @@ bool AutoTrack::GetPosition(double& x, double& y)
 bool AutoTrack::GetPositionOfMap(double& x, double& y, int& mapId)
 {
     mapId = 0;
-    // 新算法直接输出原始坐标，所以不需要做额外处理
+    // The new algorithm outputs raw coordinates directly, so no extra processing is needed.
     bool isSuccess = GetPosition(x, y);
     if (isSuccess != true)
     {
@@ -431,12 +431,12 @@ bool AutoTrack::GetDirection(double& a)
     }
     if (getMiniMapRefMat() == false)
     {
-        // err = { 2001, "获取角色朝向时，没有识别到paimon" };
+        // err = { 2001, "Paimon was not detected while getting character direction" };
         return false;
     }
     if (genshin_minimap.rect_avatar.empty())
     {
-        err = { 11, "原神角色小箭头区域为空" };
+        err = { 11, "Genshin character arrow area is empty" };
         return false;
     }
 
@@ -459,7 +459,7 @@ bool AutoTrack::GetRotation(double& a)
     }
     if (getMiniMapRefMat() == false)
     {
-        // err = { 3001, "获取视角朝向时，没有识别到paimon" };
+        // err = { 3001, "Paimon was not detected while getting camera rotation" };
         return false;
     }
 
@@ -625,17 +625,17 @@ bool AutoTrack::GetAllInfo(double& x, double& y, int& mapId, double& a, double& 
     }
     if (getMiniMapRefMat() == false)
     {
-        // err = { 1001, "获取所有信息时，没有识别到paimon" };
+        // err = { 1001, "Paimon was not detected while getting all information" };
         return false;
     }
     if (genshin_minimap.img_minimap.empty())
     {
-        err = { 5, "原神小地图区域为空" };
+        err = { 5, "Genshin minimap area is empty" };
         return false;
     }
     if (genshin_minimap.rect_avatar.empty())
     {
-        err = { 11, "原神角色小箭头区域为空" };
+        err = { 11, "Genshin character arrow area is empty" };
         return false;
     }
 
@@ -694,17 +694,17 @@ bool AutoTrack::try_get_genshin_windows()
 {
     if (!clear_error_logs())
     {
-        err = { 0, "正常退出" };
+        err = { 0, "Exited normally" };
         return false;
     }
     if (!getGengshinImpactWnd())
     {
-        err = { 101, "未能找到原神窗口句柄" };
+        err = { 101, "Failed to find the Genshin window handle" };
         return false;
     }
     if (!getGengshinImpactScreen())
     {
-        err = { 103, "获取原神画面失败" };
+        err = { 103, "Failed to capture the Genshin frame" };
         return false;
     }
     return true;
@@ -719,7 +719,7 @@ bool AutoTrack::getGengshinImpactWnd()
     }
     if (genshin_handle.handle == NULL)
     {
-        err = { 10, "无效句柄或指定句柄所指向窗口不存在" };
+        err = { 10, "Invalid handle or the target window does not exist" };
         return false;
     }
 
@@ -733,7 +733,7 @@ bool AutoTrack::getGengshinImpactScreen()
     TianLi::Genshin::get_genshin_screen(genshin_handle, genshin_screen);
     if (genshin_screen.img_screen.empty())
     {
-        err = { 433, "截图失败" };
+        err = { 433, "Screenshot failed" };
         return false;
     }
     return true;
@@ -752,7 +752,7 @@ bool AutoTrack::getMiniMapRefMat()
         genshin_screen.config.is_used_alpha = true;
     }
 
-    // 检测派蒙 -> 直接计算小地图坐标
+    // Detect Paimon, then calculate minimap coordinates directly.
 
     if (TianLi::Genshin::Check::check_paimon(genshin_screen, genshin_paimon) == false)
     {

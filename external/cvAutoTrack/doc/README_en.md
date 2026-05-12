@@ -1,4 +1,3 @@
-这是英文，点击到[中文](https://github.com/GengGode/cvAutoTrack/blob/master/README.md)
 # GenshinImpact AutoTrack DLL
 
 DLL dynamic link library that obtains the character's position on the map from the Genshin Impact client through the image matching algorithm
@@ -38,7 +37,7 @@ DLL dynamic link library that obtains the character's position on the map from t
     - https://github.com/GengGode/cvAutoTrack/releases/
 2. After loading the dynamic link library, call or encapsulate the relevant functions according to [Function Directory] (#Function Directory).
 3. For calling some languages, please refer to the calling examples in the [impl](impl) folder.
-4. Since the default interface outputs the coordinates of [Tianli Coordinate Model] (doc/天理坐标模型_en.md), the user needs to set the world center and scaling coefficient according to the mapping relationship between their own map coordinate system and the Tianli Coordinate Model. Or convert manually later.
+4. Since the default interface outputs the coordinates of the Tianli Coordinate Model, the user needs to set the world center and scaling coefficient according to the mapping relationship between their own map coordinate system and the Tianli Coordinate Model. Or convert manually later.
 
 # How to compile (will switch to cmake build soon)
 
@@ -73,7 +72,7 @@ DLL dynamic link library that obtains the character's position on the map from t
      - **Python** Python call
 
 
-# [Function Directory](doc/函数目录_en.md)
+# Function Directory
 
 ## [Tianli coordinate model](doc/%E5%A4%A9%E7%90%86%E5%9D%90%E6%A0%87%E6%A8%A1%E5%9E%8B_en.md)
 

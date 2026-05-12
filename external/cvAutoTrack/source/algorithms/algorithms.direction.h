@@ -36,7 +36,7 @@ void direction_calculation(cv::Mat& giAvatarRef, double& a, tianli::global::dire
 
     cv::findContours(and12, contours, hierarcy, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_NONE);
 
-    std::vector<cv::Rect> boundRect(contours.size()); // 定义外接矩形集合
+    std::vector<cv::Rect> boundRect(contours.size()); // Bounding rectangle collection.
     cv::Point2f rect[4];
 
     std::vector<cv::Point2d> AvatarKeyPoint;
@@ -84,16 +84,16 @@ void direction_calculation(cv::Mat& giAvatarRef, double& a, tianli::global::dire
             boundRect[i] = cv::boundingRect(cv::Mat(contours[i]));
             AvatarKeyPoint.emplace_back(cv::Point2d(boundRect[i].x + boundRect[i].width / 2.0, boundRect[i].y + boundRect[i].height / 2.0));
         }
-        // 两点取中点
+        // Get the midpoint between two points.
         AvatarKeyPoint.emplace_back((AvatarKeyPoint[0] + AvatarKeyPoint[1]) / 2.0);
-        // 中点基于图片中心对称位置
+        // Mirror the midpoint around the image center.
         cv::Point2d line = center - AvatarKeyPoint[2];
         a = TianLi::Utils::Line2Angle(line);
     }
     else
     {
         config.error = true;
-        config.err = { 9, "提取小箭头特征误差过大" };
+        config.err = { 9, "Character arrow feature extraction error is too large" };
         a = last_direction;
         return;
     }

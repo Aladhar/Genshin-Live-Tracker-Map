@@ -38,6 +38,6 @@ private:
 
 inline bool clear_error_logs()
 {
-    *ErrorCode::getSharedPtr() = { 0, "调用成功" };
+    *ErrorCode::getSharedPtr() = { 0, "Call succeeded" };
     return true;
 }

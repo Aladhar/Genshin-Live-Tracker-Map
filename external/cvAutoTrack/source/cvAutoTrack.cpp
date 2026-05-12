@@ -1,4 +1,4 @@
-// cvAutoTrack.cpp : 定义 DLL 的导出函数。
+// cvAutoTrack.cpp: defines the exported DLL functions.
 //
 
 #include "pch.h"

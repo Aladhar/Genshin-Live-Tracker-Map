@@ -1,5 +1,12 @@
 Windows 11 Machine Run:
 
+.\build-windows-exe.ps1 -InstallVcpkg -RunSmokeTest
+
+Manual equivalent:
+
 cd external/cvAutoTrack
 cmake -S . -B build -A x64 -DBUILD_CVAUTOTRACK_TESTS=ON
 cmake --build build --config Release --target cvAutoTrack test_impl_cpp
+
+Output exe:
+external\cvAutoTrack\build-windows\bin\Release\test_impl_cpp.exe

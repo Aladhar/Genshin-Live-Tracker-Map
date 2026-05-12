@@ -15,7 +15,7 @@ public:
     Resources& res;
 
 public:
-#pragma region 外部接口
+#pragma region External API
     bool init();
     bool uninit();
 
