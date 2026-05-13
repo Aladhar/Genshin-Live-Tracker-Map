@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "cline": "^3.0.0",
+    "happy": "^1.0.2"
+  }
+}
