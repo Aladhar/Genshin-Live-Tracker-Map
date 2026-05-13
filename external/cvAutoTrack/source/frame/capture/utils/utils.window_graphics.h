@@ -109,14 +109,14 @@ namespace tianli::frame::capture::utils::window_graphics
     public:
         static graphics_global& get_instance()
         {
-            static graphics_global gg;
-            return gg;
+            static graphics_global* gg = new graphics_global();
+            return *gg;
         }
 
     public:
         bool is_inited = false;
         winrt::com_ptr<ID3D11Device> d3d_device;
-        winrt::impl::com_ref<IDXGIDevice> dxgi_device;
+        winrt::com_ptr<IDXGIDevice> dxgi_device;
         D3D11_TEXTURE2D_DESC desc_type{ 0, 0, 1, 1, DXGI_FORMAT_B8G8R8A8_UNORM, { 1, 0 }, D3D11_USAGE_STAGING, 0, D3D11_CPU_ACCESS_READ, 0 };
     };
 

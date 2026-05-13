@@ -21,7 +21,7 @@ namespace tianli::frame::capture
         capture_window_graphics(std::shared_ptr<global::logger> logger = nullptr) : capture_source(logger)
         {
             this->type = source_type::window_graphics;
-            auto init_global = utils::window_graphics::graphics_global::get_instance();
+            (void)utils::window_graphics::graphics_global::get_instance();
         }
         ~capture_window_graphics() override { uninitialized(); }
 

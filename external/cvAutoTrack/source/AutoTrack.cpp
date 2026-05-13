@@ -15,6 +15,7 @@
 
 #include "match/surf/SurfMatch.h"
 #include <cmath>
+#include <ctime>
 
 namespace
 {
@@ -56,6 +57,18 @@ namespace
     std::string rect_to_json_array(const cv::Rect& rect)
     {
         return global::format("[{},{},{},{}]", rect.x, rect.y, rect.width, rect.height);
+    }
+
+    std::string format_system_time(const std::chrono::system_clock::time_point& time_point)
+    {
+        auto time = std::chrono::system_clock::to_time_t(time_point);
+        std::tm local_time{};
+        localtime_s(&local_time, &time);
+
+        char buffer[32]{};
+        if (std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &local_time) == 0)
+            return {};
+        return buffer;
     }
 
     bool copy_text_to_buffer(const std::string& text, char* buff, int buff_size, ErrorCode& err)
@@ -292,6 +305,11 @@ bool AutoTrack::DebugCapturePath(const char* path_buff, int buff_size)
         return false;
     }
 
+    if (genshin_screen.img_screen.empty() && !try_get_genshin_windows())
+    {
+        return false;
+    }
+
     if (genshin_screen.img_screen.empty())
     {
         err = { 252, "Frame is empty" };
@@ -333,11 +351,7 @@ bool AutoTrack::DebugCapturePath(const char* path_buff, int buff_size)
             }
     }
 
-#if (_MSC_VER && _MSVC_LANG <= 201703L) || (!_MSC_VER && __cplusplus <= 201703L)
-    std::string last_time_str = global::format("{:%Y-%m-%d :%H:%M:%S}", std::chrono::system_clock::to_time_t(genshin_screen.last_time));
-#else
-    std::string last_time_str = global::format("{:%Y-%m-%d %H:%M:%S}", genshin_screen.last_time);
-#endif
+    std::string last_time_str = format_system_time(genshin_screen.last_time);
 
     cv::putText(out_info_img, last_time_str, cv::Point(out_info_img.cols / 2, out_info_img.rows / 2), 1, 1, cv::Scalar(128, 128, 128, 255), 1, 16, 0);
     auto err_msg_str = err.toJson();
@@ -741,6 +755,20 @@ bool AutoTrack::getGengshinImpactScreen()
 
 bool AutoTrack::getMiniMapRefMat()
 {
+    if (genshin_screen.img_screen.empty())
+    {
+        err = { 104, "Genshin frame is empty before minimap detection" };
+        return false;
+    }
+    if (genshin_minimap.rect_minimap.empty() == false)
+    {
+        const cv::Rect frame_rect(0, 0, genshin_screen.img_screen.cols, genshin_screen.img_screen.rows);
+        if ((genshin_minimap.rect_minimap & frame_rect) != genshin_minimap.rect_minimap)
+        {
+            err = { 105, "Cached minimap rect is outside the captured frame" };
+            return false;
+        }
+    }
     genshin_minimap.img_minimap = genshin_screen.img_screen(genshin_minimap.rect_minimap);
 
     if (genshin_handle.config.frame_source->type == tianli::frame::frame_source::source_type::window_graphics || genshin_handle.config.is_force_used_no_alpha)
@@ -756,10 +784,12 @@ bool AutoTrack::getMiniMapRefMat()
 
     if (TianLi::Genshin::Check::check_paimon(genshin_screen, genshin_paimon) == false)
     {
+        err = { 106, "Paimon/minimap HUD was not detected. Make sure the normal in-game HUD is visible" };
         return false;
     }
     if (genshin_paimon.is_visial == false)
     {
+        err = { 107, "Paimon icon was not visible in the captured frame" };
         return false;
     }
 
@@ -769,6 +799,7 @@ bool AutoTrack::getMiniMapRefMat()
 
     if (TianLi::Genshin::Cailb::cailb_minimap(genshin_screen, genshin_minimap) == false)
     {
+        err = { 108, "Failed to calibrate minimap bounds from the captured frame" };
         return false;
     }
 

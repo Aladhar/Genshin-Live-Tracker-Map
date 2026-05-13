@@ -1,11 +1,93 @@
 #include "pch.h"
 #include "genshin.handle.h"
 #include "genshin.include.h"
+#include <TlHelp32.h>
+#include <cwctype>
 
 namespace TianLi::Genshin
 {
     namespace
     {
+        std::wstring lower_copy(std::wstring text)
+        {
+            std::transform(text.begin(), text.end(), text.begin(), [](wchar_t ch) { return static_cast<wchar_t>(std::towlower(ch)); });
+            return text;
+        }
+
+        std::wstring base_name(std::wstring path)
+        {
+            const auto index = path.find_last_of(L"\\/");
+            if (index != std::wstring::npos)
+                path.erase(0, index + 1);
+            return lower_copy(path);
+        }
+
+        bool is_genshin_process_name(const std::wstring& exe_name)
+        {
+            const auto name = base_name(exe_name);
+            return name == L"genshinimpact.exe" || name == L"yuanshen.exe" || name == L"yuanshengame.exe";
+        }
+
+        std::vector<DWORD> get_genshin_process_ids()
+        {
+            std::vector<DWORD> process_ids;
+            HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+            if (snapshot == INVALID_HANDLE_VALUE)
+                return process_ids;
+
+            PROCESSENTRY32W process_entry{};
+            process_entry.dwSize = sizeof(process_entry);
+            if (Process32FirstW(snapshot, &process_entry))
+            {
+                do
+                {
+                    if (is_genshin_process_name(process_entry.szExeFile))
+                        process_ids.push_back(process_entry.th32ProcessID);
+                } while (Process32NextW(snapshot, &process_entry));
+            }
+            CloseHandle(snapshot);
+            return process_ids;
+        }
+
+        struct window_search_context
+        {
+            const std::vector<DWORD>* process_ids = nullptr;
+            HWND window = nullptr;
+        };
+
+        HWND find_genshin_window_by_process()
+        {
+            auto process_ids = get_genshin_process_ids();
+            if (process_ids.empty())
+                return nullptr;
+
+            window_search_context context{ &process_ids, nullptr };
+            EnumWindows(
+                [](HWND hwnd, LPARAM lParam) -> BOOL {
+                    auto context = reinterpret_cast<window_search_context*>(lParam);
+                    if (context == nullptr || context->process_ids == nullptr)
+                        return TRUE;
+
+                    DWORD process_id = 0;
+                    GetWindowThreadProcessId(hwnd, &process_id);
+                    if (std::find(context->process_ids->begin(), context->process_ids->end(), process_id) == context->process_ids->end())
+                        return TRUE;
+
+                    wchar_t class_name[256]{};
+                    GetClassNameW(hwnd, class_name, static_cast<int>(sizeof(class_name) / sizeof(class_name[0])));
+                    if (std::wstring(class_name) != L"UnityWndClass")
+                        return TRUE;
+
+                    if (!IsWindowVisible(hwnd))
+                        return TRUE;
+
+                    context->window = hwnd;
+                    return FALSE;
+                },
+                reinterpret_cast<LPARAM>(&context));
+            return context.window;
+        }
+
         cv::Rect make_relative_rect(const cv::Size& size, double left, double top, double width, double height)
         {
             return {
@@ -78,6 +160,13 @@ namespace TianLi::Genshin
                     now_class = genshin_window_class;
                     break;
                 }
+            }
+
+            if (giHandle == nullptr)
+            {
+                giHandle = find_genshin_window_by_process();
+                if (giHandle != nullptr)
+                    now_class = tianli::global::GenshinWindowClass::Unity;
             }
 
             if (now_class == tianli::global::GenshinWindowClass::None)
