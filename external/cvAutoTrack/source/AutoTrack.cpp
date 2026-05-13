@@ -224,7 +224,12 @@ bool AutoTrack::init()
         TianLi::Genshin::Match::get_avatar_position(genshin_minimap, genshin_avatar_position);
         genshin_minimap.is_run_init_start = false;
 
-        genshin_minimap.is_init_finish = true;
+        genshin_minimap.is_init_finish = genshin_minimap.matcher != nullptr && genshin_minimap.matcher->isInit;
+        if (!genshin_minimap.is_init_finish)
+        {
+            err = { 109, "cvAutoTrack_Cache.dat was not found or could not be loaded; position tracking cannot initialize" };
+            return false;
+        }
     }
     return genshin_minimap.is_init_finish;
 }
@@ -400,7 +405,8 @@ bool AutoTrack::GetPosition(double& x, double& y)
     }
     if (!genshin_minimap.is_init_finish)
     {
-        init();
+        if (!init())
+            return false;
     }
     if (getMiniMapRefMat() == false)
     {
@@ -416,8 +422,23 @@ bool AutoTrack::GetPosition(double& x, double& y)
     genshin_minimap.config.is_find_paimon = true;
 
     TianLi::Genshin::Match::get_avatar_position(genshin_minimap, genshin_avatar_position);
+    if (genshin_minimap.matcher == nullptr || !genshin_minimap.matcher->isInit)
+    {
+        err = { 109, "cvAutoTrack_Cache.dat was not found or could not be loaded; position tracking cannot initialize" };
+        return false;
+    }
+    if (!genshin_minimap.matcher->is_success_match)
+    {
+        err = { 110, "Failed to match the minimap against the cvAutoTrack cache for the current area" };
+        return false;
+    }
 
     cv::Point2d pos = genshin_avatar_position.position;
+    if (!std::isfinite(pos.x) || !std::isfinite(pos.y))
+    {
+        err = { 111, "Matched minimap position was not finite" };
+        return false;
+    }
 
     x = pos.x;
     y = pos.y;

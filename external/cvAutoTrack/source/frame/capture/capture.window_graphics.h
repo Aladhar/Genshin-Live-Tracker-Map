@@ -15,7 +15,10 @@ namespace tianli::frame::capture
         winrt::Windows::Graphics::Capture::Direct3D11CaptureFramePool m_framePool{ nullptr };
         winrt::Windows::Graphics::Capture::GraphicsCaptureSession m_session{ nullptr };
         winrt::Windows::Graphics::SizeInt32 m_lastSize;
+        winrt::Windows::Foundation::TimeSpan m_lastFrameTime{};
         winrt::com_ptr<IDXGISwapChain1> m_swapChain{ nullptr };
+        bool m_hasLastFrameTime = false;
+        int m_staleFrameCount = 0;
 
     public:
         capture_window_graphics(std::shared_ptr<global::logger> logger = nullptr) : capture_source(logger)
@@ -37,7 +40,7 @@ namespace tianli::frame::capture
                 return false;
 
             m_device = utils::window_graphics::CreateDirect3DDevice(utils::window_graphics::graphics_global::get_instance().dxgi_device.get());
-            m_item = utils::window_graphics::CreateCaptureItemForWindow(this->source_handle);
+            m_item = utils::window_graphics::CreateCaptureItemForMonitor(MonitorFromWindow(this->source_handle, MONITOR_DEFAULTTONEAREST));
 
             if (m_item == nullptr)
                 return false;
@@ -76,6 +79,8 @@ namespace tianli::frame::capture
             m_framePool = nullptr;
             m_swapChain = nullptr;
             m_item = nullptr;
+            m_hasLastFrameTime = false;
+            m_staleFrameCount = 0;
 
             this->is_initialized = false;
             return true;
@@ -110,6 +115,8 @@ namespace tianli::frame::capture
         }
 
         bool get_frame(cv::Mat& frame) override;
+        bool get_desktop_duplication_frame(cv::Mat& frame);
+        bool get_desktop_gdi_frame(cv::Mat& frame);
         
     private:
         RECT source_rect = { 0, 0, 0, 0 };
