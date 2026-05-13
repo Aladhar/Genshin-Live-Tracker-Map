@@ -48,8 +48,11 @@ namespace tianli::frame::capture
 
             utils::window_graphics::graphics_global::get_instance().d3d_device->GetImmediateContext(m_d3dContext.put());
 
-            m_framePool = winrt::Windows::Graphics::Capture::Direct3D11CaptureFramePool::Create(m_device.as<winrt::Windows::Graphics::DirectX::Direct3D11::IDirect3DDevice>(),
-                                                                                                static_cast<winrt::Windows::Graphics::DirectX::DirectXPixelFormat>(87), 2, m_lastSize);
+            m_framePool = winrt::Windows::Graphics::Capture::Direct3D11CaptureFramePool::CreateFreeThreaded(
+                m_device.as<winrt::Windows::Graphics::DirectX::Direct3D11::IDirect3DDevice>(),
+                winrt::Windows::Graphics::DirectX::DirectXPixelFormat::B8G8R8A8UIntNormalized,
+                2,
+                m_lastSize);
             m_session = m_framePool.CreateCaptureSession(m_item);
 
             utils::window_graphics::set_capture_session_property(m_session);

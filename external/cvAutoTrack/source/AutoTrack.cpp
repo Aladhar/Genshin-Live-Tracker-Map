@@ -305,7 +305,7 @@ bool AutoTrack::DebugCapturePath(const char* path_buff, int buff_size)
         return false;
     }
 
-    if (genshin_screen.img_screen.empty() && !try_get_genshin_windows())
+    if (!try_get_genshin_windows())
     {
         return false;
     }

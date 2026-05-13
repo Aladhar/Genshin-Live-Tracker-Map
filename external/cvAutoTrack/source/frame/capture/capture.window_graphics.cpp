@@ -4,6 +4,12 @@ namespace tianli::frame::capture
 {
     bool capture_window_graphics::get_frame(cv::Mat& frame)
     {
+        auto fail = [&]() {
+            this->source_frame.release();
+            frame.release();
+            return false;
+        };
+
         if (this->is_callback)
             set_capture_handle(this->source_handle_callback());
 
@@ -11,7 +17,7 @@ namespace tianli::frame::capture
         {
             uninitialized();
             if (initialization() == false)
-                return false;
+                return fail();
         }
 
         winrt::Windows::Graphics::Capture::Direct3D11CaptureFrame new_frame{ nullptr };
@@ -22,7 +28,7 @@ namespace tianli::frame::capture
                 Sleep(10);
         }
         if (new_frame == nullptr)
-            return false;
+            return fail();
 
         auto frame_size = new_frame.ContentSize();
         if (frame_size.Width != m_lastSize.Width || frame_size.Height != m_lastSize.Height)
@@ -46,18 +52,18 @@ namespace tianli::frame::capture
 
         winrt::com_ptr<ID3D11Texture2D> staging_texture;
         if (FAILED(utils::window_graphics::graphics_global::get_instance().d3d_device->CreateTexture2D(&staging_desc, nullptr, staging_texture.put())))
-            return false;
+            return fail();
 
         m_d3dContext->CopyResource(staging_texture.get(), frameSurface.get());
 
         D3D11_MAPPED_SUBRESOURCE mappedTex{};
         if (FAILED(m_d3dContext->Map(staging_texture.get(), 0, D3D11_MAP_READ, 0, &mappedTex)))
-            return false;
+            return fail();
 
         if (mappedTex.pData == nullptr)
         {
             m_d3dContext->Unmap(staging_texture.get(), 0);
-            return false;
+            return fail();
         }
 
         cv::Mat mapped_frame(staging_desc.Height, staging_desc.Width, CV_8UC4, mappedTex.pData, mappedTex.RowPitch);
@@ -69,7 +75,7 @@ namespace tianli::frame::capture
             if (client_box.right > staging_desc.Width || client_box.bottom > staging_desc.Height || client_box.left >= client_box.right || client_box.top >= client_box.bottom)
             {
                 m_d3dContext->Unmap(staging_texture.get(), 0);
-                return false;
+                return fail();
             }
 
             mapped_frame(cv::Rect(client_box.left, client_box.top, client_box.right - client_box.left, client_box.bottom - client_box.top)).copyTo(this->source_frame);
@@ -82,9 +88,9 @@ namespace tianli::frame::capture
         m_d3dContext->Unmap(staging_texture.get(), 0);
 
         if (this->source_frame.empty())
-            return false;
+            return fail();
         if (this->source_frame.cols < 480 || this->source_frame.rows < 360)
-            return false;
+            return fail();
 
         frame = this->source_frame;
         return true;
