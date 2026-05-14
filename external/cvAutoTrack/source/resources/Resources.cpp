@@ -5,6 +5,8 @@
 #include "resources/trackCache.h"
 #include "utils/convect.string.h"
 #include "resource/version.h"
+#include <cstdio>
+#include <exception>
 
 Resources::Resources()
 {
@@ -38,14 +40,42 @@ std::shared_ptr<Resources> Resources::getSharedPtr()
     return instance;
 }
 
+static void log_load_cache_failure(const std::string& cache_file_path, const char* exception_type, const char* exception_what)
+{
+    std::error_code ec;
+    const auto fsize = std::filesystem::file_size(cache_file_path, ec);
+    const auto fsize_str = ec ? "unknown" : std::to_string(fsize);
+    bool ifs_ok = false;
+    {
+        std::ifstream probe(cache_file_path, std::ios::binary | std::ios::ate);
+        ifs_ok = probe.good();
+        probe.close();
+    }
+
+    std::fprintf(stderr,
+        "[cache_load_debug] path=\"%s\" size=%s ifstream_ok=%s exception_type=\"%s\" exception_what=\"%s\"\n",
+        cache_file_path.c_str(),
+        fsize_str.c_str(),
+        ifs_ok ? "true" : "false",
+        exception_type,
+        exception_what);
+    std::fflush(stderr);
+}
+
 bool load_cache(const std::string& cache_file_path, std::shared_ptr<trackCache::CacheInfo>& cacheInfo)
 {
     try
     {
         cacheInfo = trackCache::Deserialize(cache_file_path);
     }
+    catch (const std::exception& e)
+    {
+        log_load_cache_failure(cache_file_path, typeid(e).name(), e.what());
+        return false;
+    }
     catch (...)
     {
+        log_load_cache_failure(cache_file_path, "unknown", "non-std exception");
         return false;
     }
     return true;

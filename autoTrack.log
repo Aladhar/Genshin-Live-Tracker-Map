@@ -43,3 +43,12 @@ GPU: Failed to get GPU information
 ｿSystem version: Windows 10 Home-25H2-26200.8246
 GPU: Failed to get GPU information
 2026-05-12 17:56:25 | Error code:    109, message: cvAutoTrack_Cache.dat was not found or could not be loaded; position tracking cannot initialize
+ｿSystem version: macOS
+GPU: Failed to get GPU information
+2026-05-14 12:08:36 | Error code:    109, message: cvAutoTrack_Cache.dat was not found or could not be loaded; position tracking cannot initialize
+ｿSystem version: macOS
+GPU: Failed to get GPU information
+2026-05-14 12:09:07 | Error code:    109, message: cvAutoTrack_Cache.dat was not found or could not be loaded; position tracking cannot initialize
+ｿSystem version: macOS
+GPU: Failed to get GPU information
+2026-05-14 12:13:21 | Error code:    109, message: cvAutoTrack_Cache.dat was not found or could not be loaded; position tracking cannot initialize

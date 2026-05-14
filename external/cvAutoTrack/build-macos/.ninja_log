@@ -31,3 +31,7 @@
 2069	2280	1778781790775908545	bin/macos_capture_probe	ebed96c5a10b3e5f
 27	659	1778782573573395788	source/CMakeFiles/genshin_tracker_macos.dir/tools/macos_tracker_cli.cpp.o	e0ae5d514fb4bc64
 1087	1210	1778782574633403918	bin/genshin_tracker_macos	8be59905a390c12f
+36	1205	1778785991844681682	source/CMakeFiles/cvAutoTrack.dir/resources/Resources.cpp.o	392e38f84fa5c084
+1208	1565	1778785993016731236	lib/libcvAutoTrack.8.2.134.dylib	54ba317bf310bb94
+1565	1576	1778785993374259023	lib/libcvAutoTrack.dylib	b807473c250be066
+15	195	1778785997521997170	bin/genshin_tracker_macos	8be59905a390c12f
