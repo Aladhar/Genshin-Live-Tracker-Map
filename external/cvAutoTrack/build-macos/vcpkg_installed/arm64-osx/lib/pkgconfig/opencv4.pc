@@ -1,0 +1,13 @@
+prefix=${pcfiledir}/../..
+# Package Information for pkg-config
+
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/opencv4
+
+Name: OpenCV
+Description: Open Source Computer Vision Library
+Version: 4.10.0
+
+Libs: "-L${exec_prefix}/lib" -lopencv_stitching4 -lopencv_aruco4 -lopencv_bgsegm4 -lopencv_bioinspired4 -lopencv_ccalib4 -lopencv_dnn_objdetect4 -lopencv_dnn_superres4 -lopencv_dpm4 -lopencv_face4 -lopencv_fuzzy4 -lopencv_hdf4 -lopencv_hfs4 -lopencv_img_hash4 -lopencv_intensity_transform4 -lopencv_line_descriptor4 -lopencv_mcc4 -lopencv_rapid4 -lopencv_reg4 -lopencv_saliency4 -lopencv_signal4 -lopencv_stereo4 -lopencv_structured_light4 -lopencv_phase_unwrapping4 -lopencv_superres4 -lopencv_optflow4 -lopencv_surface_matching4 -lopencv_tracking4 -lopencv_highgui4 -lopencv_datasets4 -lopencv_text4 -lopencv_plot4 -lopencv_videostab4 -lopencv_videoio4 -lopencv_wechat_qrcode4 -lopencv_xfeatures2d4 -lopencv_shape4 -lopencv_ml4 -lopencv_ximgproc4 -lopencv_video4 -lopencv_xobjdetect4 -lopencv_objdetect4 -lopencv_calib3d4 -lopencv_imgcodecs4 -lopencv_features2d4 -lopencv_dnn4 -lopencv_flann4 -lopencv_xphoto4 -lopencv_photo4 -lopencv_imgproc4 -lopencv_core4 "-L${exec_prefix}/lib/manual-link/opencv4_thirdparty" -ltegra_hal "-L${prefix}/lib" -lprotobuf -framework Cocoa -lm -framework AppKit -lquirc -lhdf5
+Cflags: "-I${includedir}"

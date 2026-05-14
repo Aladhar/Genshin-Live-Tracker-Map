@@ -1,10 +1,16 @@
 #pragma once
-#include <Windows.h>
 #include <string>
+#ifdef _WIN32
+    #include <Windows.h>
+#else
+    #include <codecvt>
+    #include <locale>
+#endif
 namespace utils
 {
     static std::string utf8_to_gbk(const std::string& utf8_string)
     {
+#ifdef _WIN32
         std::string ret_string;
         int len = MultiByteToWideChar(CP_UTF8, 0, utf8_string.c_str(), -1, NULL, 0);
         wchar_t* gbk_wstring = new wchar_t[len + 1];
@@ -18,10 +24,14 @@ namespace utils
         delete[] gbk_string;
         delete[] gbk_wstring;
         return ret_string;
+#else
+        return utf8_string;
+#endif
     }
 
     static std::string gbk_to_utf8(const std::string& gbk_string)
     {
+#ifdef _WIN32
         std::string ret_string;
         int len = MultiByteToWideChar(CP_ACP, 0, gbk_string.c_str(), -1, NULL, 0);
         wchar_t* utf8_wstring = new wchar_t[len + 1];
@@ -35,10 +45,14 @@ namespace utils
         delete[] utf8_string;
         delete[] utf8_wstring;
         return ret_string;
+#else
+        return gbk_string;
+#endif
     }
 
     static std::string to_string(const std::wstring& wstring)
     {
+#ifdef _WIN32
         std::string ret_string;
         int len = WideCharToMultiByte(CP_ACP, 0, wstring.c_str(), -1, NULL, 0, NULL, NULL);
         char* utf8_string = new char[len + 1];
@@ -47,10 +61,15 @@ namespace utils
         ret_string = utf8_string;
         delete[] utf8_string;
         return ret_string;
+#else
+        std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+        return converter.to_bytes(wstring);
+#endif
     }
 
     static std::wstring to_wstring(const std::string& string)
     {
+#ifdef _WIN32
         std::wstring ret_string;
         int len = MultiByteToWideChar(CP_UTF8, 0, string.c_str(), -1, NULL, 0);
         wchar_t* utf8_wstring = new wchar_t[len + 1];
@@ -59,10 +78,15 @@ namespace utils
         ret_string = utf8_wstring;
         delete[] utf8_wstring;
         return ret_string;
+#else
+        std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+        return converter.from_bytes(string);
+#endif
     }
 
     static bool is_utf8(const std::string& string)
     {
+#ifdef _WIN32
         int len = MultiByteToWideChar(CP_UTF8, 0, string.c_str(), -1, NULL, 0);
         wchar_t* utf8_wstring = new wchar_t[len + 1];
         memset(utf8_wstring, 0, len * 2 + 2);
@@ -75,6 +99,10 @@ namespace utils
         delete[] gbk_string;
         delete[] utf8_wstring;
         return ret_string == string;
+#else
+        (void)string;
+        return true;
+#endif
     }
 
     static std::string to_utf8(const std::string& string)

@@ -20,22 +20,26 @@ bool __stdcall InitResource()
         _err = ErrorCode::getSharedPtr();
         _res = Resources::getSharedPtr();
         _at = std::make_shared<AutoTrack>(*_err, *_res);
-        _inited = false;
     }
 
-    INSTALL_DUMP(_at->init());
-    _inited = true;
+    INSTALL_DUMP_();
+    const bool initialized = _at != nullptr && _at->init();
+    _inited = initialized;
+    return initialized;
 }
 bool __stdcall UnInitResource()
 {
-    INSTALL_DUMP([&]() {
-        if (_at == nullptr)
-            return true;
-        if (_at->uninit() == false)
-            return false;
-        _at.reset();
+    INSTALL_DUMP_();
+    if (_at == nullptr)
+    {
+        _inited = false;
         return true;
-    }());
+    }
+    if (_at->uninit() == false)
+        return false;
+    _at.reset();
+    _inited = false;
+    return true;
 }
 
 #include "module.frame.h"

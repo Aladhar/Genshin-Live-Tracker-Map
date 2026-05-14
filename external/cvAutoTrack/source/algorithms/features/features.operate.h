@@ -175,7 +175,7 @@ namespace tianli::algorithms::features_operate
             }
         }
 
-        std::for_each(std::execution::par_unseq, grid_features.begin(), grid_features.end(), [&](std::pair<cv::Rect, features>& grid_feature) {
+        std::for_each(grid_features.begin(), grid_features.end(), [&](std::pair<cv::Rect, features>& grid_feature) {
             const int fixed_target_density = static_cast<int>(std::ceil(target_density_rate * grid_feature.first.area()));
             const auto& detector = cv::xfeatures2d::SURF::create(surf_begin_hessian_threshold, surf_octaves, surf_octaveLayers, surf_extended, surf_upright);
             double threshold = surf_begin_hessian_threshold;

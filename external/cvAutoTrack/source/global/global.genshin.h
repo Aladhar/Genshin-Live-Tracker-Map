@@ -6,7 +6,9 @@
 #include <opencv2/core.hpp>
 #include <string>
 
-#include <Windows.h>
+#ifdef _WIN32
+    #include <Windows.h>
+#endif
 class SurfMatch;
 
 namespace tianli::global

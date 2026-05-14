@@ -163,6 +163,7 @@ namespace TianLi::Utils
     // 注册表读取
     bool getRegValue_REG_SZ(HKEY root, std::wstring item, std::wstring key, std::string& ret, int max_length)
     {
+#ifdef _WIN32
         HKEY hKey;
         long lRes = RegOpenKeyExW(root, item.c_str(), 0, KEY_READ, &hKey);
         if (lRes != ERROR_SUCCESS)
@@ -199,10 +200,19 @@ namespace TianLi::Utils
         delete[] lpData;
         delete[] lpDataA;
         return true;
+#else
+        (void)root;
+        (void)item;
+        (void)key;
+        (void)ret;
+        (void)max_length;
+        return false;
+#endif
     }
 
     bool getRegValue_DWORD(HKEY root, std::wstring item, std::wstring key, int& ret)
     {
+#ifdef _WIN32
         HKEY hKey;
         long lRes = RegOpenKeyExW(root, item.c_str(), 0, KEY_READ, &hKey);
         if (lRes != ERROR_SUCCESS)
@@ -224,6 +234,13 @@ namespace TianLi::Utils
         ret = lpData;
         RegCloseKey(hKey);
         return true;
+#else
+        (void)root;
+        (void)item;
+        (void)key;
+        (void)ret;
+        return false;
+#endif
     }
 
     std::mt19937 create_random_engine()

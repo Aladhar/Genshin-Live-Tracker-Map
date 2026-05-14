@@ -31,6 +31,38 @@
 #include <numeric>
 #include <random>
 #include <string>
+#include <cstring>
+#include <cstdio>
+
+#ifndef _WIN32
+    #ifndef MAX_PATH
+        #define MAX_PATH 4096
+    #endif
+    #ifndef UNREFERENCED_PARAMETER
+        #define UNREFERENCED_PARAMETER(P) (void)(P)
+    #endif
+    #ifndef sprintf_s
+        #define sprintf_s(buffer, size, ...) snprintf((buffer), (size), __VA_ARGS__)
+    #endif
+    #ifndef strcpy_s
+        #define strcpy_s(dest, size, src) snprintf((dest), (size), "%s", (src))
+    #endif
+    #ifndef strncat_s
+        #define strncat_s(dest, size, src, count) strncat((dest), (src), std::min(static_cast<size_t>(count), static_cast<size_t>(size) - strlen(dest) - 1))
+    #endif
+using HBITMAP = void*;
+using HMODULE = void*;
+using LPVOID = void*;
+    #ifndef APIENTRY
+        #define APIENTRY
+    #endif
+    #ifndef DLL_PROCESS_ATTACH
+        #define DLL_PROCESS_ATTACH 1
+        #define DLL_THREAD_ATTACH 2
+        #define DLL_THREAD_DETACH 3
+        #define DLL_PROCESS_DETACH 0
+    #endif
+#endif
 
 // opencv
 #include <opencv2/imgcodecs.hpp>

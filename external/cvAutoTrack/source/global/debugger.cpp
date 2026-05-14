@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "debugger.h"
+
+#ifdef _WIN32
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include <imgui.h>
 #include <imgui_impl_opengl3.h>
@@ -424,3 +426,26 @@ std::string debugger::call(std::string command, std::string args)
     }
     return {};
 }
+#else
+struct debugger::impl_t
+{
+    std::function<void()> render;
+};
+
+debugger::debugger() : impl(std::make_unique<impl_t>()) {}
+debugger::~debugger() = default;
+
+void debugger::initlize() {}
+void debugger::destory() {}
+void debugger::wait_exit() {}
+void debugger::set_render(std::function<void()> render)
+{
+    impl->render = std::move(render);
+}
+std::string debugger::call(std::string command, std::string args)
+{
+    (void)command;
+    (void)args;
+    return "Debugger is not available on this platform";
+}
+#endif

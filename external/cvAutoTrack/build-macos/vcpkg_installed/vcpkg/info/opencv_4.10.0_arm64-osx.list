@@ -1,0 +1,6 @@
+arm64-osx/
+arm64-osx/share/
+arm64-osx/share/opencv/
+arm64-osx/share/opencv/vcpkg-cmake-wrapper.cmake
+arm64-osx/share/opencv/vcpkg.spdx.json
+arm64-osx/share/opencv/vcpkg_abi_info.txt

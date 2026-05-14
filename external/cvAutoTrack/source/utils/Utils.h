@@ -4,7 +4,11 @@
 #ifndef NOMINMAX
     #define NOMINMAX
 #endif
-#include <windows.h>
+#ifdef _WIN32
+    #include <windows.h>
+#else
+using HKEY = void*;
+#endif
 
 namespace TianLi::Utils
 {

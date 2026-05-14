@@ -1,5 +1,6 @@
 #pragma once
-#include <Windows.h>
-#include <shellscalingapi.h>
-#pragma comment(lib, "Shcore.lib")
-
+#ifdef _WIN32
+    #include <Windows.h>
+    #include <shellscalingapi.h>
+    #pragma comment(lib, "Shcore.lib")
+#endif

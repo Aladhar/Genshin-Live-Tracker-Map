@@ -5,7 +5,46 @@
 #include <string>
 #include <utility>
 
-#include <Windows.h>
+#ifdef _WIN32
+    #include <Windows.h>
+#else
+using BOOL = int;
+using DWORD = unsigned long;
+using HWND = void*;
+using HKEY = void*;
+using LPARAM = long;
+using LRESULT = long;
+using UINT = unsigned int;
+using WPARAM = unsigned long;
+
+struct RECT
+{
+    long left;
+    long top;
+    long right;
+    long bottom;
+};
+
+struct POINT
+{
+    long x;
+    long y;
+};
+
+    #ifndef TRUE
+        #define TRUE 1
+    #endif
+    #ifndef FALSE
+        #define FALSE 0
+    #endif
+    #ifndef NULL
+        #define NULL nullptr
+    #endif
+inline bool IsWindow(HWND handle)
+{
+    return handle != nullptr;
+}
+#endif
 
 #include <opencv2/core.hpp>
 

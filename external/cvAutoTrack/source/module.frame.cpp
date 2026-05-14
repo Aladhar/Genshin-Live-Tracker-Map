@@ -1,15 +1,21 @@
 #include "pch.h"
 #include "module.frame.h"
-#include "frame/capture/capture.bitblt.h"
+#ifdef _WIN32
+    #include "frame/capture/capture.bitblt.h"
+#endif
 #ifdef BUILD_CAPTURE_DXGI
     #include "frame/capture/capture.window_graphics.h"
 #endif // BUILD_CAPTURE_DXGI
+#ifdef BUILD_CAPTURE_COREGRAPHICS
+    #include "frame/capture/capture.coregraphics.h"
+#endif // BUILD_CAPTURE_COREGRAPHICS
 // #include "frame/capture/capture.dwm.h"
 #include "frame/local/local.picture.h"
 #include "frame/local/local.video.h"
 
 bool create_capture_bitblt(std::shared_ptr<tianli::frame::frame_source>& source)
 {
+#ifdef _WIN32
     if (source == nullptr)
     {
         source = std::make_shared<tianli::frame::capture::capture_bitblt>();
@@ -22,6 +28,10 @@ bool create_capture_bitblt(std::shared_ptr<tianli::frame::frame_source>& source)
     source.reset();
     source = std::make_shared<tianli::frame::capture::capture_bitblt>();
     return true;
+#else
+    (void)source;
+    return false;
+#endif
 }
 bool create_capture_graphics(std::shared_ptr<tianli::frame::frame_source>& source)
 {
@@ -37,6 +47,19 @@ bool create_capture_graphics(std::shared_ptr<tianli::frame::frame_source>& sourc
     }
     source.reset();
     source = std::make_shared<tianli::frame::capture::capture_window_graphics>();
+    return true;
+#elif defined(BUILD_CAPTURE_COREGRAPHICS)
+    if (source == nullptr)
+    {
+        source = std::make_shared<tianli::frame::capture::capture_core_graphics>();
+        return true;
+    }
+    if (source->type == tianli::frame::frame_source::source_type::window_graphics)
+    {
+        return true;
+    }
+    source.reset();
+    source = std::make_shared<tianli::frame::capture::capture_core_graphics>();
     return true;
 #else
     return false;

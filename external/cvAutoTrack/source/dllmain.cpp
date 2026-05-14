@@ -4,6 +4,7 @@
 static HMODULE g_library_module = NULL;
 static std::string core_cache_path = "";
 
+#ifdef _WIN32
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID /*lpReserved*/
 )
 {
@@ -29,6 +30,16 @@ bool GetCoreModulePath(char* path_buff, int buff_size)
     strcpy_s(path_buff, buff_size, module_path_char);
     return true;
 }
+#else
+bool GetCoreModulePath(char* path_buff, int buff_size)
+{
+    if (path_buff == nullptr || buff_size <= 0)
+        return false;
+    const auto path = std::filesystem::current_path().string();
+    strcpy_s(path_buff, buff_size, path.c_str());
+    return true;
+}
+#endif
 
 bool SetCoreCachePath(const char* path_buff)
 {
@@ -40,6 +51,7 @@ bool SetCoreCachePath(const char* path_buff)
 bool GetCoreCachePath(char* path_buff, int buff_size)
 {
     std::string file_name = "cvAutoTrack_Cache.dat";
+#ifdef _WIN32
     // get module path
     wchar_t applicate_path[MAX_PATH];
     GetModuleFileNameW(NULL, applicate_path, MAX_PATH);
@@ -49,6 +61,12 @@ bool GetCoreCachePath(char* path_buff, int buff_size)
     GetCoreModulePath(module_path, MAX_PATH);
     std::string module_path_str = module_path;
     std::filesystem::path module_dir = std::filesystem::path(module_path_str).parent_path();
+#else
+    std::filesystem::path applicate_dir = std::filesystem::current_path();
+    char module_path[MAX_PATH];
+    GetCoreModulePath(module_path, MAX_PATH);
+    std::filesystem::path module_dir = std::filesystem::path(module_path);
+#endif
 
     std::vector<std::filesystem::path> files = { core_cache_path, applicate_dir / file_name, module_dir / file_name, module_dir / "resource" / file_name };
     std::filesystem::path cache_file_path;

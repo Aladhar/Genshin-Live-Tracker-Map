@@ -1,0 +1,94 @@
+name: macOS Build
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-macos:
+    strategy:
+      matrix:
+        os: [macos-12, macos-13, macos-14]
+        arch: [x64, arm64]
+        exclude:
+          # macos-12 on arm64 is not available
+          - os: macos-12
+            arch: arm64
+    
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Install dependencies
+        run: |
+          brew update
+          brew install cmake ninja opencv
+      
+      - name: Set up build environment
+        run: |
+          echo "VCPKG_ROOT=$GITHUB_WORKSPACE/external/vcpkg" >> $GITHUB_ENV
+      
+      - name: Cache vcpkg
+        uses: actions/cache@v3
+        with:
+          path: external/vcpkg
+          key: vcpkg-macos-${{ matrix.arch }}-${{ hashFiles('external/cvAutoTrack/vcpkg.json') }}
+          restore-keys: |
+            vcpkg-macos-${{ matrix.arch }}-
+            vcpkg-macos-
+      
+      - name: Install vcpkg (if not cached)
+        run: |
+          if [ ! -d "external/vcpkg" ]; then
+            git clone https://github.com/microsoft/vcpkg.git external/vcpkg
+            external/vcpkg/bootstrap-vcpkg.sh -disableMetrics
+          fi
+      
+      - name: Build cvAutoTrack
+        env:
+          ARCHITECTURE: ${{ matrix.arch }}
+        run: |
+          bash build-macos.sh \
+            --configuration Release \
+            --architecture ${{ matrix.arch }} \
+            --run-smoke-test
+      
+      - name: Upload build artifacts
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cvAutoTrack-macos-${{ matrix.os }}-${{ matrix.arch }}
+          path: |
+            external/cvAutoTrack/build-macos/bin/libcvAutoTrack.dylib
+            external/cvAutoTrack/build-macos/bin/test_impl_cpp
+          retention-days: 30
+      
+      - name: Test binary execution
+        if: matrix.arch == 'x64'  # Only test on same architecture as runner
+        run: |
+          chmod +x external/cvAutoTrack/build-macos/bin/test_impl_cpp
+          external/cvAutoTrack/build-macos/bin/test_impl_cpp
+
+  build-success:
+    needs: build-macos
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Check build status
+        run: |
+          if [ "${{ needs.build-macos.result }}" == "success" ]; then
+            echo "✅ All macOS builds passed!"
+            exit 0
+          else
+            echo "❌ macOS builds failed!"
+            exit 1
+          fi

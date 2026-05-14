@@ -1,0 +1,16 @@
+arm64-osx/
+arm64-osx/debug/
+arm64-osx/debug/lib/
+arm64-osx/debug/lib/libgif.a
+arm64-osx/include/
+arm64-osx/include/gif_lib.h
+arm64-osx/lib/
+arm64-osx/lib/libgif.a
+arm64-osx/share/
+arm64-osx/share/gif/
+arm64-osx/share/gif/vcpkg-cmake-wrapper.cmake
+arm64-osx/share/giflib/
+arm64-osx/share/giflib/copyright
+arm64-osx/share/giflib/usage
+arm64-osx/share/giflib/vcpkg.spdx.json
+arm64-osx/share/giflib/vcpkg_abi_info.txt

@@ -1,4 +1,7 @@
 #pragma once
+
+#include <map>
+
 namespace TianLi::Resources::Import
 {
     static int MAP_BLOCK_SIZE = 1024;

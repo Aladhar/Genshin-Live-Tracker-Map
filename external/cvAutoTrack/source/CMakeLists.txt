@@ -72,11 +72,10 @@ set_target_properties(cvAutoTrack PROPERTIES VERSION ${PROJECT_VERSION_MAJOR}.${
 set_target_properties(cvAutoTrack PROPERTIES FOLDER "cvAutoTrack")
 set_target_properties(cvAutoTrack PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 
-        
-# release gen .pdb
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Zi")
-set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "${CMAKE_SHARED_LINKER_FLAGS_RELEASE} /DEBUG /OPT:REF /OPT:ICF")
 if(MSVC)
+    # release gen .pdb
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /Zi")
+    set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "${CMAKE_SHARED_LINKER_FLAGS_RELEASE} /DEBUG /OPT:REF /OPT:ICF")
     add_pch_define(cvAutoTrack ${SourceDir}/pch.h ${SourceDir}/pch.cpp)
 
     #/utf-8
@@ -106,8 +105,28 @@ PRIVATE
     cereal::cereal 
     fmt::fmt-header-only 
     imgui::imgui
-    opengl32
     )
+if(WIN32)
+    target_link_libraries(cvAutoTrack PRIVATE opengl32)
+elseif(APPLE)
+    target_link_libraries(cvAutoTrack PRIVATE "-framework OpenGL")
+endif()
+
+if(APPLE)
+    add_executable(macos_capture_probe tools/macos_capture_probe.cpp)
+    target_include_directories(macos_capture_probe PRIVATE ${SourceDir} ${OpenCV_INCLUDE_DIRS})
+    target_link_libraries(macos_capture_probe PRIVATE tianli::frame ${OpenCV_LIBS})
+    set_target_properties(macos_capture_probe PROPERTIES FOLDER "tools")
+
+    add_executable(genshin_tracker_macos tools/macos_tracker_cli.cpp)
+    target_include_directories(genshin_tracker_macos PRIVATE ${IncludeDir} ${SourceDir} ${OpenCV_INCLUDE_DIRS})
+    target_link_libraries(genshin_tracker_macos PRIVATE cvAutoTrack tianli::frame ${OpenCV_LIBS})
+    set_target_properties(genshin_tracker_macos PROPERTIES
+        FOLDER "tools"
+        BUILD_RPATH "@loader_path/../lib"
+        INSTALL_RPATH "@loader_path/../lib"
+    )
+endif()
 
 add_custom_target(copy_version_file ALL COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_CURRENT_SOURCE_DIR}/resource/version.ver" "$<TARGET_FILE_DIR:cvAutoTrack>/version")
 set_target_properties(copy_version_file PROPERTIES FOLDER "scripts")

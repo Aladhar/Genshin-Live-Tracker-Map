@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/cmake_install.cmake",
+		"/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/source/cmake_install.cmake",
+		"/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/source/frame/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

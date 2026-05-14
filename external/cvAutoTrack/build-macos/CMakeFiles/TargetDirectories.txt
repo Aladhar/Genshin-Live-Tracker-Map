@@ -1,0 +1,11 @@
+/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/CMakeFiles/edit_cache.dir
+/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/CMakeFiles/rebuild_cache.dir
+/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/source/CMakeFiles/cvAutoTrack.dir
+/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/source/CMakeFiles/macos_capture_probe.dir
+/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/source/CMakeFiles/genshin_tracker_macos.dir
+/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/source/CMakeFiles/copy_version_file.dir
+/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/source/CMakeFiles/edit_cache.dir
+/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/source/CMakeFiles/rebuild_cache.dir
+/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/source/frame/CMakeFiles/tianli_frame.dir
+/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/source/frame/CMakeFiles/edit_cache.dir
+/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/external/cvAutoTrack/build-macos/source/frame/CMakeFiles/rebuild_cache.dir

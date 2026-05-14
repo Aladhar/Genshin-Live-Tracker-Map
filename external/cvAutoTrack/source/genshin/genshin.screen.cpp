@@ -36,8 +36,6 @@ namespace
 
 void TianLi::Genshin::get_genshin_screen(const tianli::global::GenshinHandle& genshin_handle, tianli::global::GenshinScreen& out_genshin_screen)
 {
-    static HBITMAP hBmp;
-
     // auto& giHandle = genshin_handle.handle;
     auto& giRect = genshin_handle.rect;
     auto& giRectClient = genshin_handle.rect_client;

@@ -4,6 +4,7 @@
 
 inline std::string wstring2string(std::wstring wstr)
 {
+#ifdef _WIN32
     std::string result;
     int len = WideCharToMultiByte(CP_ACP, 0, wstr.c_str(), (int)wstr.size(), NULL, 0, NULL, NULL);
     char* buffer = new char[len + 1];
@@ -12,10 +13,14 @@ inline std::string wstring2string(std::wstring wstr)
     result.append(buffer);
     delete[] buffer;
     return result;
+#else
+    return std::string(wstr.begin(), wstr.end());
+#endif
 }
 
 std::string get_sys_version()
 {
+#ifdef _WIN32
     std::string result = "";
     std::string ProductName;
     std::string DisplayVersion;
@@ -33,6 +38,9 @@ std::string get_sys_version()
 
     result = global::format("{0}-{1}-{2}.{3}", ProductName, DisplayVersion, CurrentBuildNumber, UBR);
     return result;
+#else
+    return "macOS";
+#endif
 }
 
 std::string get_gpu_name()

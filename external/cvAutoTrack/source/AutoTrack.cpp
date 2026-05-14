@@ -10,7 +10,9 @@
 #include "algorithms/algorithms.direction.h"
 #include "algorithms/algorithms.rotation.h"
 #include "algorithms/filter/filter.kalman.h"
-#include "frame/capture/capture.bitblt.h"
+#ifdef _WIN32
+    #include "frame/capture/capture.bitblt.h"
+#endif
 #include "resource/version.h"
 
 #include "match/surf/SurfMatch.h"
@@ -63,7 +65,11 @@ namespace
     {
         auto time = std::chrono::system_clock::to_time_t(time_point);
         std::tm local_time{};
+#ifdef _WIN32
         localtime_s(&local_time, &time);
+#else
+        localtime_r(&time, &local_time);
+#endif
 
         char buffer[32]{};
         if (std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &local_time) == 0)
@@ -205,7 +211,13 @@ AutoTrack::AutoTrack(ErrorCode& err, Resources& res) : err(err), res(res)
     genshin_avatar_position.target_map_world_center = res.map_relative_center;
     genshin_avatar_position.target_map_world_scale = res.map_relative_scale;
 
-    genshin_handle.config.frame_source = std::make_shared<tianli::frame::capture::capture_bitblt>();
+    genshin_handle.config.frame_source = tianli::frame::frame_source::create(
+#ifdef _WIN32
+        tianli::frame::frame_source::source_type::bitblt
+#else
+        tianli::frame::frame_source::source_type::window_graphics
+#endif
+    );
     genshin_handle.config.frame_source->initialization();
 
     genshin_screen.minimap_cailb_params = std::make_shared<tianli::global::match_minimap_cailb_params>();

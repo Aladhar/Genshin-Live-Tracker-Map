@@ -10,7 +10,6 @@
       "name": "imgui",
       "features": [
         "docking-experimental",
-        "win32-binding",
         "opengl3-binding"
       ]
     },
@@ -18,10 +17,7 @@
       "name": "opencv",
       "features": [
         "contrib",
-        "nonfree",
-        "opengl",
-        "tbb",
-        "ipp"
+        "nonfree"
       ]
     },
     "tracy"
