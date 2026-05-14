@@ -1,0 +1,31 @@
+{
+  "screen_width": 1920,
+  "screen_height": 1080,
+  "monitor_index": 1,
+  "minimap_crop_x": 24,
+  "minimap_crop_y": 32,
+  "minimap_crop_width": 260,
+  "minimap_crop_height": 260,
+  "debug_output_enabled": true,
+  "debug_output_dir": "debug_output",
+  "kongying_manifest": "data/kongying/manifest.json",
+  "max_match_assets": 0,
+  "match_exclude_keywords": [
+    "outline",
+    "overlay"
+  ],
+  "match_scales": [
+    0.7,
+    0.8,
+    0.9,
+    1.0,
+    1.1
+  ],
+  "min_match_confidence": 0.88,
+  "min_match_score_margin": 0.03,
+  "match_mask_radius_ratio": 0.43,
+  "match_inner_exclusion_ratio": 0.075,
+  "match_preprocess_mode": "raw_gray",
+  "match_method": "sqdiff_normed",
+  "tracker_interval_seconds": 0.75
+}

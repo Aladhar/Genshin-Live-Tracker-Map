@@ -1,0 +1,2 @@
+"""Minimap crop helpers."""
+

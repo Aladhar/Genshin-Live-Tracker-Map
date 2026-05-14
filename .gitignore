@@ -1,2 +1,42 @@
 /external/vcpkg/
 /external/cvAutoTrack/build-windows/
+/external/cvAutoTrack/build-macos/
+/external/genshin-map-cloud/generator/
+
+# Local KongYing source dump and imported asset cache.
+/KongYingMap-RC1.0.1/
+/data/kongying/raw/
+/data/kongying/processed/
+
+# Runtime/debug outputs.
+/debug_output/
+**/debug_output/
+*.log
+
+# Local Python environment.
+/.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Do not accidentally commit executable/runtime binaries.
+*.exe
+*.dll
+*.bat
+*.cmd
+*.ps1
+*.msi
+*.scr
+*.sys
+*.pyd
+*.so
+*.dylib
+
+# OS/editor noise.
+.DS_Store
+Thumbs.db
+desktop.ini
+node_modules/
+dist/
+build/

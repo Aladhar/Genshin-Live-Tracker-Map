@@ -1,0 +1,796 @@
+{
+  "generated_at": "2026-05-14T22:36:31.842999+00:00",
+  "source_root": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1",
+  "binary_count": 11,
+  "binaries": [
+    {
+      "path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/GameAssembly.dll",
+      "filename": "GameAssembly.dll",
+      "extension": ".dll",
+      "file_size": 50879488,
+      "sha256": "b5992211606b639b3de4a88e6dc7b93d90b15c39ddef65cd7db4439f3b2d7017",
+      "static_pe_info": {
+        "format": "pe",
+        "machine": "x64",
+        "section_count": 7,
+        "timestamp_raw": 1736939239,
+        "characteristics_hex": "0x2022",
+        "is_dll": true,
+        "is_pe32_plus": true,
+        "image_base": 6442450944,
+        "entry_point_rva": 4778700,
+        "subsystem": 0,
+        "sections": [
+          {
+            "name": ".text",
+            "virtual_size": 5001396,
+            "virtual_address": 4096,
+            "raw_size": 5001728,
+            "raw_pointer": 1024
+          },
+          {
+            "name": "il2cpp",
+            "virtual_size": 31212508,
+            "virtual_address": 5009408,
+            "raw_size": 31212544,
+            "raw_pointer": 5002752
+          },
+          {
+            "name": ".rdata",
+            "virtual_size": 9396312,
+            "virtual_address": 36225024,
+            "raw_size": 9396736,
+            "raw_pointer": 36215296
+          },
+          {
+            "name": ".data",
+            "virtual_size": 5280740,
+            "virtual_address": 45625344,
+            "raw_size": 2419712,
+            "raw_pointer": 45612032
+          },
+          {
+            "name": ".pdata",
+            "virtual_size": 1985196,
+            "virtual_address": 50909184,
+            "raw_size": 1985536,
+            "raw_pointer": 48031744
+          },
+          {
+            "name": "_RDATA",
+            "virtual_size": 348,
+            "virtual_address": 52895744,
+            "raw_size": 512,
+            "raw_pointer": 50017280
+          },
+          {
+            "name": ".reloc",
+            "virtual_size": 861388,
+            "virtual_address": 52899840,
+            "raw_size": 861696,
+            "raw_pointer": 50017792
+          }
+        ],
+        "imported_libraries": [
+          "KERNEL32.dll",
+          "USER32.dll",
+          "ADVAPI32.dll",
+          "ole32.dll",
+          "OLEAUT32.dll",
+          "SHELL32.dll",
+          "WS2_32.dll",
+          "IPHLPAPI.DLL",
+          "dbghelp.dll",
+          "baselib.dll"
+        ]
+      },
+      "safety_note": "Static metadata only. This file was not loaded, executed, imported, or copied into the runtime tracker."
+    },
+    {
+      "path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map.exe",
+      "filename": "Map.exe",
+      "extension": ".exe",
+      "file_size": 653312,
+      "sha256": "edbaf63fbd9e79f0d166a74927ee5b782393973d9270311f30f725aa0f51e8bd",
+      "static_pe_info": {
+        "format": "pe",
+        "machine": "x64",
+        "section_count": 7,
+        "timestamp_raw": 1736514430,
+        "characteristics_hex": "0x22",
+        "is_dll": false,
+        "is_pe32_plus": true,
+        "image_base": 5368709120,
+        "entry_point_rva": 4704,
+        "subsystem": 0,
+        "sections": [
+          {
+            "name": ".text",
+            "virtual_size": 40816,
+            "virtual_address": 4096,
+            "raw_size": 40960,
+            "raw_pointer": 1024
+          },
+          {
+            "name": ".rdata",
+            "virtual_size": 36526,
+            "virtual_address": 45056,
+            "raw_size": 36864,
+            "raw_pointer": 41984
+          },
+          {
+            "name": ".data",
+            "virtual_size": 7112,
+            "virtual_address": 81920,
+            "raw_size": 2560,
+            "raw_pointer": 78848
+          },
+          {
+            "name": ".pdata",
+            "virtual_size": 3132,
+            "virtual_address": 90112,
+            "raw_size": 3584,
+            "raw_pointer": 81408
+          },
+          {
+            "name": "_RDATA",
+            "virtual_size": 348,
+            "virtual_address": 94208,
+            "raw_size": 512,
+            "raw_pointer": 84992
+          },
+          {
+            "name": ".rsrc",
+            "virtual_size": 565664,
+            "virtual_address": 98304,
+            "raw_size": 565760,
+            "raw_pointer": 85504
+          },
+          {
+            "name": ".reloc",
+            "virtual_size": 1600,
+            "virtual_address": 667648,
+            "raw_size": 2048,
+            "raw_pointer": 651264
+          }
+        ],
+        "imported_libraries": [
+          "UnityPlayer.dll",
+          "KERNEL32.dll"
+        ]
+      },
+      "safety_note": "Static metadata only. This file was not loaded, executed, imported, or copied into the runtime tracker."
+    },
+    {
+      "path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/lib_burst_generated.dll",
+      "filename": "lib_burst_generated.dll",
+      "extension": ".dll",
+      "file_size": 54784,
+      "sha256": "9af33aea099d8deb57491c586f17678b98cf24b41f53f8a52704ea7ae411ded8",
+      "static_pe_info": {
+        "format": "pe",
+        "machine": "x64",
+        "section_count": 4,
+        "timestamp_raw": 1734034377,
+        "characteristics_hex": "0x2022",
+        "is_dll": true,
+        "is_pe32_plus": true,
+        "image_base": 6442450944,
+        "entry_point_rva": 0,
+        "subsystem": 0,
+        "sections": [
+          {
+            "name": ".text",
+            "virtual_size": 40357,
+            "virtual_address": 4096,
+            "raw_size": 40448,
+            "raw_pointer": 1024
+          },
+          {
+            "name": ".rdata",
+            "virtual_size": 8924,
+            "virtual_address": 45056,
+            "raw_size": 9216,
+            "raw_pointer": 41472
+          },
+          {
+            "name": ".data",
+            "virtual_size": 2616,
+            "virtual_address": 57344,
+            "raw_size": 2560,
+            "raw_pointer": 50688
+          },
+          {
+            "name": ".pdata",
+            "virtual_size": 1440,
+            "virtual_address": 61440,
+            "raw_size": 1536,
+            "raw_pointer": 53248
+          }
+        ],
+        "imported_libraries": []
+      },
+      "safety_note": "Static metadata only. This file was not loaded, executed, imported, or copied into the runtime tracker."
+    },
+    {
+      "path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/libsharpyuv.dll",
+      "filename": "libsharpyuv.dll",
+      "extension": ".dll",
+      "file_size": 25600,
+      "sha256": "e70b6f4d08e4f5e623725426e498ffe177c856674092f36c246bf86a7b958d20",
+      "static_pe_info": {
+        "format": "pe",
+        "machine": "x64",
+        "section_count": 6,
+        "timestamp_raw": 1697271235,
+        "characteristics_hex": "0x2022",
+        "is_dll": true,
+        "is_pe32_plus": true,
+        "image_base": 6442450944,
+        "entry_point_rva": 16768,
+        "subsystem": 0,
+        "sections": [
+          {
+            "name": ".text",
+            "virtual_size": 15416,
+            "virtual_address": 4096,
+            "raw_size": 15872,
+            "raw_pointer": 1024
+          },
+          {
+            "name": ".rdata",
+            "virtual_size": 4762,
+            "virtual_address": 20480,
+            "raw_size": 5120,
+            "raw_pointer": 16896
+          },
+          {
+            "name": ".data",
+            "virtual_size": 7808,
+            "virtual_address": 28672,
+            "raw_size": 512,
+            "raw_pointer": 22016
+          },
+          {
+            "name": ".pdata",
+            "virtual_size": 1044,
+            "virtual_address": 36864,
+            "raw_size": 1536,
+            "raw_pointer": 22528
+          },
+          {
+            "name": ".rsrc",
+            "virtual_size": 824,
+            "virtual_address": 40960,
+            "raw_size": 1024,
+            "raw_pointer": 24064
+          },
+          {
+            "name": ".reloc",
+            "virtual_size": 52,
+            "virtual_address": 45056,
+            "raw_size": 512,
+            "raw_pointer": 25088
+          }
+        ],
+        "imported_libraries": [
+          "KERNEL32.dll",
+          "VCRUNTIME140.dll",
+          "api-ms-win-crt-heap-l1-1-0.dll",
+          "api-ms-win-crt-math-l1-1-0.dll",
+          "api-ms-win-crt-runtime-l1-1-0.dll"
+        ]
+      },
+      "safety_note": "Static metadata only. This file was not loaded, executed, imported, or copied into the runtime tracker."
+    },
+    {
+      "path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/libwebp.dll",
+      "filename": "libwebp.dll",
+      "extension": ".dll",
+      "file_size": 494080,
+      "sha256": "513c75f0769de854c9b000d12c9bb00758abcc9e6744c59bfe9862d62a86786e",
+      "static_pe_info": {
+        "format": "pe",
+        "machine": "x64",
+        "section_count": 6,
+        "timestamp_raw": 1697271241,
+        "characteristics_hex": "0x2022",
+        "is_dll": true,
+        "is_pe32_plus": true,
+        "image_base": 6442450944,
+        "entry_point_rva": 409104,
+        "subsystem": 0,
+        "sections": [
+          {
+            "name": ".text",
+            "virtual_size": 407336,
+            "virtual_address": 4096,
+            "raw_size": 407552,
+            "raw_pointer": 1024
+          },
+          {
+            "name": ".rdata",
+            "virtual_size": 64196,
+            "virtual_address": 413696,
+            "raw_size": 64512,
+            "raw_pointer": 408576
+          },
+          {
+            "name": ".data",
+            "virtual_size": 5296,
+            "virtual_address": 479232,
+            "raw_size": 512,
+            "raw_pointer": 473088
+          },
+          {
+            "name": ".pdata",
+            "virtual_size": 18576,
+            "virtual_address": 487424,
+            "raw_size": 18944,
+            "raw_pointer": 473600
+          },
+          {
+            "name": ".rsrc",
+            "virtual_size": 800,
+            "virtual_address": 507904,
+            "raw_size": 1024,
+            "raw_pointer": 492544
+          },
+          {
+            "name": ".reloc",
+            "virtual_size": 124,
+            "virtual_address": 512000,
+            "raw_size": 512,
+            "raw_pointer": 493568
+          }
+        ],
+        "imported_libraries": [
+          "libsharpyuv.dll",
+          "KERNEL32.dll",
+          "VCRUNTIME140.dll",
+          "api-ms-win-crt-runtime-l1-1-0.dll",
+          "api-ms-win-crt-heap-l1-1-0.dll",
+          "api-ms-win-crt-math-l1-1-0.dll",
+          "api-ms-win-crt-utility-l1-1-0.dll"
+        ]
+      },
+      "safety_note": "Static metadata only. This file was not loaded, executed, imported, or copied into the runtime tracker."
+    },
+    {
+      "path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/libwebpdecoder.dll",
+      "filename": "libwebpdecoder.dll",
+      "extension": ".dll",
+      "file_size": 253440,
+      "sha256": "69912fe8d5dd1018014b6358325b8eaca8c78eda5a1cdc6eab8dc1b9c2ff5171",
+      "static_pe_info": {
+        "format": "pe",
+        "machine": "x64",
+        "section_count": 6,
+        "timestamp_raw": 1697271235,
+        "characteristics_hex": "0x2022",
+        "is_dll": true,
+        "is_pe32_plus": true,
+        "image_base": 6442450944,
+        "entry_point_rva": 213248,
+        "subsystem": 0,
+        "sections": [
+          {
+            "name": ".text",
+            "virtual_size": 211480,
+            "virtual_address": 4096,
+            "raw_size": 211968,
+            "raw_pointer": 1024
+          },
+          {
+            "name": ".rdata",
+            "virtual_size": 28444,
+            "virtual_address": 217088,
+            "raw_size": 28672,
+            "raw_pointer": 212992
+          },
+          {
+            "name": ".data",
+            "virtual_size": 3216,
+            "virtual_address": 245760,
+            "raw_size": 512,
+            "raw_pointer": 241664
+          },
+          {
+            "name": ".pdata",
+            "virtual_size": 9648,
+            "virtual_address": 249856,
+            "raw_size": 9728,
+            "raw_pointer": 242176
+          },
+          {
+            "name": ".rsrc",
+            "virtual_size": 848,
+            "virtual_address": 262144,
+            "raw_size": 1024,
+            "raw_pointer": 251904
+          },
+          {
+            "name": ".reloc",
+            "virtual_size": 116,
+            "virtual_address": 266240,
+            "raw_size": 512,
+            "raw_pointer": 252928
+          }
+        ],
+        "imported_libraries": [
+          "KERNEL32.dll",
+          "VCRUNTIME140.dll",
+          "api-ms-win-crt-runtime-l1-1-0.dll",
+          "api-ms-win-crt-heap-l1-1-0.dll"
+        ]
+      },
+      "safety_note": "Static metadata only. This file was not loaded, executed, imported, or copied into the runtime tracker."
+    },
+    {
+      "path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/libwebpdemux.dll",
+      "filename": "libwebpdemux.dll",
+      "extension": ".dll",
+      "file_size": 20480,
+      "sha256": "19ec4abb3586329e134ceb320a9587dd22abb72883248173c5fb235ed43281ce",
+      "static_pe_info": {
+        "format": "pe",
+        "machine": "x64",
+        "section_count": 6,
+        "timestamp_raw": 1697271243,
+        "characteristics_hex": "0x2022",
+        "is_dll": true,
+        "is_pe32_plus": true,
+        "image_base": 6442450944,
+        "entry_point_rva": 12864,
+        "subsystem": 0,
+        "sections": [
+          {
+            "name": ".text",
+            "virtual_size": 11496,
+            "virtual_address": 4096,
+            "raw_size": 11776,
+            "raw_pointer": 1024
+          },
+          {
+            "name": ".rdata",
+            "virtual_size": 4480,
+            "virtual_address": 16384,
+            "raw_size": 4608,
+            "raw_pointer": 12800
+          },
+          {
+            "name": ".data",
+            "virtual_size": 1608,
+            "virtual_address": 24576,
+            "raw_size": 512,
+            "raw_pointer": 17408
+          },
+          {
+            "name": ".pdata",
+            "virtual_size": 876,
+            "virtual_address": 28672,
+            "raw_size": 1024,
+            "raw_pointer": 17920
+          },
+          {
+            "name": ".rsrc",
+            "virtual_size": 840,
+            "virtual_address": 32768,
+            "raw_size": 1024,
+            "raw_pointer": 18944
+          },
+          {
+            "name": ".reloc",
+            "virtual_size": 52,
+            "virtual_address": 36864,
+            "raw_size": 512,
+            "raw_pointer": 19968
+          }
+        ],
+        "imported_libraries": [
+          "libwebp.dll",
+          "KERNEL32.dll",
+          "VCRUNTIME140.dll",
+          "api-ms-win-crt-runtime-l1-1-0.dll"
+        ]
+      },
+      "safety_note": "Static metadata only. This file was not loaded, executed, imported, or copied into the runtime tracker."
+    },
+    {
+      "path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/Plugins/x86_64/tips/tips.exe",
+      "filename": "tips.exe",
+      "extension": ".exe",
+      "file_size": 1805312,
+      "sha256": "34d0a094debef6c679486465711a858848bf6b33deedfb7103af706240bb0746",
+      "static_pe_info": {
+        "format": "pe",
+        "machine": "x86",
+        "section_count": 3,
+        "timestamp_raw": 3418136446,
+        "characteristics_hex": "0x22",
+        "is_dll": false,
+        "is_pe32_plus": false,
+        "image_base": 4194304,
+        "entry_point_rva": 1739534,
+        "subsystem": 2,
+        "sections": [
+          {
+            "name": ".text",
+            "virtual_size": 1731348,
+            "virtual_address": 8192,
+            "raw_size": 1731584,
+            "raw_pointer": 512
+          },
+          {
+            "name": ".rsrc",
+            "virtual_size": 72236,
+            "virtual_address": 1744896,
+            "raw_size": 72704,
+            "raw_pointer": 1732096
+          },
+          {
+            "name": ".reloc",
+            "virtual_size": 12,
+            "virtual_address": 1818624,
+            "raw_size": 512,
+            "raw_pointer": 1804800
+          }
+        ],
+        "imported_libraries": [
+          "mscoree.dll"
+        ]
+      },
+      "safety_note": "Static metadata only. This file was not loaded, executed, imported, or copied into the runtime tracker."
+    },
+    {
+      "path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/UnityCrashHandler64.exe",
+      "filename": "UnityCrashHandler64.exe",
+      "extension": ".exe",
+      "file_size": 1123864,
+      "sha256": "2656c68afb6cbb7ccd4b0bfbef0a0c2078028328352181720305b18fd60bd85f",
+      "static_pe_info": {
+        "format": "pe",
+        "machine": "x64",
+        "section_count": 7,
+        "timestamp_raw": 1678202362,
+        "characteristics_hex": "0x22",
+        "is_dll": false,
+        "is_pe32_plus": true,
+        "image_base": 5368709120,
+        "entry_point_rva": 262780,
+        "subsystem": 0,
+        "sections": [
+          {
+            "name": ".text",
+            "virtual_size": 542231,
+            "virtual_address": 4096,
+            "raw_size": 542720,
+            "raw_pointer": 1024
+          },
+          {
+            "name": ".rdata",
+            "virtual_size": 163648,
+            "virtual_address": 548864,
+            "raw_size": 163840,
+            "raw_pointer": 543744
+          },
+          {
+            "name": ".data",
+            "virtual_size": 22232,
+            "virtual_address": 712704,
+            "raw_size": 11776,
+            "raw_pointer": 707584
+          },
+          {
+            "name": ".pdata",
+            "virtual_size": 29784,
+            "virtual_address": 737280,
+            "raw_size": 30208,
+            "raw_pointer": 719360
+          },
+          {
+            "name": "_RDATA",
+            "virtual_size": 148,
+            "virtual_address": 770048,
+            "raw_size": 512,
+            "raw_pointer": 749568
+          },
+          {
+            "name": ".rsrc",
+            "virtual_size": 357608,
+            "virtual_address": 774144,
+            "raw_size": 357888,
+            "raw_pointer": 750080
+          },
+          {
+            "name": ".reloc",
+            "virtual_size": 5232,
+            "virtual_address": 1134592,
+            "raw_size": 5632,
+            "raw_pointer": 1107968
+          }
+        ],
+        "imported_libraries": [
+          "USER32.dll",
+          "KERNEL32.dll",
+          "dbghelp.dll",
+          "SHELL32.dll",
+          "ole32.dll",
+          "PSAPI.DLL",
+          "ADVAPI32.dll",
+          "WININET.dll",
+          "GDI32.dll",
+          "VERSION.dll"
+        ]
+      },
+      "safety_note": "Static metadata only. This file was not loaded, executed, imported, or copied into the runtime tracker."
+    },
+    {
+      "path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/UnityPlayer.dll",
+      "filename": "UnityPlayer.dll",
+      "extension": ".dll",
+      "file_size": 29434904,
+      "sha256": "78042afec2e9d4a157d8eb47482d3996cb4c7d6d322630fdd653cccb4207bf63",
+      "static_pe_info": {
+        "format": "pe",
+        "machine": "x64",
+        "section_count": 8,
+        "timestamp_raw": 1678202378,
+        "characteristics_hex": "0x2022",
+        "is_dll": true,
+        "is_pe32_plus": true,
+        "image_base": 6442450944,
+        "entry_point_rva": 23338752,
+        "subsystem": 0,
+        "sections": [
+          {
+            "name": ".text",
+            "virtual_size": 23768579,
+            "virtual_address": 4096,
+            "raw_size": 23769088,
+            "raw_pointer": 1024
+          },
+          {
+            "name": ".rdata",
+            "virtual_size": 3883180,
+            "virtual_address": 23773184,
+            "raw_size": 3883520,
+            "raw_pointer": 23770112
+          },
+          {
+            "name": ".data",
+            "virtual_size": 1371788,
+            "virtual_address": 27660288,
+            "raw_size": 418304,
+            "raw_pointer": 27653632
+          },
+          {
+            "name": ".pdata",
+            "virtual_size": 1143960,
+            "virtual_address": 29032448,
+            "raw_size": 1144320,
+            "raw_pointer": 28071936
+          },
+          {
+            "name": ".rodata",
+            "virtual_size": 2944,
+            "virtual_address": 30179328,
+            "raw_size": 3072,
+            "raw_pointer": 29216256
+          },
+          {
+            "name": "_RDATA",
+            "virtual_size": 69492,
+            "virtual_address": 30183424,
+            "raw_size": 69632,
+            "raw_pointer": 29219328
+          },
+          {
+            "name": ".rsrc",
+            "virtual_size": 2536,
+            "virtual_address": 30253056,
+            "raw_size": 2560,
+            "raw_pointer": 29288960
+          },
+          {
+            "name": ".reloc",
+            "virtual_size": 132744,
+            "virtual_address": 30257152,
+            "raw_size": 133120,
+            "raw_pointer": 29291520
+          }
+        ],
+        "imported_libraries": [
+          "KERNEL32.dll",
+          "USER32.dll",
+          "VERSION.dll",
+          "ole32.dll",
+          "SHLWAPI.dll",
+          "SETUPAPI.dll",
+          "ADVAPI32.dll",
+          "GDI32.dll",
+          "SHELL32.dll",
+          "OPENGL32.dll",
+          "WINMM.dll",
+          "OLEAUT32.dll",
+          "IMM32.dll",
+          "WINHTTP.dll",
+          "bcrypt.dll",
+          "HID.DLL",
+          "CRYPT32.dll",
+          "WS2_32.dll",
+          "dwmapi.dll"
+        ]
+      },
+      "safety_note": "Static metadata only. This file was not loaded, executed, imported, or copied into the runtime tracker."
+    },
+    {
+      "path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/baselib.dll",
+      "filename": "baselib.dll",
+      "extension": ".dll",
+      "file_size": 405016,
+      "sha256": "5df088318a66e33c9cffbbce493336684e2efa62faa473baced74d6a85d80009",
+      "static_pe_info": {
+        "format": "pe",
+        "machine": "x64",
+        "section_count": 6,
+        "timestamp_raw": 1678202355,
+        "characteristics_hex": "0x2022",
+        "is_dll": true,
+        "is_pe32_plus": true,
+        "image_base": 6442450944,
+        "entry_point_rva": 64660,
+        "subsystem": 0,
+        "sections": [
+          {
+            "name": ".text",
+            "virtual_size": 266095,
+            "virtual_address": 4096,
+            "raw_size": 266240,
+            "raw_pointer": 1024
+          },
+          {
+            "name": ".rdata",
+            "virtual_size": 96732,
+            "virtual_address": 270336,
+            "raw_size": 96768,
+            "raw_pointer": 267264
+          },
+          {
+            "name": ".data",
+            "virtual_size": 18428,
+            "virtual_address": 368640,
+            "raw_size": 9216,
+            "raw_pointer": 364032
+          },
+          {
+            "name": ".pdata",
+            "virtual_size": 17292,
+            "virtual_address": 389120,
+            "raw_size": 17408,
+            "raw_pointer": 373248
+          },
+          {
+            "name": "_RDATA",
+            "virtual_size": 148,
+            "virtual_address": 409600,
+            "raw_size": 512,
+            "raw_pointer": 390656
+          },
+          {
+            "name": ".reloc",
+            "virtual_size": 3252,
+            "virtual_address": 413696,
+            "raw_size": 3584,
+            "raw_pointer": 391168
+          }
+        ],
+        "imported_libraries": [
+          "WS2_32.dll",
+          "KERNEL32.dll"
+        ]
+      },
+      "safety_note": "Static metadata only. This file was not loaded, executed, imported, or copied into the runtime tracker."
+    }
+  ]
+}
