@@ -13,3 +13,36 @@ external\cvAutoTrack\build-windows\bin\Release\test_impl_cpp.exe
 
 Mac equivalent: For Tracker
 .venv/bin/python tools/test_tracker_windows.py --frame RawScreen.png
+
+
+debug for visual. Run in SHELL:
+PYTHONPYCACHEPREFIX=/private/tmp/genshin-pycache .venv/bin/python - <<'PY'
+import cv2
+import numpy as np
+from tracker_core.localization.template_matcher import localize_minimap
+from tracker_core.map_data.kongying_loader import KongYingMapData
+from tracker_core.minimap.crop import crop_minimap_region
+from tracker_core.tracker_loop import FilteredKongYingMapData
+from tracker_core.utils.cv_images import read_image_bgr
+from tracker_core.utils.paths import load_json
+config=load_json('config/tracker_mac.json')
+frame=read_image_bgr('debug_output/mac/latest_capture.png')
+minimap,_=crop_minimap_region(frame,{**config,'debug_output_enabled':False},clean=True)
+h,w=minimap.shape[:2]
+hsv=cv2.cvtColor(minimap,cv2.COLOR_BGR2HSV)
+white_ui=(hsv[:,:,2] > 205) & (hsv[:,:,1] < 80)
+red_ui=((hsv[:,:,0] < 8) | (hsv[:,:,0] > 170)) & (hsv[:,:,1] > 90) & (hsv[:,:,2] > 120)
+blue_icon=(hsv[:,:,0] > 85) & (hsv[:,:,0] < 115) & (hsv[:,:,1] > 70) & (hsv[:,:,2] > 140)
+mask=((white_ui | red_ui | blue_icon).astype('uint8')*255)
+cv2.rectangle(mask,(int(w*.36),0),(int(w*.64),int(h*.20)),255,-1)
+cv2.rectangle(mask,(0,0),(int(w*.18),h),255,-1)
+mask=cv2.dilate(mask,np.ones((5,5),np.uint8),iterations=2)
+cleaned=cv2.inpaint(minimap,mask,3,cv2.INPAINT_TELEA)
+base=KongYingMapData(config.get('kongying_manifest','data/kongying/manifest.json'))
+filtered=FilteredKongYingMapData(base, regions={'MainMap'})
+for name,pre,method,scales in [('gray_ccoeff','gray','ccoeff_normed',(0.25,0.3,0.35,0.4,0.45,0.5)),('edges','edges','ccoeff_normed',(0.2,0.25,0.3,0.35,0.4))]:
+    r=localize_minimap(cleaned,kongying_data=filtered,max_assets=0,debug_output_enabled=False,exclude_keywords=('outline','overlay'),scales=scales,min_confidence=0,min_score_margin=0,mask_radius_ratio=.45,inner_exclusion_ratio=.13,preprocess_mode=pre,method_name=method).to_dict()
+    print('\n',name,r['confidence'],r.get('score_margin'))
+    for c in (r.get('top_candidates') or [])[:12]:
+        print(c['asset_name'],c['tile_x'],c['tile_y'],round(c['score'],4),c['scale'],round(c['local_x'],1),round(c['local_y'],1),c['map_width'],c['map_height'])
+PY

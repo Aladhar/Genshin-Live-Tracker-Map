@@ -45,6 +45,7 @@ def payload_from_result(
     crop_box: CropBox,
     frame_source: str,
     frame_shape: tuple[int, ...],
+    iteration: int | None = None,
 ) -> dict[str, Any]:
     result_dict = result.to_dict()
     accepted = bool(result_dict.get("accepted"))
@@ -54,6 +55,7 @@ def payload_from_result(
         "schema_version": 1,
         "platform": "mac",
         "timestamp": datetime.now(timezone.utc).isoformat(),
+        "iteration": iteration,
         "frame_source": frame_source,
         "frame_shape": list(frame_shape),
         "crop_box": crop_box.to_dict(),
@@ -77,6 +79,7 @@ def run_once(
     *,
     frame_path: str | None = None,
     center_tile: tuple[int, int] | None = None,
+    iteration: int | None = None,
 ) -> tuple[dict[str, Any], tuple[int, int] | None]:
     if frame_path:
         frame = load_frame_from_image(resolve_repo_path(frame_path))
@@ -85,7 +88,7 @@ def run_once(
         frame = capture_from_config(config)
         frame_source = "live_screen"
 
-    crop, crop_box = crop_minimap_region(frame, config)
+    crop, crop_box = crop_minimap_region(frame, config, clean=False)
     tile_radius = int(config.get("nearby_tile_radius", 1)) if center_tile else None
     initial_asset_names = set(str(name) for name in config.get("initial_tile_names", []) if str(name).strip())
     filtered_data = FilteredKongYingMapData(
@@ -109,8 +112,16 @@ def run_once(
         inner_exclusion_ratio=float(config.get("match_inner_exclusion_ratio", 0.13)),
         preprocess_mode=str(config.get("match_preprocess_mode", "raw_gray")),
         method_name=str(config.get("match_method", "sqdiff_normed")),
+        color_histogram_weight=float(config.get("match_color_histogram_weight", 0.0)),
     )
-    payload = payload_from_result(result, config=config, crop_box=crop_box, frame_source=frame_source, frame_shape=frame.shape)
+    payload = payload_from_result(
+        result,
+        config=config,
+        crop_box=crop_box,
+        frame_source=frame_source,
+        frame_shape=frame.shape,
+        iteration=iteration,
+    )
     write_latest_payload(config, payload)
 
     result_dict = result.to_dict()
@@ -125,6 +136,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--config", default="config/tracker_mac.json", help="Mac tracker config path.")
     parser.add_argument("--frame", default=None, help="Debug screenshot path. If omitted, captures the screen.")
     parser.add_argument("--once", action="store_true", help="Run one tracker update.")
+    parser.add_argument("--count", type=int, default=None, help="Run N tracker updates.")
     return parser.parse_args()
 
 
@@ -134,12 +146,23 @@ def main() -> int:
     data = KongYingMapData(config.get("kongying_manifest", "data/kongying/manifest.json"))
     interval_seconds = float(config.get("tracker_interval_seconds", 0.75))
     center_tile: tuple[int, int] | None = None
+    count = 1 if args.once else args.count
+    iteration = 0
 
     while True:
-        payload, center_tile = run_once(config, data, frame_path=args.frame, center_tile=center_tile)
+        iteration += 1
+        payload, center_tile = run_once(
+            config,
+            data,
+            frame_path=args.frame,
+            center_tile=center_tile,
+            iteration=iteration,
+        )
         print(json.dumps(payload, indent=2, ensure_ascii=False), flush=True)
         if args.once:
             return 0 if payload.get("accepted") else 1
+        if count is not None and iteration >= count:
+            return 0
         time.sleep(interval_seconds)
 
 

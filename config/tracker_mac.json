@@ -2,7 +2,7 @@
   "platform": "mac",
   "debug_output_enabled": true,
   "debug_output_dir": "debug_output/mac",
-  "capture_backend": "window",
+  "capture_backend": "screencapture",
   "target_window_title": "Genshin Impact",
   "target_window_min_width": 800,
   "target_window_min_height": 500,
@@ -24,7 +24,7 @@
     "expected_center_x_ratio": 0.092,
     "expected_center_y_ratio": 0.15,
     "padding_ratio": 0.05,
-    "clean_noise": true,
+    "clean_noise": false,
     "player_marker_radius_ratio": 0.13,
     "outer_ring_margin_ratio": 0.035,
     "fixed_x_ratio": 0.025,
@@ -33,9 +33,7 @@
     "fixed_width_ratio": 0.145,
     "fixed_height_ratio": 0.24
   },
-  "match_regions": [
-    "MainMap"
-  ],
+  "match_regions": [],
   "initial_max_match_assets": 64,
   "match_scales": [
     0.8
@@ -44,9 +42,10 @@
   "initial_tile_names": [],
   "min_match_confidence": 0.91,
   "min_match_score_margin": 0.006,
-  "match_mask_radius_ratio": 0.48,
-  "match_inner_exclusion_ratio": 0.13,
+  "match_mask_radius_ratio": 0.0,
+  "match_inner_exclusion_ratio": 0.0,
   "match_preprocess_mode": "raw_gray",
   "match_method": "sqdiff_normed",
+  "match_color_histogram_weight": 0.08,
   "latest_output_path": "external/map_front_v3/public/tracker/latest.json"
 }

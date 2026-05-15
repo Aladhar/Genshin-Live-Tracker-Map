@@ -152,6 +152,7 @@ def result_to_frontend_payload(
     config: dict[str, Any],
     frame_shape: tuple[int, ...],
     crop_box: Any | None,
+    iteration: int | None = None,
 ) -> dict[str, Any]:
     accepted = bool(result.get("accepted"))
     map_position = result_to_frontend_map_position(result, config)
@@ -161,6 +162,7 @@ def result_to_frontend_payload(
         "schema_version": 1,
         "platform": str(config.get("platform", "mac")),
         "timestamp": utc_now(),
+        "iteration": iteration,
         "frontend_tile_unit": float(config.get("frontend_tile_unit", 1024)),
         "frame_source": "live_screen",
         "frame_shape": list(frame_shape[:3]),
@@ -181,11 +183,12 @@ def write_latest_payload(payload: dict[str, Any], output_path: str | Path) -> No
     tmp_path.replace(path)
 
 
-def error_payload(exc: Exception, config: dict[str, Any]) -> dict[str, Any]:
+def error_payload(exc: Exception, config: dict[str, Any], iteration: int | None = None) -> dict[str, Any]:
     return {
         "schema_version": 1,
         "platform": str(config.get("platform", "mac")),
         "timestamp": utc_now(),
+        "iteration": iteration,
         "frontend_tile_unit": float(config.get("frontend_tile_unit", 1024)),
         "frame_source": "live_screen",
         "frame_shape": None,
@@ -234,20 +237,22 @@ def match_asset_limit(config: dict[str, Any], center_tile: tuple[int, int] | Non
     return int(config.get("initial_max_match_assets", 64))
 
 
-def run_tracker_loop(config_path: str | Path, once: bool = False) -> None:
+def run_tracker_loop(config_path: str | Path, once: bool = False, count: int | None = None) -> None:
     config = load_json(config_path)
     data = KongYingMapData(config.get("kongying_manifest", "data/kongying/manifest.json"))
     interval_seconds = float(config.get("tracker_interval_seconds", 0.75))
     latest_output_path = config.get("latest_output_path")
     capture_from_config = choose_capture(config)
     center_tile: tuple[int, int] | None = None
+    iteration = 0
 
     while True:
+        iteration += 1
         try:
             frame = capture_from_config(config)
 
             # New auto crop path. This returns both minimap image and crop metadata.
-            minimap, crop_box = crop_minimap_region(frame, config, clean=True)
+            minimap, crop_box = crop_minimap_region(frame, config, clean=False)
             match_data = make_filtered_match_data(data, config, center_tile)
 
             result = localize_minimap(
@@ -264,6 +269,7 @@ def run_tracker_loop(config_path: str | Path, once: bool = False) -> None:
                 inner_exclusion_ratio=float(config.get("match_inner_exclusion_ratio", 0.13)),
                 preprocess_mode=str(config.get("match_preprocess_mode", "raw_gray")),
                 method_name=str(config.get("match_method", "sqdiff_normed")),
+                color_histogram_weight=float(config.get("match_color_histogram_weight", 0.0)),
             )
 
             result_dict = result.to_dict()
@@ -279,6 +285,7 @@ def run_tracker_loop(config_path: str | Path, once: bool = False) -> None:
                 config=config,
                 frame_shape=frame.shape,
                 crop_box=crop_box,
+                iteration=iteration,
             )
 
             if latest_output_path:
@@ -289,14 +296,14 @@ def run_tracker_loop(config_path: str | Path, once: bool = False) -> None:
         except KeyboardInterrupt:
             raise
         except Exception as exc:
-            payload = error_payload(exc, config)
+            payload = error_payload(exc, config, iteration=iteration)
 
             if latest_output_path:
                 write_latest_payload(payload, latest_output_path)
 
             print(json.dumps(payload, ensure_ascii=False), flush=True)
 
-        if once:
+        if once or (count is not None and iteration >= count):
             return
 
         time.sleep(interval_seconds)
@@ -310,12 +317,14 @@ def parse_args() -> argparse.Namespace:
         help="Tracker config path.",
     )
     parser.add_argument("--once", action="store_true", help="Run one capture/localization iteration.")
+    parser.add_argument("--count", type=int, default=None, help="Run N capture/localization iterations.")
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    run_tracker_loop(resolve_repo_path(args.config), once=args.once)
+    count = 1 if args.once else args.count
+    run_tracker_loop(resolve_repo_path(args.config), once=args.once, count=count)
     return 0
 
 

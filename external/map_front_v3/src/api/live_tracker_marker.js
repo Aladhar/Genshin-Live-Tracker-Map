@@ -3,6 +3,7 @@ import { map } from "./map_obj";
 
 const trackerUrl = "/tracker/latest.json";
 const defaultTileUnit = 1024;
+const showRejectedCandidates = false;
 
 let marker = null;
 let pollTimer = null;
@@ -106,7 +107,13 @@ function deriveMapPosition(payload) {
   const candidateLat = numericValue(candidatePosition?.lat);
   const candidateLng = numericValue(candidatePosition?.lng);
   if (candidateLat !== null && candidateLng !== null) {
-    return { lat: candidateLat, lng: candidateLng, accepted: false };
+    return showRejectedCandidates
+      ? { lat: candidateLat, lng: candidateLng, accepted: false }
+      : null;
+  }
+
+  if (!payload?.accepted) {
+    return null;
   }
 
   const result = payload?.result || {};
@@ -178,6 +185,11 @@ async function updateLiveTrackerMarker() {
     nextMarker
       ?.getElement()
       ?.classList.toggle("live-tracker-marker--candidate", !position.accepted);
+
+    const latLng = L.latLng(position.lat, position.lng);
+    if (!map.value.getBounds().pad(-0.1).contains(latLng)) {
+      map.value.panTo(latLng, { animate: true, duration: 0.4 });
+    }
   } catch {
     removeMarker();
   }

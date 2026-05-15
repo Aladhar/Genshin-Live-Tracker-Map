@@ -35,10 +35,14 @@ class MatchCandidate:
     global_y: float | None
     map_width: int
     map_height: int
+    raw_score: float | None = None
+    color_histogram_similarity: float | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
             "score": self.score,
+            "raw_score": self.raw_score,
+            "color_histogram_similarity": self.color_histogram_similarity,
             "matched_asset": _repo_relative(self.asset.path),
             "asset_name": self.asset.asset_name,
             "region": self.asset.region,
@@ -160,7 +164,10 @@ def build_circular_minimap_mask(
     shape: tuple[int, ...],
     radius_ratio: float = 0.43,
     inner_exclusion_ratio: float = 0.075,
-) -> np.ndarray:
+) -> np.ndarray | None:
+    if radius_ratio <= 0:
+        return None
+
     cv2 = _require_cv2()
 
     height, width = shape[:2]
@@ -179,15 +186,18 @@ def build_circular_minimap_mask(
 
 def _resize_template_and_mask(
     template: np.ndarray,
-    mask: np.ndarray,
+    mask: np.ndarray | None,
     scale: float,
-) -> tuple[np.ndarray, np.ndarray]:
+) -> tuple[np.ndarray, np.ndarray | None]:
     cv2 = _require_cv2()
 
     height, width = template.shape[:2]
     next_width = max(8, int(round(width * scale)))
     next_height = max(8, int(round(height * scale)))
     resized_template = cv2.resize(template, (next_width, next_height), interpolation=cv2.INTER_AREA)
+    if mask is None:
+        return resized_template, None
+
     resized_mask = cv2.resize(mask, (next_width, next_height), interpolation=cv2.INTER_NEAREST)
     return resized_template, resized_mask
 
@@ -195,7 +205,7 @@ def _resize_template_and_mask(
 def _match_template(
     map_image: np.ndarray,
     template: np.ndarray,
-    mask: np.ndarray,
+    mask: np.ndarray | None,
     method_name: str,
 ) -> tuple[float, tuple[int, int]]:
     cv2 = _require_cv2()
@@ -207,10 +217,13 @@ def _match_template(
     }
     method = method_map.get(method_name, cv2.TM_CCOEFF_NORMED)
 
-    try:
-        result = cv2.matchTemplate(map_image, template, method, mask=mask)
-    except cv2.error:
+    if mask is None:
         result = cv2.matchTemplate(map_image, template, method)
+    else:
+        try:
+            result = cv2.matchTemplate(map_image, template, method, mask=mask)
+        except cv2.error:
+            result = cv2.matchTemplate(map_image, template, method)
 
     if method == cv2.TM_SQDIFF_NORMED:
         result = np.nan_to_num(result, nan=1.0, posinf=1.0, neginf=1.0)
@@ -222,11 +235,32 @@ def _match_template(
     return float(max_value), (int(max_location[0]), int(max_location[1]))
 
 
+def _hsv_histogram(image: np.ndarray) -> np.ndarray:
+    cv2 = _require_cv2()
+
+    hsv = cv2.cvtColor(image[..., :3], cv2.COLOR_BGR2HSV)
+    histogram = cv2.calcHist([hsv], [0, 1], None, [24, 16], [0, 180, 0, 256])
+    cv2.normalize(histogram, histogram, 0, 1, cv2.NORM_MINMAX)
+    return histogram
+
+
+def _color_histogram_similarity(template_bgr: np.ndarray, candidate_bgr: np.ndarray) -> float:
+    cv2 = _require_cv2()
+
+    template_histogram = _hsv_histogram(template_bgr)
+    candidate_histogram = _hsv_histogram(candidate_bgr)
+    return float(cv2.compareHist(template_histogram, candidate_histogram, cv2.HISTCMP_CORREL))
+
+
 def _save_mask_debug(mask: np.ndarray, output_path: Path) -> None:
     _write_image(output_path, mask)
 
 
-def _save_template_debug(template_bgr: np.ndarray, mask: np.ndarray, output_path: Path) -> None:
+def _save_template_debug(template_bgr: np.ndarray, mask: np.ndarray | None, output_path: Path) -> None:
+    if mask is None:
+        _write_image(output_path, template_bgr)
+        return
+
     masked = template_bgr.copy()
     masked[mask == 0] = 0
     _write_image(output_path, masked)
@@ -299,6 +333,8 @@ def _candidate_from_match(
     scale: float,
     template_width: int,
     template_height: int,
+    raw_score: float | None = None,
+    color_histogram_similarity: float | None = None,
 ) -> MatchCandidate:
     local_x = top_left[0] + template_width / 2.0
     local_y = top_left[1] + template_height / 2.0
@@ -317,6 +353,8 @@ def _candidate_from_match(
         global_y=global_y,
         map_width=int(map_image.shape[1]),
         map_height=int(map_image.shape[0]),
+        raw_score=raw_score,
+        color_histogram_similarity=color_histogram_similarity,
     )
 
 
@@ -401,6 +439,7 @@ def localize_minimap(
     inner_exclusion_ratio: float = 0.075,
     preprocess_mode: str = "gray",
     method_name: str = "ccoeff_normed",
+    color_histogram_weight: float = 0.0,
 ) -> LocalizationResult:
     data = kongying_data or KongYingMapData()
     image_assets = data.list_match_image_asset_records(categories={"map_tile"}, exclude_keywords=exclude_keywords)
@@ -458,6 +497,25 @@ def localize_minimap(
                 continue
 
             score, top_left = _match_template(map_processed, template, mask, method_name)
+            raw_score = score
+            color_histogram_similarity: float | None = None
+            if color_histogram_weight:
+                x0, y0 = top_left
+                x1 = min(map_image.shape[1], x0 + template_width)
+                y1 = min(map_image.shape[0], y0 + template_height)
+                candidate_crop = map_image[y0:y1, x0:x1]
+                if candidate_crop.shape[:2] == (template_height, template_width):
+                    template_bgr = minimap_crop
+                    if template_bgr.shape[:2] != candidate_crop.shape[:2]:
+                        cv2 = _require_cv2()
+                        template_bgr = cv2.resize(
+                            template_bgr[..., :3],
+                            (template_width, template_height),
+                            interpolation=cv2.INTER_AREA,
+                        )
+                    color_histogram_similarity = _color_histogram_similarity(template_bgr, candidate_crop)
+                    score = score + (float(color_histogram_weight) * color_histogram_similarity)
+
             candidate = _candidate_from_match(
                 asset=asset,
                 map_image=map_image,
@@ -466,6 +524,8 @@ def localize_minimap(
                 scale=scale,
                 template_width=template_width,
                 template_height=template_height,
+                raw_score=raw_score,
+                color_histogram_similarity=color_histogram_similarity,
             )
             candidates.append(candidate)
 
@@ -473,7 +533,11 @@ def localize_minimap(
 
     if debug_output_enabled:
         output_dir = ensure_dir(debug_dir)
-        _save_mask_debug(base_mask, output_dir / "latest_match_mask.png")
+        mask_debug_path = output_dir / "latest_match_mask.png"
+        if base_mask is None:
+            mask_debug_path.unlink(missing_ok=True)
+        else:
+            _save_mask_debug(base_mask, mask_debug_path)
         _save_template_debug(minimap_crop, base_mask, output_dir / "latest_match_template.png")
         sorted_candidates = sorted(candidates, key=lambda item: item.score, reverse=True)
         if sorted_candidates:
