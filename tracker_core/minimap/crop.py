@@ -134,14 +134,7 @@ def auto_minimap_crop_box(frame: np.ndarray, crop_config: dict[str, Any]) -> Cro
         cx = int(circle[0]) + roi_box.x
         cy = int(circle[1]) + roi_box.y
         radius = int(circle[2])
-        padding = int(round(radius * float(crop_config.get("padding_ratio", 0.05))))
-        x0 = cx - radius - padding
-        y0 = cy - radius - padding
-        x1 = cx + radius + padding
-        y1 = cy + radius + padding
         if cx - radius > frame_width * 0.36 or cy - radius > frame_height * 0.40:
-            continue
-        if x0 < 0 or y0 < 0 or x1 > frame_width or y1 > frame_height:
             continue
         distance_score = ((cx - expected_x) / max(1.0, frame_width * 0.18)) ** 2
         distance_score += ((cy - expected_y) / max(1.0, frame_height * 0.22)) ** 2
