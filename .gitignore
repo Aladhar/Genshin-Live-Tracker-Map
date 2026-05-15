@@ -13,6 +13,9 @@
 **/debug_output/
 *.log
 
+# Generated local frontend map cache.
+/external/map_front_v3/public/imgs/genshin-mainmap/
+
 # Local Python environment.
 /.venv/
 __pycache__/

@@ -13,25 +13,20 @@ if str(REPO_ROOT) not in sys.path:
 
 from tracker_core.localization.template_matcher import localize_minimap  # noqa: E402
 from tracker_core.map_data.kongying_loader import KongYingMapData  # noqa: E402
+from tracker_core.utils.cv_images import read_image_bgr as read_cv_image_bgr  # noqa: E402
+from tracker_core.utils.cv_images import write_image as write_cv_image  # noqa: E402
 from tracker_core.utils.paths import ensure_dir, resolve_repo_path  # noqa: E402
 
 
 def read_image_bgr(path: Path):
-    try:
-        import cv2
-    except ImportError as exc:
-        raise RuntimeError("opencv-python is required for the localization smoke test.") from exc
-    image = cv2.imread(path.as_posix(), cv2.IMREAD_COLOR)
+    image = read_cv_image_bgr(path)
     if image is None:
         raise RuntimeError(f"Could not read smoke-test image: {path}")
     return image
 
 
 def write_image(path: Path, image) -> None:
-    import cv2
-
-    path.parent.mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(path.as_posix(), image)
+    write_cv_image(path, image)
 
 
 def pick_smoke_asset(data: KongYingMapData, preferred_asset_name: str | None = None):

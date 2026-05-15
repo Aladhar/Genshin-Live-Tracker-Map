@@ -5,6 +5,7 @@ import * as L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import _ from "lodash";
 import { map_tiles_config, map_plugin_config } from "./config";
+import { localGenshinMainMap } from "./local_genshin_mainmap";
 import { mapDom } from "./map_obj";
 
 //初始化地图中心和地图尺寸
@@ -29,7 +30,43 @@ function create_map_layer(
   mapSize,
   mapTilesOffset = [0, 0],
   extension = "png",
+  imageUrl = "",
+  imageManifest = "",
+  imageBaseUrl = "",
 ) {
+  const bounds = L.latLngBounds(
+    L.latLng(
+      -mapCenter[0] + mapTilesOffset[0],
+      -mapCenter[1] + mapTilesOffset[1],
+    ),
+    L.latLng(
+      mapSize[0] - mapCenter[0] + mapTilesOffset[0],
+      mapSize[1] - mapCenter[1] + mapTilesOffset[1],
+    ),
+  );
+
+  if (imageUrl) {
+    return L.imageOverlay(imageUrl, bounds);
+  }
+
+  if (imageManifest === "genshin-mainmap" && imageBaseUrl) {
+    const overlays = localGenshinMainMap.images.map(
+      ([x, y, width, height, filename]) => {
+        const top = x * localGenshinMainMap.tileUnit;
+        const left = y * localGenshinMainMap.tileUnit;
+        return L.imageOverlay(
+          `${imageBaseUrl}/${filename}`,
+          L.latLngBounds(
+            L.latLng(top, left),
+            L.latLng(top + width, left + height),
+          ),
+          { interactive: false },
+        );
+      },
+    );
+    return L.layerGroup(overlays);
+  }
+
   const tiles_preUrl = "https://assets.yuanshen.site/tiles_";
 
   L.TileLayer.T = L.TileLayer.extend({
@@ -47,16 +84,7 @@ function create_map_layer(
     minZoom: -6,
     maxNativeZoom: 0,
     minNativeZoom: -3,
-    bounds: L.latLngBounds(
-      L.latLng(
-        -mapCenter[0] + mapTilesOffset[0],
-        -mapCenter[1] + mapTilesOffset[1],
-      ),
-      L.latLng(
-        mapSize[0] - mapCenter[0] + mapTilesOffset[0],
-        mapSize[1] - mapCenter[1] + mapTilesOffset[1],
-      ),
-    ),
+    bounds,
   });
   return tiles;
 }
@@ -73,6 +101,8 @@ function create_map_config(area_config_code = "") {
   let tiles_key = "";
   if (map_tiles_config.value[area_config_code]) {
     tiles_key = area_config_code;
+  } else if (map_tiles_config.value["teyvat-main"]) {
+    tiles_key = "teyvat-main";
   } else if (map_tiles_config.value["提瓦特-base0"]) {
     tiles_key = "提瓦特-base0";
   }
@@ -107,6 +137,9 @@ function create_map_tiles(area_config_code = "") {
   const mapSize = tiles_config.size;
   const mapTilesOffset = tiles_config.tilesOffset;
   const extension = tiles_config.extension;
+  const imageUrl = tiles_config.imageUrl;
+  const imageManifest = tiles_config.imageManifest;
+  const imageBaseUrl = tiles_config.imageBaseUrl;
 
   // 设置地图要使用的坐标参考系（CRS），本地图使用simple类型CRS，将经度和纬度直接映射到x和y。
   const mapCRS = L.Util.extend({}, L.CRS.Simple, {
@@ -162,6 +195,9 @@ function create_map_tiles(area_config_code = "") {
     mapSize,
     mapTilesOffset,
     extension,
+    imageUrl,
+    imageManifest,
+    imageBaseUrl,
   );
 
   return { tiles_config, tiles, map_settings, map_bounds };
@@ -174,11 +210,11 @@ function create_map(settings = {}, tiles) {
     .attribution({
       prefix: `
   <footer role='contentinfo' class='footer'>
-      <a href='https://yuanshen.site/docs/disclaimer.html' target='_blank' title='空荧酒馆免责声明'>免责声明</a>
-      <a href='https://yuanshen.site/docs/join.html' target='_blank' target='_blank' title='加入我们'>招募</a>
-      <a href='https://yuanshen.site/docs/blog/changelog-web' target='_blank' rel='noopener noreferrer' title='空荧酒馆原神地图更新日志'>更新日志</a>
+      <a href='https://yuanshen.site/docs/disclaimer.html' target='_blank' title='KongYing Tavern disclaimer'>Disclaimer</a>
+      <a href='https://yuanshen.site/docs/join.html' target='_blank' title='Join us'>Join</a>
+      <a href='https://yuanshen.site/docs/blog/changelog-web' target='_blank' rel='noopener noreferrer' title='KongYing Tavern Genshin map changelog'>Changelog</a>
       <a href='https://github.com/kongying-tavern' target='_blank' rel='noopener noreferrer' title='GitHub'>GitHub</a>
-      <a href='http://beian.miit.gov.cn' target='_blank' rel='noopener noreferrer' title='工业和信息化部域名信息备案管理系统'>蜀ICP备2020028219号-1</a>
+      <a href='http://beian.miit.gov.cn' target='_blank' rel='noopener noreferrer' title='MIIT ICP filing'>ICP 2020028219-1</a>
   </footer>
       `,
       position: "bottomright",

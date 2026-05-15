@@ -15,6 +15,7 @@ from tracker_core.capture.windows_capture import capture_from_config  # noqa: E4
 from tracker_core.localization.template_matcher import localize_minimap  # noqa: E402
 from tracker_core.map_data.kongying_loader import KongYingMapData  # noqa: E402
 from tracker_core.minimap.crop import crop_minimap  # noqa: E402
+from tracker_core.utils.cv_images import read_image_bgr  # noqa: E402
 from tracker_core.utils.paths import ensure_dir  # noqa: E402
 from tracker_core.utils.paths import load_json, resolve_repo_path  # noqa: E402
 
@@ -32,7 +33,7 @@ def load_frame_from_image(path: Path):
         frame_rgb = np.asarray(Image.open(path).convert("RGB"))
         return frame_rgb[..., ::-1].copy()
 
-    frame = cv2.imread(path.as_posix(), cv2.IMREAD_COLOR)
+    frame = read_image_bgr(path)
     if frame is None:
         raise RuntimeError(f"Could not load frame image: {path}")
     return frame

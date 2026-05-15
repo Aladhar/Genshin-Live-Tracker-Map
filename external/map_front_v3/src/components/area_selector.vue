@@ -17,7 +17,7 @@
               >
                 <span class="area_switch_btn_icon"></span>
                 <span class="area_switch_btn_text area_switch_btn_text">
-                  更换地区
+                  Change Region
                 </span>
               </div>
               <div class="area_name">{{ area_selected_top.name }}</div>

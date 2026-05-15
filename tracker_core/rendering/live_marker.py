@@ -4,6 +4,8 @@ from pathlib import Path
 
 import numpy as np
 
+from tracker_core.utils.cv_images import write_image
+
 from tracker_core.utils.paths import ensure_dir
 
 
@@ -42,6 +44,6 @@ def save_live_marker_debug(image_bgr: np.ndarray, path: str | Path = "debug_outp
         raise RuntimeError("opencv-python is required to save marker debug output.") from exc
 
     output_path = ensure_dir(Path(path).parent) / Path(path).name
-    cv2.imwrite(output_path.as_posix(), image_bgr)
+    write_image(output_path, image_bgr)
     return output_path
 

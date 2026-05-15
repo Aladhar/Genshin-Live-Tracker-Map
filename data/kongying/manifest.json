@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-14T22:36:32.005000+00:00",
-  "source_root": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1",
+  "generated_at": "2026-05-15T00:53:34.027341+00:00",
+  "source_root": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1",
   "raw_root": "data/kongying/raw",
   "import_policy": {
     "unsafe_extensions": [
@@ -50,11 +50,11 @@
     ]
   },
   "summary": {
-    "source_file_count": 129,
+    "source_file_count": 127,
     "copied_file_count": 74,
     "importable_file_count": 74,
-    "excluded_file_count": 55,
-    "imported_total_bytes": 341593704,
+    "excluded_file_count": 53,
+    "imported_total_bytes": 341593710,
     "category_counts": {
       "icon": 14,
       "map_tile": 53,
@@ -70,7 +70,7 @@
       ".version": 1
     },
     "excluded_reason_counts": {
-      "junk_os_metadata": 4,
+      "junk_os_metadata": 2,
       "non_map_runtime_or_media_bundle": 31,
       "unclassified_unity_bundle": 1,
       "unsafe_executable_extension": 11,
@@ -80,7 +80,29 @@
   },
   "files": [
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/RuntimeInitializeOnLoads.json",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/app.info",
+      "repo_path": "data/kongying/raw/Map_Data/app.info",
+      "filename": "app.info",
+      "extension": ".info",
+      "file_size": 17,
+      "sha256": "14eabe281a7bbecfa5071a6c9e87a65247df5aff2c78b8a386afc87ffd5b0bf7",
+      "category": "metadata",
+      "import_reason": "safe_readable_metadata",
+      "copied": true
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/boot.config",
+      "repo_path": "data/kongying/raw/Map_Data/boot.config",
+      "filename": "boot.config",
+      "extension": ".config",
+      "file_size": 122,
+      "sha256": "7ffc8039069557b875edafb39d245b6c8718f5a2c2acbd64b067b5e277b7b05c",
+      "category": "metadata",
+      "import_reason": "safe_readable_metadata",
+      "copied": true
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/RuntimeInitializeOnLoads.json",
       "repo_path": "data/kongying/raw/Map_Data/RuntimeInitializeOnLoads.json",
       "filename": "RuntimeInitializeOnLoads.json",
       "extension": ".json",
@@ -91,7 +113,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/ScriptingAssemblies.json",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/ScriptingAssemblies.json",
       "repo_path": "data/kongying/raw/Map_Data/ScriptingAssemblies.json",
       "filename": "ScriptingAssemblies.json",
       "extension": ".json",
@@ -102,40 +124,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/PackageManifest_DefaultPackage.version",
-      "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/PackageManifest_DefaultPackage.version",
-      "filename": "PackageManifest_DefaultPackage.version",
-      "extension": ".version",
-      "file_size": 15,
-      "sha256": "69c24482b3aa11a58ddfaab41b29e474efafc55876d577776ff24b8924263ada",
-      "category": "metadata",
-      "import_reason": "safe_readable_metadata",
-      "copied": true
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/PackageManifest_DefaultPackage_2025-01-15-1144.bytes",
-      "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/PackageManifest_DefaultPackage_2025-01-15-1144.bytes",
-      "filename": "PackageManifest_DefaultPackage_2025-01-15-1144.bytes",
-      "extension": ".bytes",
-      "file_size": 103088,
-      "sha256": "6c160d550157faff07e64f59375e7c0b53c9c3343a67795fa61649ed8030de81",
-      "category": "metadata",
-      "import_reason": "package_manifest_metadata",
-      "copied": true
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/PackageManifest_DefaultPackage_2025-01-15-1144.hash",
-      "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/PackageManifest_DefaultPackage_2025-01-15-1144.hash",
-      "filename": "PackageManifest_DefaultPackage_2025-01-15-1144.hash",
-      "extension": ".hash",
-      "file_size": 32,
-      "sha256": "8bba336927ac688fcca0a0c168fab51df994a307b1244f1885881ee05f882be4",
-      "category": "metadata",
-      "import_reason": "safe_readable_metadata",
-      "copied": true
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_atlas_9182008d5e21b2438e567b265b1b80d9.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_atlas_9182008d5e21b2438e567b265b1b80d9.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_atlas_9182008d5e21b2438e567b265b1b80d9.bundle",
       "filename": "assets_assetraw_uiraw_atlas_9182008d5e21b2438e567b265b1b80d9.bundle",
       "extension": ".bundle",
@@ -146,7 +135,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_dxkqmap_018fd3d66ecb9194405b048c6f1b90ea.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_dxkqmap_018fd3d66ecb9194405b048c6f1b90ea.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_dxkqmap_018fd3d66ecb9194405b048c6f1b90ea.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_dxkqmap_018fd3d66ecb9194405b048c6f1b90ea.bundle",
       "extension": ".bundle",
@@ -157,7 +146,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_dxkqoutline_fcac223c1171d35971d45ea880259413.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_dxkqoutline_fcac223c1171d35971d45ea880259413.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_dxkqoutline_fcac223c1171d35971d45ea880259413.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_dxkqoutline_fcac223c1171d35971d45ea880259413.bundle",
       "extension": ".bundle",
@@ -168,7 +157,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_jrzhmap_ef51bb4e8497ee0b1ae7506a3cdda171.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_jrzhmap_ef51bb4e8497ee0b1ae7506a3cdda171.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_jrzhmap_ef51bb4e8497ee0b1ae7506a3cdda171.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_jrzhmap_ef51bb4e8497ee0b1ae7506a3cdda171.bundle",
       "extension": ".bundle",
@@ -179,7 +168,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_jrzhoutline_9625dd26460e13a48aa30c78956dcda4.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_jrzhoutline_9625dd26460e13a48aa30c78956dcda4.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_jrzhoutline_9625dd26460e13a48aa30c78956dcda4.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_jrzhoutline_9625dd26460e13a48aa30c78956dcda4.bundle",
       "extension": ".bundle",
@@ -190,7 +179,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_lxsjmap_e8c43a9c502aad2e406cbd0fe7b61b0e.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_lxsjmap_e8c43a9c502aad2e406cbd0fe7b61b0e.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_lxsjmap_e8c43a9c502aad2e406cbd0fe7b61b0e.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_lxsjmap_e8c43a9c502aad2e406cbd0fe7b61b0e.bundle",
       "extension": ".bundle",
@@ -201,7 +190,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_lxsjoutline_8c5cac0399a529db1efbb04358a17971.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_lxsjoutline_8c5cac0399a529db1efbb04358a17971.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_lxsjoutline_8c5cac0399a529db1efbb04358a17971.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_lxsjoutline_8c5cac0399a529db1efbb04358a17971.bundle",
       "extension": ".bundle",
@@ -212,7 +201,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-1_6bab8580392ba658aab0b46b3564720d.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-1_6bab8580392ba658aab0b46b3564720d.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-1_6bab8580392ba658aab0b46b3564720d.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mainmap_-1_6bab8580392ba658aab0b46b3564720d.bundle",
       "extension": ".bundle",
@@ -223,7 +212,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-2_a7cdbabcf3ae32bebdde03cb0d32ca75.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-2_a7cdbabcf3ae32bebdde03cb0d32ca75.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-2_a7cdbabcf3ae32bebdde03cb0d32ca75.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mainmap_-2_a7cdbabcf3ae32bebdde03cb0d32ca75.bundle",
       "extension": ".bundle",
@@ -234,7 +223,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-3_5fc1466e14e070c6f71675ceb15f41e0.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-3_5fc1466e14e070c6f71675ceb15f41e0.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-3_5fc1466e14e070c6f71675ceb15f41e0.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mainmap_-3_5fc1466e14e070c6f71675ceb15f41e0.bundle",
       "extension": ".bundle",
@@ -245,7 +234,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-4_4bd3a35299334298c1a094b78e01b987.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-4_4bd3a35299334298c1a094b78e01b987.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-4_4bd3a35299334298c1a094b78e01b987.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mainmap_-4_4bd3a35299334298c1a094b78e01b987.bundle",
       "extension": ".bundle",
@@ -256,7 +245,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-5_f4b62e62b96740db5d082d979493ed5d.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-5_f4b62e62b96740db5d082d979493ed5d.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-5_f4b62e62b96740db5d082d979493ed5d.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mainmap_-5_f4b62e62b96740db5d082d979493ed5d.bundle",
       "extension": ".bundle",
@@ -267,7 +256,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-6_2779fece72ba3d6e83dfdfab45333c63.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-6_2779fece72ba3d6e83dfdfab45333c63.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-6_2779fece72ba3d6e83dfdfab45333c63.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mainmap_-6_2779fece72ba3d6e83dfdfab45333c63.bundle",
       "extension": ".bundle",
@@ -278,7 +267,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-7_2a351c0cf8ad487d9dfd981c6f944145.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-7_2a351c0cf8ad487d9dfd981c6f944145.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_-7_2a351c0cf8ad487d9dfd981c6f944145.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mainmap_-7_2a351c0cf8ad487d9dfd981c6f944145.bundle",
       "extension": ".bundle",
@@ -289,7 +278,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_0_129ac13b9f9712dd4016d4cd5b84449a.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_0_129ac13b9f9712dd4016d4cd5b84449a.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_0_129ac13b9f9712dd4016d4cd5b84449a.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mainmap_0_129ac13b9f9712dd4016d4cd5b84449a.bundle",
       "extension": ".bundle",
@@ -300,7 +289,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_1_c53137baaa4a903e3883908be1de961e.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_1_c53137baaa4a903e3883908be1de961e.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_1_c53137baaa4a903e3883908be1de961e.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mainmap_1_c53137baaa4a903e3883908be1de961e.bundle",
       "extension": ".bundle",
@@ -311,7 +300,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_2_9d263ca57674666802d45c932d300805.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_2_9d263ca57674666802d45c932d300805.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_2_9d263ca57674666802d45c932d300805.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mainmap_2_9d263ca57674666802d45c932d300805.bundle",
       "extension": ".bundle",
@@ -322,7 +311,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_3_78eb60704b280adb1ff4fcb890436d18.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_3_78eb60704b280adb1ff4fcb890436d18.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_3_78eb60704b280adb1ff4fcb890436d18.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mainmap_3_78eb60704b280adb1ff4fcb890436d18.bundle",
       "extension": ".bundle",
@@ -333,7 +322,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_4_a75b888031837cebb34797471573ec21.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_4_a75b888031837cebb34797471573ec21.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_4_a75b888031837cebb34797471573ec21.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mainmap_4_a75b888031837cebb34797471573ec21.bundle",
       "extension": ".bundle",
@@ -344,7 +333,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_5_71d7e5d03cadeacabf8d80dd09fc7bef.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_5_71d7e5d03cadeacabf8d80dd09fc7bef.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mainmap_5_71d7e5d03cadeacabf8d80dd09fc7bef.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mainmap_5_71d7e5d03cadeacabf8d80dd09fc7bef.bundle",
       "extension": ".bundle",
@@ -355,7 +344,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mapoutline_15acb10746c32c63b52f7a8f98b77018.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mapoutline_15acb10746c32c63b52f7a8f98b77018.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_mapoutline_15acb10746c32c63b52f7a8f98b77018.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_mapoutline_15acb10746c32c63b52f7a8f98b77018.bundle",
       "extension": ".bundle",
@@ -366,7 +355,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qd28_84b73574e6dba665f1bb94effb57814c.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qd28_84b73574e6dba665f1bb94effb57814c.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qd28_84b73574e6dba665f1bb94effb57814c.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_qd28_84b73574e6dba665f1bb94effb57814c.bundle",
       "extension": ".bundle",
@@ -377,7 +366,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qd28_overlay_c42c418488358250cde2983ab3fb1111.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qd28_overlay_c42c418488358250cde2983ab3fb1111.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qd28_overlay_c42c418488358250cde2983ab3fb1111.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_qd28_overlay_c42c418488358250cde2983ab3fb1111.bundle",
       "extension": ".bundle",
@@ -388,7 +377,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qundaomap_after_c8fff7f45306bf34e46b3236f4834747.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qundaomap_after_c8fff7f45306bf34e46b3236f4834747.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qundaomap_after_c8fff7f45306bf34e46b3236f4834747.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_qundaomap_after_c8fff7f45306bf34e46b3236f4834747.bundle",
       "extension": ".bundle",
@@ -399,7 +388,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qundaooutline_d7b10bcb2606365a796c92d9eaa4899d.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qundaooutline_d7b10bcb2606365a796c92d9eaa4899d.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qundaooutline_d7b10bcb2606365a796c92d9eaa4899d.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_qundaooutline_d7b10bcb2606365a796c92d9eaa4899d.bundle",
       "extension": ".bundle",
@@ -410,7 +399,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qundapmap_before_af7cc3b1cf76c022371a34a4f479e0f5.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qundapmap_before_af7cc3b1cf76c022371a34a4f479e0f5.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_qundapmap_before_af7cc3b1cf76c022371a34a4f479e0f5.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_qundapmap_before_af7cc3b1cf76c022371a34a4f479e0f5.bundle",
       "extension": ".bundle",
@@ -421,7 +410,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmlk_8d9523c343b5993b9bafd4804dd9abde.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmlk_8d9523c343b5993b9bafd4804dd9abde.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmlk_8d9523c343b5993b9bafd4804dd9abde.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmlk_8d9523c343b5993b9bafd4804dd9abde.bundle",
       "extension": ".bundle",
@@ -432,7 +421,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmlk_overlay_5a0bd41722e29692b76951e29365bc47.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmlk_overlay_5a0bd41722e29692b76951e29365bc47.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmlk_overlay_5a0bd41722e29692b76951e29365bc47.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmlk_overlay_5a0bd41722e29692b76951e29365bc47.bundle",
       "extension": ".bundle",
@@ -443,7 +432,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmlkoutline_f6571289503fb4e8ae5ca36041ec5f96.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmlkoutline_f6571289503fb4e8ae5ca36041ec5f96.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmlkoutline_f6571289503fb4e8ae5ca36041ec5f96.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmlkoutline_f6571289503fb4e8ae5ca36041ec5f96.bundle",
       "extension": ".bundle",
@@ -454,7 +443,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_fd2_cb255018eccb6227f6e509482edb3bf6.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_fd2_cb255018eccb6227f6e509482edb3bf6.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_fd2_cb255018eccb6227f6e509482edb3bf6.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_overlay_fd2_cb255018eccb6227f6e509482edb3bf6.bundle",
       "extension": ".bundle",
@@ -465,7 +454,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_fd4_8fe1505dd109fe99a6d8eb7b9a89948a.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_fd4_8fe1505dd109fe99a6d8eb7b9a89948a.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_fd4_8fe1505dd109fe99a6d8eb7b9a89948a.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_overlay_fd4_8fe1505dd109fe99a6d8eb7b9a89948a.bundle",
       "extension": ".bundle",
@@ -476,7 +465,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_nt2_d24c23858ca20342e74fe46928d9bc01.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_nt2_d24c23858ca20342e74fe46928d9bc01.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_nt2_d24c23858ca20342e74fe46928d9bc01.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_overlay_nt2_d24c23858ca20342e74fe46928d9bc01.bundle",
       "extension": ".bundle",
@@ -487,7 +476,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_sd_e1cb4d720dddf64d641d5d096482c023.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_sd_e1cb4d720dddf64d641d5d096482c023.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_sd_e1cb4d720dddf64d641d5d096482c023.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_overlay_sd_e1cb4d720dddf64d641d5d096482c023.bundle",
       "extension": ".bundle",
@@ -498,7 +487,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_sm_59024c12266b287f557b3bb4b49cfef5.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_sm_59024c12266b287f557b3bb4b49cfef5.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_sm_59024c12266b287f557b3bb4b49cfef5.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_overlay_sm_59024c12266b287f557b3bb4b49cfef5.bundle",
       "extension": ".bundle",
@@ -509,7 +498,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_sy_42d97efa2684140ecd5a93c806dc0878.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_sy_42d97efa2684140ecd5a93c806dc0878.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_overlay_sy_42d97efa2684140ecd5a93c806dc0878.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_overlay_sy_42d97efa2684140ecd5a93c806dc0878.bundle",
       "extension": ".bundle",
@@ -520,7 +509,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_dq_d9ab099939bb2071a5689b491c41bfc5.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_dq_d9ab099939bb2071a5689b491c41bfc5.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_dq_d9ab099939bb2071a5689b491c41bfc5.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_dq_d9ab099939bb2071a5689b491c41bfc5.bundle",
       "extension": ".bundle",
@@ -531,7 +520,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_fd4_0_5787ad248a9a29385c03d5b980eb9de8.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_fd4_0_5787ad248a9a29385c03d5b980eb9de8.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_fd4_0_5787ad248a9a29385c03d5b980eb9de8.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_fd4_0_5787ad248a9a29385c03d5b980eb9de8.bundle",
       "extension": ".bundle",
@@ -542,7 +531,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_0_a7ce6061e9e1cf2d3292174ba7d8afab.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_0_a7ce6061e9e1cf2d3292174ba7d8afab.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_0_a7ce6061e9e1cf2d3292174ba7d8afab.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_0_a7ce6061e9e1cf2d3292174ba7d8afab.bundle",
       "extension": ".bundle",
@@ -553,7 +542,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_1_3718036a923e39145be5f704db3d4ece.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_1_3718036a923e39145be5f704db3d4ece.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_1_3718036a923e39145be5f704db3d4ece.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_1_3718036a923e39145be5f704db3d4ece.bundle",
       "extension": ".bundle",
@@ -564,7 +553,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_4_08f034b554364ea3cce538a63d678ed9.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_4_08f034b554364ea3cce538a63d678ed9.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_4_08f034b554364ea3cce538a63d678ed9.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_4_08f034b554364ea3cce538a63d678ed9.bundle",
       "extension": ".bundle",
@@ -575,7 +564,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_6_3de7ff036a613f8d351f9fd9831835dc.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_6_3de7ff036a613f8d351f9fd9831835dc.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_6_3de7ff036a613f8d351f9fd9831835dc.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_0_xm3_6_3de7ff036a613f8d351f9fd9831835dc.bundle",
       "extension": ".bundle",
@@ -586,7 +575,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_1_fd2_2276d7cb30dcad1acf121e70ac79447d.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_1_fd2_2276d7cb30dcad1acf121e70ac79447d.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_1_fd2_2276d7cb30dcad1acf121e70ac79447d.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_1_fd2_2276d7cb30dcad1acf121e70ac79447d.bundle",
       "extension": ".bundle",
@@ -597,7 +586,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_2_ac37c3723558d0901a596980e78920b3.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_2_ac37c3723558d0901a596980e78920b3.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_2_ac37c3723558d0901a596980e78920b3.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_2_ac37c3723558d0901a596980e78920b3.bundle",
       "extension": ".bundle",
@@ -608,7 +597,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_4_9b88d88df6e1d8477f50ae96438ecf16.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_4_9b88d88df6e1d8477f50ae96438ecf16.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_4_9b88d88df6e1d8477f50ae96438ecf16.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_underground_4_4_9b88d88df6e1d8477f50ae96438ecf16.bundle",
       "extension": ".bundle",
@@ -619,7 +608,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_5_0_5f73047f8adeba3c18ced71c1efac3a6.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_5_0_5f73047f8adeba3c18ced71c1efac3a6.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_5_0_5f73047f8adeba3c18ced71c1efac3a6.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_underground_5_0_5f73047f8adeba3c18ced71c1efac3a6.bundle",
       "extension": ".bundle",
@@ -630,7 +619,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_5_2_71e45af3038948856b0725140ae82e96.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_5_2_71e45af3038948856b0725140ae82e96.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_xmoverlay_underground_5_2_71e45af3038948856b0725140ae82e96.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_xmoverlay_underground_5_2_71e45af3038948856b0725140ae82e96.bundle",
       "extension": ".bundle",
@@ -641,7 +630,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_yxgmap_232e6ebe1c67071deb2cb8cf13e78a1d.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_yxgmap_232e6ebe1c67071deb2cb8cf13e78a1d.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_yxgmap_232e6ebe1c67071deb2cb8cf13e78a1d.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_yxgmap_232e6ebe1c67071deb2cb8cf13e78a1d.bundle",
       "extension": ".bundle",
@@ -652,7 +641,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_yxgoutline_9e60b6e0dcf9cae49aae5ceece254fa5.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_yxgoutline_9e60b6e0dcf9cae49aae5ceece254fa5.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_mapimg_yxgoutline_9e60b6e0dcf9cae49aae5ceece254fa5.bundle",
       "filename": "assets_assetraw_uiraw_mapimg_yxgoutline_9e60b6e0dcf9cae49aae5ceece254fa5.bundle",
       "extension": ".bundle",
@@ -663,7 +652,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_simpleimg_bd5cf9d39b13a36b5ecfb2ac2d4f4558.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_simpleimg_bd5cf9d39b13a36b5ecfb2ac2d4f4558.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_simpleimg_bd5cf9d39b13a36b5ecfb2ac2d4f4558.bundle",
       "filename": "assets_assetraw_uiraw_simpleimg_bd5cf9d39b13a36b5ecfb2ac2d4f4558.bundle",
       "extension": ".bundle",
@@ -674,7 +663,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_content_img_293acc2ea547c08be5ea99731da95daf.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_content_img_293acc2ea547c08be5ea99731da95daf.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_content_img_293acc2ea547c08be5ea99731da95daf.bundle",
       "filename": "assets_assetraw_uiraw_sprite_content_img_293acc2ea547c08be5ea99731da95daf.bundle",
       "extension": ".bundle",
@@ -685,7 +674,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_1c76dce37da4b870d59308295abab0e6.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_1c76dce37da4b870d59308295abab0e6.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_1c76dce37da4b870d59308295abab0e6.bundle",
       "filename": "assets_assetraw_uiraw_sprite_spriteatlas_1c76dce37da4b870d59308295abab0e6.bundle",
       "extension": ".bundle",
@@ -696,7 +685,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230127_b316a29895c823f094b6899b4c05dae1.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230127_b316a29895c823f094b6899b4c05dae1.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230127_b316a29895c823f094b6899b4c05dae1.bundle",
       "filename": "assets_assetraw_uiraw_sprite_spriteatlas_20230127_b316a29895c823f094b6899b4c05dae1.bundle",
       "extension": ".bundle",
@@ -707,7 +696,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230415_82a1aad50fd8bf6990dba34bdcbc06b2.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230415_82a1aad50fd8bf6990dba34bdcbc06b2.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230415_82a1aad50fd8bf6990dba34bdcbc06b2.bundle",
       "filename": "assets_assetraw_uiraw_sprite_spriteatlas_20230415_82a1aad50fd8bf6990dba34bdcbc06b2.bundle",
       "extension": ".bundle",
@@ -718,7 +707,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230817_57c56fb68b8ba026cc669ea3142d22c3.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230817_57c56fb68b8ba026cc669ea3142d22c3.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230817_57c56fb68b8ba026cc669ea3142d22c3.bundle",
       "filename": "assets_assetraw_uiraw_sprite_spriteatlas_20230817_57c56fb68b8ba026cc669ea3142d22c3.bundle",
       "extension": ".bundle",
@@ -729,7 +718,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230926_e8ec1d4100fb40f442cae2ffc1012303.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230926_e8ec1d4100fb40f442cae2ffc1012303.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230926_e8ec1d4100fb40f442cae2ffc1012303.bundle",
       "filename": "assets_assetraw_uiraw_sprite_spriteatlas_20230926_e8ec1d4100fb40f442cae2ffc1012303.bundle",
       "extension": ".bundle",
@@ -740,7 +729,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230929_bd3c8d7137c60a1667e654bdc9ca6365.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230929_bd3c8d7137c60a1667e654bdc9ca6365.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20230929_bd3c8d7137c60a1667e654bdc9ca6365.bundle",
       "filename": "assets_assetraw_uiraw_sprite_spriteatlas_20230929_bd3c8d7137c60a1667e654bdc9ca6365.bundle",
       "extension": ".bundle",
@@ -751,7 +740,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20240131_343e9db4fe634336fec775be4ced6526.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20240131_343e9db4fe634336fec775be4ced6526.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20240131_343e9db4fe634336fec775be4ced6526.bundle",
       "filename": "assets_assetraw_uiraw_sprite_spriteatlas_20240131_343e9db4fe634336fec775be4ced6526.bundle",
       "extension": ".bundle",
@@ -762,7 +751,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_202408282_53bb3d330dba754d1224b5effcdbe8c8.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_202408282_53bb3d330dba754d1224b5effcdbe8c8.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_202408282_53bb3d330dba754d1224b5effcdbe8c8.bundle",
       "filename": "assets_assetraw_uiraw_sprite_spriteatlas_202408282_53bb3d330dba754d1224b5effcdbe8c8.bundle",
       "extension": ".bundle",
@@ -773,7 +762,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20240828_b1015239127d62a6ebceca6852b5646b.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20240828_b1015239127d62a6ebceca6852b5646b.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20240828_b1015239127d62a6ebceca6852b5646b.bundle",
       "filename": "assets_assetraw_uiraw_sprite_spriteatlas_20240828_b1015239127d62a6ebceca6852b5646b.bundle",
       "extension": ".bundle",
@@ -784,7 +773,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20241204_a27d96b9a224a42c4aa95c85e86ec290.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20241204_a27d96b9a224a42c4aa95c85e86ec290.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_20241204_a27d96b9a224a42c4aa95c85e86ec290.bundle",
       "filename": "assets_assetraw_uiraw_sprite_spriteatlas_20241204_a27d96b9a224a42c4aa95c85e86ec290.bundle",
       "extension": ".bundle",
@@ -795,7 +784,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_poi_3323c0f89b278cd0fcbf4a4f53a58bec.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_poi_3323c0f89b278cd0fcbf4a4f53a58bec.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_uiraw_sprite_spriteatlas_poi_3323c0f89b278cd0fcbf4a4f53a58bec.bundle",
       "filename": "assets_assetraw_uiraw_sprite_spriteatlas_poi_3323c0f89b278cd0fcbf4a4f53a58bec.bundle",
       "extension": ".bundle",
@@ -806,7 +795,40 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_3_4_9966cd8a899ff00088a1425bf3a624f5.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/PackageManifest_DefaultPackage.version",
+      "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/PackageManifest_DefaultPackage.version",
+      "filename": "PackageManifest_DefaultPackage.version",
+      "extension": ".version",
+      "file_size": 15,
+      "sha256": "69c24482b3aa11a58ddfaab41b29e474efafc55876d577776ff24b8924263ada",
+      "category": "metadata",
+      "import_reason": "safe_readable_metadata",
+      "copied": true
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/PackageManifest_DefaultPackage_2025-01-15-1144.bytes",
+      "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/PackageManifest_DefaultPackage_2025-01-15-1144.bytes",
+      "filename": "PackageManifest_DefaultPackage_2025-01-15-1144.bytes",
+      "extension": ".bytes",
+      "file_size": 103088,
+      "sha256": "6c160d550157faff07e64f59375e7c0b53c9c3343a67795fa61649ed8030de81",
+      "category": "metadata",
+      "import_reason": "package_manifest_metadata",
+      "copied": true
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/PackageManifest_DefaultPackage_2025-01-15-1144.hash",
+      "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/PackageManifest_DefaultPackage_2025-01-15-1144.hash",
+      "filename": "PackageManifest_DefaultPackage_2025-01-15-1144.hash",
+      "extension": ".hash",
+      "file_size": 32,
+      "sha256": "8bba336927ac688fcca0a0c168fab51df994a307b1244f1885881ee05f882be4",
+      "category": "metadata",
+      "import_reason": "safe_readable_metadata",
+      "copied": true
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_3_4_9966cd8a899ff00088a1425bf3a624f5.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_3_4_9966cd8a899ff00088a1425bf3a624f5.bundle",
       "filename": "share_assets_ysdt_old_map_3_4_9966cd8a899ff00088a1425bf3a624f5.bundle",
       "extension": ".bundle",
@@ -817,7 +839,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_sd_054772b0fc2c88216f016f74c7f1dfb6.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_sd_054772b0fc2c88216f016f74c7f1dfb6.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_sd_054772b0fc2c88216f016f74c7f1dfb6.bundle",
       "filename": "share_assets_ysdt_old_map_sd_054772b0fc2c88216f016f74c7f1dfb6.bundle",
       "extension": ".bundle",
@@ -828,7 +850,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_sm_base_9d2044c53be04e94a72e65f97fa8155e.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_sm_base_9d2044c53be04e94a72e65f97fa8155e.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_sm_base_9d2044c53be04e94a72e65f97fa8155e.bundle",
       "filename": "share_assets_ysdt_old_map_sm_base_9d2044c53be04e94a72e65f97fa8155e.bundle",
       "extension": ".bundle",
@@ -839,7 +861,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_sm_c2c31de67fd2d2512c019980dbb50d82.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_sm_c2c31de67fd2d2512c019980dbb50d82.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_sm_c2c31de67fd2d2512c019980dbb50d82.bundle",
       "filename": "share_assets_ysdt_old_map_sm_c2c31de67fd2d2512c019980dbb50d82.bundle",
       "extension": ".bundle",
@@ -850,7 +872,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_sy_86ca99cbf64eca4fd01d7c59c4d098c7.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_sy_86ca99cbf64eca4fd01d7c59c4d098c7.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_sy_86ca99cbf64eca4fd01d7c59c4d098c7.bundle",
       "filename": "share_assets_ysdt_old_map_sy_86ca99cbf64eca4fd01d7c59c4d098c7.bundle",
       "extension": ".bundle",
@@ -861,7 +883,7 @@
       "copied": true
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_yl_99a6c19faefc37eee5f0c383a218acf9.bundle",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_yl_99a6c19faefc37eee5f0c383a218acf9.bundle",
       "repo_path": "data/kongying/raw/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_old_map_yl_99a6c19faefc37eee5f0c383a218acf9.bundle",
       "filename": "share_assets_ysdt_old_map_yl_99a6c19faefc37eee5f0c383a218acf9.bundle",
       "extension": ".bundle",
@@ -869,28 +891,6 @@
       "sha256": "6d644b26448708e195a87505fc0faa4ac090c6ce28d3313f565b5c76ad891155",
       "category": "map_tile",
       "import_reason": "inert_map_or_icon_unityfs_bundle",
-      "copied": true
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/app.info",
-      "repo_path": "data/kongying/raw/Map_Data/app.info",
-      "filename": "app.info",
-      "extension": ".info",
-      "file_size": 16,
-      "sha256": "89e8ed697b45d78406b460ed8c32849d942e7b0db19e5c3adb453c3fbe6ca350",
-      "category": "metadata",
-      "import_reason": "safe_readable_metadata",
-      "copied": true
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/boot.config",
-      "repo_path": "data/kongying/raw/Map_Data/boot.config",
-      "filename": "boot.config",
-      "extension": ".config",
-      "file_size": 117,
-      "sha256": "3203179947a309240f7ca84a7d57183032892d7049749476f23e4ff8d7b3379b",
-      "category": "metadata",
-      "import_reason": "safe_readable_metadata",
       "copied": true
     }
   ],
@@ -3724,15 +3724,15 @@
   ],
   "excluded_files": [
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/.DS_Store",
-      "filename": ".DS_Store",
-      "extension": "[no_ext]",
-      "file_size": 6148,
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/baselib.dll",
+      "filename": "baselib.dll",
+      "extension": ".dll",
+      "file_size": 405016,
       "category": "excluded",
-      "reason": "junk_os_metadata"
+      "reason": "unsafe_executable_extension"
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/GameAssembly.dll",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/GameAssembly.dll",
       "filename": "GameAssembly.dll",
       "extension": ".dll",
       "file_size": 50879488,
@@ -3740,7 +3740,7 @@
       "reason": "unsafe_executable_extension"
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map.exe",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map.exe",
       "filename": "Map.exe",
       "extension": ".exe",
       "file_size": 653312,
@@ -3748,335 +3748,7 @@
       "reason": "unsafe_executable_extension"
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/.DS_Store",
-      "filename": ".DS_Store",
-      "extension": "[no_ext]",
-      "file_size": 6148,
-      "category": "excluded",
-      "reason": "junk_os_metadata"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/Plugins/.DS_Store",
-      "filename": ".DS_Store",
-      "extension": "[no_ext]",
-      "file_size": 6148,
-      "category": "excluded",
-      "reason": "junk_os_metadata"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/lib_burst_generated.dll",
-      "filename": "lib_burst_generated.dll",
-      "extension": ".dll",
-      "file_size": 54784,
-      "category": "excluded",
-      "reason": "unsafe_executable_extension"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/libsharpyuv.dll",
-      "filename": "libsharpyuv.dll",
-      "extension": ".dll",
-      "file_size": 25600,
-      "category": "excluded",
-      "reason": "unsafe_executable_extension"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/libwebp.dll",
-      "filename": "libwebp.dll",
-      "extension": ".dll",
-      "file_size": 494080,
-      "category": "excluded",
-      "reason": "unsafe_executable_extension"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/libwebpdecoder.dll",
-      "filename": "libwebpdecoder.dll",
-      "extension": ".dll",
-      "file_size": 253440,
-      "category": "excluded",
-      "reason": "unsafe_executable_extension"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/libwebpdemux.dll",
-      "filename": "libwebpdemux.dll",
-      "extension": ".dll",
-      "file_size": 20480,
-      "category": "excluded",
-      "reason": "unsafe_executable_extension"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/Resources/unity default resources",
-      "filename": "unity default resources",
-      "extension": "[no_ext]",
-      "file_size": 4833136,
-      "category": "excluded",
-      "reason": "unsupported_or_runtime_binary"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/Plugins/x86_64/tips/tips.exe",
-      "filename": "tips.exe",
-      "extension": ".exe",
-      "file_size": 1805312,
-      "category": "excluded",
-      "reason": "unsafe_executable_extension"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_animation_b01594225c1d8800dd0ee52ee17b4edd.bundle",
-      "filename": "assets_assetraw_animation_b01594225c1d8800dd0ee52ee17b4edd.bundle",
-      "extension": ".bundle",
-      "file_size": 20695,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_audios_8658d4ca8805f4008a0ea63b48dc7e53.bundle",
-      "filename": "assets_assetraw_audios_8658d4ca8805f4008a0ea63b48dc7e53.bundle",
-      "extension": ".bundle",
-      "file_size": 230613,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_dll_a2ab683db56c618c7ea1be3e34b5666a.bundle",
-      "filename": "assets_assetraw_dll_a2ab683db56c618c7ea1be3e34b5666a.bundle",
-      "extension": ".bundle",
-      "file_size": 4839312,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_fonts_3ec8d9dd37fbfa0925486a13e1e0ce63.bundle",
-      "filename": "assets_assetraw_fonts_3ec8d9dd37fbfa0925486a13e1e0ce63.bundle",
-      "extension": ".bundle",
-      "file_size": 12708695,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_materials_cf58b593dfbe3def5c174d24d8107ea5.bundle",
-      "filename": "assets_assetraw_materials_cf58b593dfbe3def5c174d24d8107ea5.bundle",
-      "extension": ".bundle",
-      "file_size": 6015,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_prefab_51ab50b5d97defe4a822de1cf24b55f7.bundle",
-      "filename": "assets_assetraw_prefab_51ab50b5d97defe4a822de1cf24b55f7.bundle",
-      "extension": ".bundle",
-      "file_size": 145852,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_scenes_main_1d56ee15483c4e58881ace6e50b94dc0.bundle",
-      "filename": "assets_assetraw_scenes_main_1d56ee15483c4e58881ace6e50b94dc0.bundle",
-      "extension": ".bundle",
-      "file_size": 96907,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_scenes_ysdt_92701399d68e9f6be03684dbbc5c8fd5.bundle",
-      "filename": "assets_assetraw_scenes_ysdt_92701399d68e9f6be03684dbbc5c8fd5.bundle",
-      "extension": ".bundle",
-      "file_size": 733096,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_cloud_f95e5ffbe4bd88d6656ca5bffe38119c.bundle",
-      "filename": "assets_assetraw_shaders_cloud_f95e5ffbe4bd88d6656ca5bffe38119c.bundle",
-      "extension": ".bundle",
-      "file_size": 22396,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_mapol_d7d3c8c611bb02f16ee07e8ea5c8b2fb.bundle",
-      "filename": "assets_assetraw_shaders_mapol_d7d3c8c611bb02f16ee07e8ea5c8b2fb.bundle",
-      "extension": ".bundle",
-      "file_size": 24121,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_mapoutline_d190da5385b06131640b4d09e39d1c2d.bundle",
-      "filename": "assets_assetraw_shaders_mapoutline_d190da5385b06131640b4d09e39d1c2d.bundle",
-      "extension": ".bundle",
-      "file_size": 20030,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_mask_eda99910a4a87265e3586e7040c950f3.bundle",
-      "filename": "assets_assetraw_shaders_mask_eda99910a4a87265e3586e7040c950f3.bundle",
-      "extension": ".bundle",
-      "file_size": 4631,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_outline_51109a26d5294f9a13b8f59a5f17b588.bundle",
-      "filename": "assets_assetraw_shaders_outline_51109a26d5294f9a13b8f59a5f17b588.bundle",
-      "extension": ".bundle",
-      "file_size": 18778,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_qdoutline_42791c3c4bf5794a26345719ddaaf8be.bundle",
-      "filename": "assets_assetraw_shaders_qdoutline_42791c3c4bf5794a26345719ddaaf8be.bundle",
-      "extension": ".bundle",
-      "file_size": 19225,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_sprite_unlit_d5e1e4865b4127dbd3f7a9f800f460ca.bundle",
-      "filename": "assets_assetraw_shaders_sprite_unlit_d5e1e4865b4127dbd3f7a9f800f460ca.bundle",
-      "extension": ".bundle",
-      "file_size": 18389,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0004_4_6dd79659049fcdaca6e76b9de2bb8235.bundle",
-      "filename": "assets_assetraw_shaders_tex_0004_4_6dd79659049fcdaca6e76b9de2bb8235.bundle",
-      "extension": ".bundle",
-      "file_size": 125936,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0005_5_865489cff711aa9cb4554a0d3a2f0355.bundle",
-      "filename": "assets_assetraw_shaders_tex_0005_5_865489cff711aa9cb4554a0d3a2f0355.bundle",
-      "extension": ".bundle",
-      "file_size": 161336,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0006_6_47acc080da76cd88de59e969e73766bc.bundle",
-      "filename": "assets_assetraw_shaders_tex_0006_6_47acc080da76cd88de59e969e73766bc.bundle",
-      "extension": ".bundle",
-      "file_size": 236227,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0007_7_d1c2175b42510b30511bfd10224147e5.bundle",
-      "filename": "assets_assetraw_shaders_tex_0007_7_d1c2175b42510b30511bfd10224147e5.bundle",
-      "extension": ".bundle",
-      "file_size": 13089,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0009_9_6e4621d2afba5ba7c724da2e6c1ac9b4.bundle",
-      "filename": "assets_assetraw_shaders_tex_0009_9_6e4621d2afba5ba7c724da2e6c1ac9b4.bundle",
-      "extension": ".bundle",
-      "file_size": 494851,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0111_1_6c6594578dded9b253e803e832c1dd21.bundle",
-      "filename": "assets_assetraw_shaders_tex_0111_1_6c6594578dded9b253e803e832c1dd21.bundle",
-      "extension": ".bundle",
-      "file_size": 11787,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0133_1_9860a9dd31694169700bc0727fdd2c7a.bundle",
-      "filename": "assets_assetraw_shaders_tex_0133_1_9860a9dd31694169700bc0727fdd2c7a.bundle",
-      "extension": ".bundle",
-      "file_size": 25524,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_resources_animations_f15936266d159a1d6af140d914656d99.bundle",
-      "filename": "share_assets_resources_animations_f15936266d159a1d6af140d914656d99.bundle",
-      "extension": ".bundle",
-      "file_size": 10823,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_textmesh_pro_fonts_d42be3b3c0df7b71113fb7a3dda5daab.bundle",
-      "filename": "share_assets_textmesh_pro_fonts_d42be3b3c0df7b71113fb7a3dda5daab.bundle",
-      "extension": ".bundle",
-      "file_size": 227375,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_textmesh_pro_resources_fonts_&_materials_5664a3d322ed99f0cb0c1f64119feed9.bundle",
-      "filename": "share_assets_textmesh_pro_resources_fonts_&_materials_5664a3d322ed99f0cb0c1f64119feed9.bundle",
-      "extension": ".bundle",
-      "file_size": 373530,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_textmesh_pro_shaders_7c45b0307155d5f4258922b3368a3055.bundle",
-      "filename": "share_assets_textmesh_pro_shaders_7c45b0307155d5f4258922b3368a3055.bundle",
-      "extension": ".bundle",
-      "file_size": 24726,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_vectrosity_demos_prefabs_cbe6e60d18ddfb6837d2e25ea109daad.bundle",
-      "filename": "share_assets_vectrosity_demos_prefabs_cbe6e60d18ddfb6837d2e25ea109daad.bundle",
-      "extension": ".bundle",
-      "file_size": 4731,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_vectrosity_demos_textures_2141390d9e8b16f4b33dccf6d4089d4b.bundle",
-      "filename": "share_assets_vectrosity_demos_textures_2141390d9e8b16f4b33dccf6d4089d4b.bundle",
-      "extension": ".bundle",
-      "file_size": 4875,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_vectrosity_demos_textures__vectortextures_d3d6100eff7196d3e05a317ffb03129f.bundle",
-      "filename": "share_assets_vectrosity_demos_textures__vectortextures_d3d6100eff7196d3e05a317ffb03129f.bundle",
-      "extension": ".bundle",
-      "file_size": 8664,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_ui_bf5ce5ad20476f457386b58ef189f77c.bundle",
-      "filename": "share_assets_ysdt_ui_bf5ce5ad20476f457386b58ef189f77c.bundle",
-      "extension": ".bundle",
-      "file_size": 568060,
-      "category": "excluded",
-      "reason": "unclassified_unity_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_packages_com_unity_textmeshpro_editor_resources_gizmos_06fba0f306c87277348e4aae52d6711a.bundle",
-      "filename": "share_packages_com_unity_textmeshpro_editor_resources_gizmos_06fba0f306c87277348e4aae52d6711a.bundle",
-      "extension": ".bundle",
-      "file_size": 8369,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/unityshaders_218320ad938b0799de76c372d58c6c4c.bundle",
-      "filename": "unityshaders_218320ad938b0799de76c372d58c6c4c.bundle",
-      "extension": ".bundle",
-      "file_size": 32208,
-      "category": "excluded",
-      "reason": "non_map_runtime_or_media_bundle"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/data.unity3d",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/data.unity3d",
       "filename": "data.unity3d",
       "extension": ".unity3d",
       "file_size": 17296385,
@@ -4084,7 +3756,7 @@
       "reason": "unsupported_or_runtime_binary"
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/il2cpp_data/.DS_Store",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/il2cpp_data/.DS_Store",
       "filename": ".DS_Store",
       "extension": "[no_ext]",
       "file_size": 6148,
@@ -4092,7 +3764,7 @@
       "reason": "junk_os_metadata"
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/il2cpp_data/Metadata/global-metadata.dat",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/il2cpp_data/Metadata/global-metadata.dat",
       "filename": "global-metadata.dat",
       "extension": ".dat",
       "file_size": 10393220,
@@ -4100,23 +3772,7 @@
       "reason": "unsupported_or_runtime_binary"
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/il2cpp_data/Resources/Newtonsoft.Json.dll-resources.dat",
-      "filename": "Newtonsoft.Json.dll-resources.dat",
-      "extension": ".dat",
-      "file_size": 900,
-      "category": "excluded",
-      "reason": "unsupported_or_runtime_binary"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/il2cpp_data/Resources/System.Data.dll-resources.dat",
-      "filename": "System.Data.dll-resources.dat",
-      "extension": ".dat",
-      "file_size": 93718,
-      "category": "excluded",
-      "reason": "unsupported_or_runtime_binary"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/il2cpp_data/Resources/mscorlib.dll-resources.dat",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/il2cpp_data/Resources/mscorlib.dll-resources.dat",
       "filename": "mscorlib.dll-resources.dat",
       "extension": ".dat",
       "file_size": 337563,
@@ -4124,7 +3780,79 @@
       "reason": "unsupported_or_runtime_binary"
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/resources.resource",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/il2cpp_data/Resources/Newtonsoft.Json.dll-resources.dat",
+      "filename": "Newtonsoft.Json.dll-resources.dat",
+      "extension": ".dat",
+      "file_size": 900,
+      "category": "excluded",
+      "reason": "unsupported_or_runtime_binary"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/il2cpp_data/Resources/System.Data.dll-resources.dat",
+      "filename": "System.Data.dll-resources.dat",
+      "extension": ".dat",
+      "file_size": 93718,
+      "category": "excluded",
+      "reason": "unsupported_or_runtime_binary"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/Plugins/.DS_Store",
+      "filename": ".DS_Store",
+      "extension": "[no_ext]",
+      "file_size": 6148,
+      "category": "excluded",
+      "reason": "junk_os_metadata"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/lib_burst_generated.dll",
+      "filename": "lib_burst_generated.dll",
+      "extension": ".dll",
+      "file_size": 54784,
+      "category": "excluded",
+      "reason": "unsafe_executable_extension"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/libsharpyuv.dll",
+      "filename": "libsharpyuv.dll",
+      "extension": ".dll",
+      "file_size": 25600,
+      "category": "excluded",
+      "reason": "unsafe_executable_extension"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/libwebp.dll",
+      "filename": "libwebp.dll",
+      "extension": ".dll",
+      "file_size": 494080,
+      "category": "excluded",
+      "reason": "unsafe_executable_extension"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/libwebpdecoder.dll",
+      "filename": "libwebpdecoder.dll",
+      "extension": ".dll",
+      "file_size": 253440,
+      "category": "excluded",
+      "reason": "unsafe_executable_extension"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/Plugins/x86_64/libwebpdemux.dll",
+      "filename": "libwebpdemux.dll",
+      "extension": ".dll",
+      "file_size": 20480,
+      "category": "excluded",
+      "reason": "unsafe_executable_extension"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/Resources/unity default resources",
+      "filename": "unity default resources",
+      "extension": "[no_ext]",
+      "file_size": 4833136,
+      "category": "excluded",
+      "reason": "unsupported_or_runtime_binary"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/resources.resource",
       "filename": "resources.resource",
       "extension": ".resource",
       "file_size": 82560,
@@ -4132,7 +3860,7 @@
       "reason": "unsupported_or_runtime_binary"
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/Map_Data/sharedassets0.resource",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/sharedassets0.resource",
       "filename": "sharedassets0.resource",
       "extension": ".resource",
       "file_size": 23808,
@@ -4140,7 +3868,271 @@
       "reason": "unsupported_or_runtime_binary"
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/UnityCrashHandler64.exe",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_animation_b01594225c1d8800dd0ee52ee17b4edd.bundle",
+      "filename": "assets_assetraw_animation_b01594225c1d8800dd0ee52ee17b4edd.bundle",
+      "extension": ".bundle",
+      "file_size": 20695,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_audios_8658d4ca8805f4008a0ea63b48dc7e53.bundle",
+      "filename": "assets_assetraw_audios_8658d4ca8805f4008a0ea63b48dc7e53.bundle",
+      "extension": ".bundle",
+      "file_size": 230613,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_dll_a2ab683db56c618c7ea1be3e34b5666a.bundle",
+      "filename": "assets_assetraw_dll_a2ab683db56c618c7ea1be3e34b5666a.bundle",
+      "extension": ".bundle",
+      "file_size": 4839312,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_fonts_3ec8d9dd37fbfa0925486a13e1e0ce63.bundle",
+      "filename": "assets_assetraw_fonts_3ec8d9dd37fbfa0925486a13e1e0ce63.bundle",
+      "extension": ".bundle",
+      "file_size": 12708695,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_materials_cf58b593dfbe3def5c174d24d8107ea5.bundle",
+      "filename": "assets_assetraw_materials_cf58b593dfbe3def5c174d24d8107ea5.bundle",
+      "extension": ".bundle",
+      "file_size": 6015,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_prefab_51ab50b5d97defe4a822de1cf24b55f7.bundle",
+      "filename": "assets_assetraw_prefab_51ab50b5d97defe4a822de1cf24b55f7.bundle",
+      "extension": ".bundle",
+      "file_size": 145852,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_scenes_main_1d56ee15483c4e58881ace6e50b94dc0.bundle",
+      "filename": "assets_assetraw_scenes_main_1d56ee15483c4e58881ace6e50b94dc0.bundle",
+      "extension": ".bundle",
+      "file_size": 96907,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_scenes_ysdt_92701399d68e9f6be03684dbbc5c8fd5.bundle",
+      "filename": "assets_assetraw_scenes_ysdt_92701399d68e9f6be03684dbbc5c8fd5.bundle",
+      "extension": ".bundle",
+      "file_size": 733096,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_cloud_f95e5ffbe4bd88d6656ca5bffe38119c.bundle",
+      "filename": "assets_assetraw_shaders_cloud_f95e5ffbe4bd88d6656ca5bffe38119c.bundle",
+      "extension": ".bundle",
+      "file_size": 22396,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_mapol_d7d3c8c611bb02f16ee07e8ea5c8b2fb.bundle",
+      "filename": "assets_assetraw_shaders_mapol_d7d3c8c611bb02f16ee07e8ea5c8b2fb.bundle",
+      "extension": ".bundle",
+      "file_size": 24121,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_mapoutline_d190da5385b06131640b4d09e39d1c2d.bundle",
+      "filename": "assets_assetraw_shaders_mapoutline_d190da5385b06131640b4d09e39d1c2d.bundle",
+      "extension": ".bundle",
+      "file_size": 20030,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_mask_eda99910a4a87265e3586e7040c950f3.bundle",
+      "filename": "assets_assetraw_shaders_mask_eda99910a4a87265e3586e7040c950f3.bundle",
+      "extension": ".bundle",
+      "file_size": 4631,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_outline_51109a26d5294f9a13b8f59a5f17b588.bundle",
+      "filename": "assets_assetraw_shaders_outline_51109a26d5294f9a13b8f59a5f17b588.bundle",
+      "extension": ".bundle",
+      "file_size": 18778,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_qdoutline_42791c3c4bf5794a26345719ddaaf8be.bundle",
+      "filename": "assets_assetraw_shaders_qdoutline_42791c3c4bf5794a26345719ddaaf8be.bundle",
+      "extension": ".bundle",
+      "file_size": 19225,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_sprite_unlit_d5e1e4865b4127dbd3f7a9f800f460ca.bundle",
+      "filename": "assets_assetraw_shaders_sprite_unlit_d5e1e4865b4127dbd3f7a9f800f460ca.bundle",
+      "extension": ".bundle",
+      "file_size": 18389,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0004_4_6dd79659049fcdaca6e76b9de2bb8235.bundle",
+      "filename": "assets_assetraw_shaders_tex_0004_4_6dd79659049fcdaca6e76b9de2bb8235.bundle",
+      "extension": ".bundle",
+      "file_size": 125936,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0005_5_865489cff711aa9cb4554a0d3a2f0355.bundle",
+      "filename": "assets_assetraw_shaders_tex_0005_5_865489cff711aa9cb4554a0d3a2f0355.bundle",
+      "extension": ".bundle",
+      "file_size": 161336,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0006_6_47acc080da76cd88de59e969e73766bc.bundle",
+      "filename": "assets_assetraw_shaders_tex_0006_6_47acc080da76cd88de59e969e73766bc.bundle",
+      "extension": ".bundle",
+      "file_size": 236227,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0007_7_d1c2175b42510b30511bfd10224147e5.bundle",
+      "filename": "assets_assetraw_shaders_tex_0007_7_d1c2175b42510b30511bfd10224147e5.bundle",
+      "extension": ".bundle",
+      "file_size": 13089,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0009_9_6e4621d2afba5ba7c724da2e6c1ac9b4.bundle",
+      "filename": "assets_assetraw_shaders_tex_0009_9_6e4621d2afba5ba7c724da2e6c1ac9b4.bundle",
+      "extension": ".bundle",
+      "file_size": 494851,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0111_1_6c6594578dded9b253e803e832c1dd21.bundle",
+      "filename": "assets_assetraw_shaders_tex_0111_1_6c6594578dded9b253e803e832c1dd21.bundle",
+      "extension": ".bundle",
+      "file_size": 11787,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/assets_assetraw_shaders_tex_0133_1_9860a9dd31694169700bc0727fdd2c7a.bundle",
+      "filename": "assets_assetraw_shaders_tex_0133_1_9860a9dd31694169700bc0727fdd2c7a.bundle",
+      "extension": ".bundle",
+      "file_size": 25524,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_resources_animations_f15936266d159a1d6af140d914656d99.bundle",
+      "filename": "share_assets_resources_animations_f15936266d159a1d6af140d914656d99.bundle",
+      "extension": ".bundle",
+      "file_size": 10823,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_textmesh_pro_fonts_d42be3b3c0df7b71113fb7a3dda5daab.bundle",
+      "filename": "share_assets_textmesh_pro_fonts_d42be3b3c0df7b71113fb7a3dda5daab.bundle",
+      "extension": ".bundle",
+      "file_size": 227375,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_textmesh_pro_resources_fonts_&_materials_5664a3d322ed99f0cb0c1f64119feed9.bundle",
+      "filename": "share_assets_textmesh_pro_resources_fonts_&_materials_5664a3d322ed99f0cb0c1f64119feed9.bundle",
+      "extension": ".bundle",
+      "file_size": 373530,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_textmesh_pro_shaders_7c45b0307155d5f4258922b3368a3055.bundle",
+      "filename": "share_assets_textmesh_pro_shaders_7c45b0307155d5f4258922b3368a3055.bundle",
+      "extension": ".bundle",
+      "file_size": 24726,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_vectrosity_demos_prefabs_cbe6e60d18ddfb6837d2e25ea109daad.bundle",
+      "filename": "share_assets_vectrosity_demos_prefabs_cbe6e60d18ddfb6837d2e25ea109daad.bundle",
+      "extension": ".bundle",
+      "file_size": 4731,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_vectrosity_demos_textures_2141390d9e8b16f4b33dccf6d4089d4b.bundle",
+      "filename": "share_assets_vectrosity_demos_textures_2141390d9e8b16f4b33dccf6d4089d4b.bundle",
+      "extension": ".bundle",
+      "file_size": 4875,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_vectrosity_demos_textures__vectortextures_d3d6100eff7196d3e05a317ffb03129f.bundle",
+      "filename": "share_assets_vectrosity_demos_textures__vectortextures_d3d6100eff7196d3e05a317ffb03129f.bundle",
+      "extension": ".bundle",
+      "file_size": 8664,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_assets_ysdt_ui_bf5ce5ad20476f457386b58ef189f77c.bundle",
+      "filename": "share_assets_ysdt_ui_bf5ce5ad20476f457386b58ef189f77c.bundle",
+      "extension": ".bundle",
+      "file_size": 568060,
+      "category": "excluded",
+      "reason": "unclassified_unity_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/share_packages_com_unity_textmeshpro_editor_resources_gizmos_06fba0f306c87277348e4aae52d6711a.bundle",
+      "filename": "share_packages_com_unity_textmeshpro_editor_resources_gizmos_06fba0f306c87277348e4aae52d6711a.bundle",
+      "extension": ".bundle",
+      "file_size": 8369,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/package/DefaultPackage/unityshaders_218320ad938b0799de76c372d58c6c4c.bundle",
+      "filename": "unityshaders_218320ad938b0799de76c372d58c6c4c.bundle",
+      "extension": ".bundle",
+      "file_size": 32208,
+      "category": "excluded",
+      "reason": "non_map_runtime_or_media_bundle"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/Map_Data/StreamingAssets/Plugins/x86_64/tips/tips.exe",
+      "filename": "tips.exe",
+      "extension": ".exe",
+      "file_size": 1805312,
+      "category": "excluded",
+      "reason": "unsafe_executable_extension"
+    },
+    {
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/UnityCrashHandler64.exe",
       "filename": "UnityCrashHandler64.exe",
       "extension": ".exe",
       "file_size": 1123864,
@@ -4148,18 +4140,10 @@
       "reason": "unsafe_executable_extension"
     },
     {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/UnityPlayer.dll",
+      "original_path": "C:/Users/Amrit/OneDrive/Documents/GitHub/Genshin-Live-Tracker-Map/KongYingMap-RC1.0.1/UnityPlayer.dll",
       "filename": "UnityPlayer.dll",
       "extension": ".dll",
       "file_size": 29434904,
-      "category": "excluded",
-      "reason": "unsafe_executable_extension"
-    },
-    {
-      "original_path": "/Users/amritladhar/Documents/GitHub/Genshin Live Tracker & Map/KongYingMap-RC1.0.1/baselib.dll",
-      "filename": "baselib.dll",
-      "extension": ".dll",
-      "file_size": 405016,
       "category": "excluded",
       "reason": "unsafe_executable_extension"
     }

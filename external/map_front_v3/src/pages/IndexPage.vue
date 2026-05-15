@@ -37,7 +37,7 @@
           :class="{ on: teleport_state }"
           @click="teleport_switch"
         ></div>
-        <div class="text">传送点位</div>
+        <div class="text">Teleport Points</div>
       </div>
       <div class="switch row items-center">
         <div
@@ -45,7 +45,7 @@
           :class="{ on: opacity_state }"
           @click="opacity_switch"
         ></div>
-        <div class="text">标记点位</div>
+        <div class="text">Marked Points</div>
       </div>
       <div class="underground_toggle" v-if="underground_show">
         <div class="switch row items-center">
@@ -54,7 +54,7 @@
             :class="{ on: underground_opacity }"
             @click="underground_opacity_switch"
           ></div>
-          <div class="text">仅显示分层点位</div>
+          <div class="text">Layered Points Only</div>
         </div>
       </div>
     </div>

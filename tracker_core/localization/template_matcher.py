@@ -9,6 +9,7 @@ import numpy as np
 
 from tracker_core.map_data.kongying_loader import KongYingMapData
 from tracker_core.map_data.map_assets import MapImageAsset
+from tracker_core.utils.cv_images import read_image_bgr, write_image
 from tracker_core.utils.paths import ensure_dir, repo_root
 
 
@@ -94,18 +95,29 @@ def _repo_relative(path: Path) -> str:
 
 def _read_image_bgr(path: Path) -> np.ndarray | None:
     try:
-        import cv2
-    except ImportError as exc:
+        return read_image_bgr(path)
+    except RuntimeError as exc:
         raise LocalizationError("opencv-python is required for template matching.") from exc
 
-    return cv2.imread(path.as_posix(), cv2.IMREAD_COLOR)
+
+def _write_image(path: Path, image: np.ndarray) -> None:
+    try:
+        write_image(path, image)
+    except RuntimeError:
+        return
 
 
-def _preprocess_for_match(image: np.ndarray, mode: str = "gray") -> np.ndarray:
+def _require_cv2():
     try:
         import cv2
     except ImportError as exc:
         raise LocalizationError("opencv-python is required for template matching.") from exc
+
+    return cv2
+
+
+def _preprocess_for_match(image: np.ndarray, mode: str = "gray") -> np.ndarray:
+    cv2 = _require_cv2()
 
     if len(image.shape) == 2:
         gray = image
@@ -130,10 +142,7 @@ def build_circular_minimap_mask(
     radius_ratio: float = 0.43,
     inner_exclusion_ratio: float = 0.075,
 ) -> np.ndarray:
-    try:
-        import cv2
-    except ImportError as exc:
-        raise LocalizationError("opencv-python is required for minimap masking.") from exc
+    cv2 = _require_cv2()
 
     height, width = shape[:2]
     center = (width // 2, height // 2)
@@ -154,10 +163,7 @@ def _resize_template_and_mask(
     mask: np.ndarray,
     scale: float,
 ) -> tuple[np.ndarray, np.ndarray]:
-    try:
-        import cv2
-    except ImportError as exc:
-        raise LocalizationError("opencv-python is required for template scaling.") from exc
+    cv2 = _require_cv2()
 
     height, width = template.shape[:2]
     next_width = max(8, int(round(width * scale)))
@@ -173,10 +179,7 @@ def _match_template(
     mask: np.ndarray,
     method_name: str,
 ) -> tuple[float, tuple[int, int]]:
-    try:
-        import cv2
-    except ImportError as exc:
-        raise LocalizationError("opencv-python is required for template matching.") from exc
+    cv2 = _require_cv2()
 
     method_map = {
         "ccoeff_normed": cv2.TM_CCOEFF_NORMED,
@@ -201,23 +204,13 @@ def _match_template(
 
 
 def _save_mask_debug(mask: np.ndarray, output_path: Path) -> None:
-    try:
-        import cv2
-    except ImportError:
-        return
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(output_path.as_posix(), mask)
+    _write_image(output_path, mask)
 
 
 def _save_template_debug(template_bgr: np.ndarray, mask: np.ndarray, output_path: Path) -> None:
-    try:
-        import cv2
-    except ImportError:
-        return
     masked = template_bgr.copy()
     masked[mask == 0] = 0
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(output_path.as_posix(), masked)
+    _write_image(output_path, masked)
 
 
 def _save_match_debug(
@@ -236,8 +229,7 @@ def _save_match_debug(
     cv2.rectangle(debug, (x, y), (x + candidate.template_width, y + candidate.template_height), (0, 0, 255), 3)
     label = f"{candidate.score:.3f} scale={candidate.scale:.2f}"
     cv2.putText(debug, label, (max(0, x), max(28, y - 10)), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(output_path.as_posix(), debug)
+    _write_image(output_path, debug)
 
 
 def _save_candidate_contact_sheet(
@@ -277,8 +269,7 @@ def _save_candidate_contact_sheet(
     if not panels:
         return
     sheet = np.hstack(panels)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(output_path.as_posix(), sheet)
+    _write_image(output_path, sheet)
 
 
 def _candidate_from_match(

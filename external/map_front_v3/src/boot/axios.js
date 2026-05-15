@@ -10,6 +10,7 @@ import { create_notify } from "../api/common";
 
 const api = axios.create({
   baseURL: `${process.env.VITE_API_BASE}/api`,
+  timeout: 3000,
 });
 api.interceptors.response.use(
   (res) => {
@@ -26,7 +27,7 @@ api.interceptors.response.use(
         "negative",
       );
     } else if (error.request) {
-      create_notify("链接失败，请稍后重试", "negative");
+      create_notify("Connection failed. Try again later.", "negative");
     } else {
       create_notify(error.message, "negative");
     }
