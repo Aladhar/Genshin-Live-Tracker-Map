@@ -10,6 +10,3 @@ cmake --build build --config Release --target cvAutoTrack test_impl_cpp
 
 Output exe:
 external\cvAutoTrack\build-windows\bin\Release\test_impl_cpp.exe
-
-Mac equivalent: For Tracker
-.venv/bin/python tools/test_tracker_windows.py --frame RawScreen.png
