@@ -36,6 +36,7 @@
   "match_regions": [
     "MainMap"
   ],
+  "initial_max_match_assets": 64,
   "match_scales": [
     0.8
   ],

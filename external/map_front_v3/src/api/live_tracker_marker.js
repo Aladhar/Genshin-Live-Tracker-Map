@@ -2,6 +2,7 @@ import * as L from "leaflet";
 import { map } from "./map_obj";
 
 const trackerUrl = "/tracker/latest.json";
+const defaultTileUnit = 1024;
 
 let marker = null;
 let pollTimer = null;
@@ -68,6 +69,76 @@ function removeMarker() {
   marker = null;
 }
 
+function numericValue(value) {
+  if (value === null || value === undefined || value === "") {
+    return null;
+  }
+  const numberValue = Number(value);
+  return Number.isFinite(numberValue) ? numberValue : null;
+}
+
+function firstNumeric(...values) {
+  for (const value of values) {
+    const numberValue = numericValue(value);
+    if (numberValue !== null) {
+      return numberValue;
+    }
+  }
+  return null;
+}
+
+function deriveMapPosition(payload) {
+  const payloadPosition = payload?.map_position;
+  const payloadLat = numericValue(payloadPosition?.lat);
+  const payloadLng = numericValue(payloadPosition?.lng);
+  if (payloadLat !== null && payloadLng !== null) {
+    return { lat: payloadLat, lng: payloadLng };
+  }
+
+  if (!payload?.accepted) {
+    return null;
+  }
+
+  const result = payload?.result || {};
+  const topCandidates = Array.isArray(result.top_candidates)
+    ? result.top_candidates
+    : [];
+  const candidate = topCandidates[0] || {};
+  const tileX = firstNumeric(result.tile_x, candidate.tile_x);
+  const tileY = firstNumeric(result.tile_y, candidate.tile_y);
+  const localX = firstNumeric(
+    result.local_x,
+    candidate.local_x,
+    result.candidate_local_x,
+  );
+  const localY = firstNumeric(
+    result.local_y,
+    candidate.local_y,
+    result.candidate_local_y,
+  );
+  const mapWidth = firstNumeric(result.map_width, candidate.map_width);
+  const mapHeight = firstNumeric(result.map_height, candidate.map_height);
+
+  if (
+    tileX !== null &&
+    tileY !== null &&
+    localX !== null &&
+    localY !== null &&
+    mapWidth !== null &&
+    mapHeight !== null
+  ) {
+    const tileUnit = firstNumeric(payload.frontend_tile_unit, defaultTileUnit);
+    return {
+      lat: tileX * tileUnit + (localX * tileUnit) / mapWidth,
+      lng: tileY * tileUnit + (localY * tileUnit) / mapHeight,
+    };
+  }
+
+  const x = numericValue(result.x);
+  const y = numericValue(result.y);
+  return x !== null && y !== null ? { lat: x, lng: y } : null;
+}
+
 async function updateLiveTrackerMarker() {
   if (!map.value) {
     return;
@@ -83,8 +154,8 @@ async function updateLiveTrackerMarker() {
     }
 
     const payload = await response.json();
-    const position = payload?.map_position;
-    if (!payload?.accepted || position?.lat == null || position?.lng == null) {
+    const position = deriveMapPosition(payload);
+    if (!position) {
       removeMarker();
       return;
     }

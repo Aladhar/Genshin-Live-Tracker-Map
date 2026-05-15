@@ -10,8 +10,54 @@ from typing import Any
 
 from tracker_core.localization.template_matcher import localize_minimap
 from tracker_core.map_data.kongying_loader import KongYingMapData
+from tracker_core.map_data.map_assets import MapImageAsset
 from tracker_core.minimap.crop import crop_minimap_region
 from tracker_core.utils.paths import load_json, resolve_repo_path
+
+
+class FilteredKongYingMapData:
+    def __init__(
+        self,
+        base: KongYingMapData,
+        *,
+        regions: set[str],
+        asset_names: set[str] | None = None,
+        center_tile: tuple[int, int] | None = None,
+        tile_radius: int | None = None,
+    ) -> None:
+        self.base = base
+        self.regions = regions
+        self.asset_names = asset_names or set()
+        self.center_tile = center_tile
+        self.tile_radius = tile_radius
+
+    def list_regions(self) -> list[str]:
+        return self.base.list_regions()
+
+    def list_match_image_asset_records(
+        self,
+        categories: set[str] | None = None,
+        exclude_keywords: tuple[str, ...] = ("outline", "overlay"),
+    ) -> list[MapImageAsset]:
+        assets = self.base.list_match_image_asset_records(
+            categories=categories,
+            exclude_keywords=exclude_keywords,
+        )
+        filtered: list[MapImageAsset] = []
+        for asset in assets:
+            if self.regions and asset.region not in self.regions:
+                continue
+            if self.asset_names and asset.asset_name not in self.asset_names:
+                continue
+            if self.center_tile and self.tile_radius is not None:
+                if asset.tile_x is None or asset.tile_y is None:
+                    continue
+                if abs(asset.tile_x - self.center_tile[0]) > self.tile_radius:
+                    continue
+                if abs(asset.tile_y - self.center_tile[1]) > self.tile_radius:
+                    continue
+            filtered.append(asset)
+        return filtered
 
 
 def utc_now() -> str:
@@ -36,6 +82,59 @@ def choose_capture(config: dict[str, Any]):
     return capture_from_config
 
 
+def best_top_candidate(result: dict[str, Any]) -> dict[str, Any]:
+    top_candidates = result.get("top_candidates")
+    if not isinstance(top_candidates, list) or not top_candidates:
+        return {}
+    candidate = top_candidates[0]
+    return candidate if isinstance(candidate, dict) else {}
+
+
+def first_present(*values: Any) -> Any:
+    for value in values:
+        if value is not None:
+            return value
+    return None
+
+
+def result_to_frontend_map_position(result: dict[str, Any], config: dict[str, Any]) -> dict[str, float] | None:
+    if not result.get("accepted"):
+        return None
+
+    candidate = best_top_candidate(result)
+    tile_x = first_present(result.get("tile_x"), candidate.get("tile_x"))
+    tile_y = first_present(result.get("tile_y"), candidate.get("tile_y"))
+    local_x = first_present(
+        result.get("local_x"),
+        candidate.get("local_x"),
+        result.get("candidate_local_x"),
+    )
+    local_y = first_present(
+        result.get("local_y"),
+        candidate.get("local_y"),
+        result.get("candidate_local_y"),
+    )
+    map_width = first_present(result.get("map_width"), candidate.get("map_width"))
+    map_height = first_present(result.get("map_height"), candidate.get("map_height"))
+
+    if None not in (tile_x, tile_y, local_x, local_y, map_width, map_height):
+        tile_unit = float(config.get("frontend_tile_unit", 1024))
+        return {
+            "lat": float(tile_x) * tile_unit + float(local_x) * tile_unit / float(map_width),
+            "lng": float(tile_y) * tile_unit + float(local_y) * tile_unit / float(map_height),
+        }
+
+    x = result.get("x")
+    y = result.get("y")
+    if x is not None and y is not None:
+        return {
+            "lat": float(x),
+            "lng": float(y),
+        }
+
+    return None
+
+
 def result_to_frontend_payload(
     result: dict[str, Any],
     config: dict[str, Any],
@@ -43,34 +142,13 @@ def result_to_frontend_payload(
     crop_box: Any | None,
 ) -> dict[str, Any]:
     accepted = bool(result.get("accepted"))
-    x = result.get("x")
-    y = result.get("y")
-
-    map_position = None
-    if accepted:
-        tile_x = result.get("tile_x")
-        tile_y = result.get("tile_y")
-        local_x = result.get("local_x")
-        local_y = result.get("local_y")
-        map_width = result.get("map_width")
-        map_height = result.get("map_height")
-
-        if None not in (tile_x, tile_y, local_x, local_y, map_width, map_height):
-            tile_unit = float(config.get("frontend_tile_unit", 1024))
-            map_position = {
-                "lat": float(tile_x) * tile_unit + float(local_x) * tile_unit / float(map_width),
-                "lng": float(tile_y) * tile_unit + float(local_y) * tile_unit / float(map_height),
-            }
-        elif x is not None and y is not None:
-            map_position = {
-                "lat": float(x),
-                "lng": float(y),
-            }
+    map_position = result_to_frontend_map_position(result, config)
 
     return {
         "schema_version": 1,
         "platform": str(config.get("platform", "mac")),
         "timestamp": utc_now(),
+        "frontend_tile_unit": float(config.get("frontend_tile_unit", 1024)),
         "frame_source": "live_screen",
         "frame_shape": list(frame_shape[:3]),
         "crop_box": crop_box.to_dict() if crop_box is not None else None,
@@ -94,6 +172,7 @@ def error_payload(exc: Exception, config: dict[str, Any]) -> dict[str, Any]:
         "schema_version": 1,
         "platform": str(config.get("platform", "mac")),
         "timestamp": utc_now(),
+        "frontend_tile_unit": float(config.get("frontend_tile_unit", 1024)),
         "frame_source": "live_screen",
         "frame_shape": None,
         "crop_box": None,
@@ -111,12 +190,42 @@ def error_payload(exc: Exception, config: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def make_filtered_match_data(
+    data: KongYingMapData,
+    config: dict[str, Any],
+    center_tile: tuple[int, int] | None,
+) -> FilteredKongYingMapData:
+    initial_asset_names = set(
+        str(name)
+        for name in config.get("initial_tile_names", [])
+        if str(name).strip()
+    )
+    tile_radius = int(config.get("nearby_tile_radius", 1)) if center_tile else None
+    return FilteredKongYingMapData(
+        data,
+        regions=set(config.get("match_regions", ["MainMap"])),
+        asset_names=None if center_tile else initial_asset_names,
+        center_tile=center_tile,
+        tile_radius=tile_radius,
+    )
+
+
+def match_asset_limit(config: dict[str, Any], center_tile: tuple[int, int] | None) -> int:
+    configured_limit = int(config.get("max_match_assets", 0))
+    if configured_limit > 0:
+        return configured_limit
+    if center_tile:
+        return 0
+    return int(config.get("initial_max_match_assets", 64))
+
+
 def run_tracker_loop(config_path: str | Path, once: bool = False) -> None:
     config = load_json(config_path)
     data = KongYingMapData(config.get("kongying_manifest", "data/kongying/manifest.json"))
     interval_seconds = float(config.get("tracker_interval_seconds", 0.75))
     latest_output_path = config.get("latest_output_path")
     capture_from_config = choose_capture(config)
+    center_tile: tuple[int, int] | None = None
 
     while True:
         try:
@@ -124,11 +233,12 @@ def run_tracker_loop(config_path: str | Path, once: bool = False) -> None:
 
             # New auto crop path. This returns both minimap image and crop metadata.
             minimap, crop_box = crop_minimap_region(frame, config, clean=True)
+            match_data = make_filtered_match_data(data, config, center_tile)
 
             result = localize_minimap(
                 minimap,
-                kongying_data=data,
-                max_assets=int(config.get("max_match_assets", 0)),
+                kongying_data=match_data,
+                max_assets=match_asset_limit(config, center_tile),
                 debug_output_enabled=bool(config.get("debug_output_enabled", True)),
                 debug_dir=config.get("debug_output_dir", "debug_output"),
                 exclude_keywords=tuple(config.get("match_exclude_keywords", ["outline", "overlay"])),
@@ -141,8 +251,16 @@ def run_tracker_loop(config_path: str | Path, once: bool = False) -> None:
                 method_name=str(config.get("match_method", "sqdiff_normed")),
             )
 
+            result_dict = result.to_dict()
+            if (
+                result_dict.get("accepted")
+                and result_dict.get("tile_x") is not None
+                and result_dict.get("tile_y") is not None
+            ):
+                center_tile = (int(result_dict["tile_x"]), int(result_dict["tile_y"]))
+
             payload = result_to_frontend_payload(
-                result=result.to_dict(),
+                result=result_dict,
                 config=config,
                 frame_shape=frame.shape,
                 crop_box=crop_box,

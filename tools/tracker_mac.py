@@ -16,52 +16,14 @@ if str(REPO_ROOT) not in sys.path:
 from tracker_core.capture.mac_capture import capture_from_config  # noqa: E402
 from tracker_core.localization.template_matcher import localize_minimap  # noqa: E402
 from tracker_core.map_data.kongying_loader import KongYingMapData  # noqa: E402
-from tracker_core.map_data.map_assets import MapImageAsset  # noqa: E402
 from tracker_core.minimap.crop import CropBox, crop_minimap_region  # noqa: E402
+from tracker_core.tracker_loop import (  # noqa: E402
+    FilteredKongYingMapData,
+    match_asset_limit,
+    result_to_frontend_map_position,
+)
 from tracker_core.utils.cv_images import read_image_bgr  # noqa: E402
 from tracker_core.utils.paths import load_json, resolve_repo_path, write_json  # noqa: E402
-
-
-class FilteredKongYingMapData:
-    def __init__(
-        self,
-        base: KongYingMapData,
-        *,
-        regions: set[str],
-        asset_names: set[str] | None = None,
-        center_tile: tuple[int, int] | None = None,
-        tile_radius: int | None = None,
-    ) -> None:
-        self.base = base
-        self.regions = regions
-        self.asset_names = asset_names or set()
-        self.center_tile = center_tile
-        self.tile_radius = tile_radius
-
-    def list_regions(self) -> list[str]:
-        return self.base.list_regions()
-
-    def list_match_image_asset_records(
-        self,
-        categories: set[str] | None = None,
-        exclude_keywords: tuple[str, ...] = ("outline", "overlay"),
-    ) -> list[MapImageAsset]:
-        assets = self.base.list_match_image_asset_records(categories=categories, exclude_keywords=exclude_keywords)
-        filtered = []
-        for asset in assets:
-            if self.regions and asset.region not in self.regions:
-                continue
-            if self.asset_names and asset.asset_name not in self.asset_names:
-                continue
-            if self.center_tile and self.tile_radius is not None:
-                if asset.tile_x is None or asset.tile_y is None:
-                    continue
-                if abs(asset.tile_x - self.center_tile[0]) > self.tile_radius:
-                    continue
-                if abs(asset.tile_y - self.center_tile[1]) > self.tile_radius:
-                    continue
-            filtered.append(asset)
-        return filtered
 
 
 def load_frame_from_image(path: Path):
@@ -72,24 +34,8 @@ def load_frame_from_image(path: Path):
 
 
 def frontend_map_position(result_dict: dict[str, Any], config: dict[str, Any]) -> dict[str, float] | None:
-    if not result_dict.get("accepted"):
-        return None
+    return result_to_frontend_map_position(result_dict, config)
 
-    tile_x = result_dict.get("tile_x")
-    tile_y = result_dict.get("tile_y")
-    local_x = result_dict.get("local_x")
-    local_y = result_dict.get("local_y")
-    map_width = result_dict.get("map_width")
-    map_height = result_dict.get("map_height")
-    if None in (tile_x, tile_y, local_x, local_y, map_width, map_height):
-        x = result_dict.get("x")
-        y = result_dict.get("y")
-        return {"lat": x, "lng": y} if x is not None and y is not None else None
-
-    tile_unit = float(config.get("frontend_tile_unit", 1024))
-    lat = float(tile_x) * tile_unit + float(local_x) * tile_unit / float(map_width)
-    lng = float(tile_y) * tile_unit + float(local_y) * tile_unit / float(map_height)
-    return {"lat": lat, "lng": lng}
 
 def payload_from_result(
     result,
@@ -149,7 +95,7 @@ def run_once(
     result = localize_minimap(
         crop,
         kongying_data=filtered_data,
-        max_assets=0,
+        max_assets=match_asset_limit(config, center_tile),
         debug_output_enabled=bool(config.get("debug_output_enabled", True)),
         debug_dir=config.get("debug_output_dir", "debug_output/mac"),
         exclude_keywords=tuple(config.get("match_exclude_keywords", ["outline", "overlay"])),
