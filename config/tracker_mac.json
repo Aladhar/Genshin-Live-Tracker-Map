@@ -1,4 +1,5 @@
 {
+  "platform": "mac",
   "debug_output_enabled": true,
   "debug_output_dir": "debug_output/mac",
   "capture_backend": "window",
