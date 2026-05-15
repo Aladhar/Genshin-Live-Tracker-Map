@@ -46,14 +46,26 @@ def result_to_frontend_payload(
     x = result.get("x")
     y = result.get("y")
 
-    # Leaflet uses [lat, lng]. Our tracker result is x/y pixel-ish map coords.
-    # Usually: lat = y, lng = x.
     map_position = None
-    if accepted and x is not None and y is not None:
-        map_position = {
-            "lat": float(y),
-            "lng": float(x),
-        }
+    if accepted:
+        tile_x = result.get("tile_x")
+        tile_y = result.get("tile_y")
+        local_x = result.get("local_x")
+        local_y = result.get("local_y")
+        map_width = result.get("map_width")
+        map_height = result.get("map_height")
+
+        if None not in (tile_x, tile_y, local_x, local_y, map_width, map_height):
+            tile_unit = float(config.get("frontend_tile_unit", 1024))
+            map_position = {
+                "lat": float(tile_x) * tile_unit + float(local_x) * tile_unit / float(map_width),
+                "lng": float(tile_y) * tile_unit + float(local_y) * tile_unit / float(map_height),
+            }
+        elif x is not None and y is not None:
+            map_position = {
+                "lat": float(x),
+                "lng": float(y),
+            }
 
     return {
         "schema_version": 1,
