@@ -20,6 +20,7 @@ from tracker_core.minimap.crop import CropBox, crop_minimap_region  # noqa: E402
 from tracker_core.tracker_loop import (  # noqa: E402
     FilteredKongYingMapData,
     match_asset_limit,
+    result_to_candidate_map_position,
     result_to_frontend_map_position,
 )
 from tracker_core.utils.cv_images import read_image_bgr  # noqa: E402
@@ -48,6 +49,7 @@ def payload_from_result(
     result_dict = result.to_dict()
     accepted = bool(result_dict.get("accepted"))
     map_position = frontend_map_position(result_dict, config)
+    candidate_position = result_to_candidate_map_position(result_dict, config)
     return {
         "schema_version": 1,
         "platform": "mac",
@@ -57,6 +59,7 @@ def payload_from_result(
         "crop_box": crop_box.to_dict(),
         "accepted": accepted,
         "map_position": map_position,
+        "candidate_position": candidate_position,
         "result": result_dict,
     }
 

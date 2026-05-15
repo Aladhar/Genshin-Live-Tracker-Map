@@ -101,18 +101,27 @@ def result_to_frontend_map_position(result: dict[str, Any], config: dict[str, An
     if not result.get("accepted"):
         return None
 
+    return result_to_candidate_map_position(result, config)
+
+
+def result_to_candidate_map_position(result: dict[str, Any], config: dict[str, Any]) -> dict[str, float] | None:
+    if result.get("accepted"):
+        local_x_keys = ("local_x", "candidate_local_x")
+        local_y_keys = ("local_y", "candidate_local_y")
+    else:
+        local_x_keys = ("candidate_local_x", "local_x")
+        local_y_keys = ("candidate_local_y", "local_y")
+
     candidate = best_top_candidate(result)
     tile_x = first_present(result.get("tile_x"), candidate.get("tile_x"))
     tile_y = first_present(result.get("tile_y"), candidate.get("tile_y"))
     local_x = first_present(
-        result.get("local_x"),
+        *(result.get(key) for key in local_x_keys),
         candidate.get("local_x"),
-        result.get("candidate_local_x"),
     )
     local_y = first_present(
-        result.get("local_y"),
+        *(result.get(key) for key in local_y_keys),
         candidate.get("local_y"),
-        result.get("candidate_local_y"),
     )
     map_width = first_present(result.get("map_width"), candidate.get("map_width"))
     map_height = first_present(result.get("map_height"), candidate.get("map_height"))
@@ -126,6 +135,9 @@ def result_to_frontend_map_position(result: dict[str, Any], config: dict[str, An
 
     x = result.get("x")
     y = result.get("y")
+    if x is None or y is None:
+        x = result.get("candidate_x")
+        y = result.get("candidate_y")
     if x is not None and y is not None:
         return {
             "lat": float(x),
@@ -143,6 +155,7 @@ def result_to_frontend_payload(
 ) -> dict[str, Any]:
     accepted = bool(result.get("accepted"))
     map_position = result_to_frontend_map_position(result, config)
+    candidate_position = result_to_candidate_map_position(result, config)
 
     return {
         "schema_version": 1,
@@ -154,6 +167,7 @@ def result_to_frontend_payload(
         "crop_box": crop_box.to_dict() if crop_box is not None else None,
         "accepted": accepted,
         "map_position": map_position,
+        "candidate_position": candidate_position,
         "result": result,
     }
 
@@ -178,6 +192,7 @@ def error_payload(exc: Exception, config: dict[str, Any]) -> dict[str, Any]:
         "crop_box": None,
         "accepted": False,
         "map_position": None,
+        "candidate_position": None,
         "result": {
             "x": None,
             "y": None,

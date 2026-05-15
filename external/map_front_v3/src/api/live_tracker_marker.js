@@ -57,6 +57,13 @@ function installTrackerStyle() {
       height: 26px;
       border: 2px solid rgba(40, 216, 255, 0.7);
     }
+    .live-tracker-marker--candidate .live-tracker-marker__dot {
+      background: #ffb020;
+      box-shadow: 0 0 12px rgba(255, 176, 32, 0.9);
+    }
+    .live-tracker-marker--candidate .live-tracker-marker__ring {
+      border-color: rgba(255, 176, 32, 0.75);
+    }
   `;
   document.head.appendChild(style);
   styleInstalled = true;
@@ -92,11 +99,14 @@ function deriveMapPosition(payload) {
   const payloadLat = numericValue(payloadPosition?.lat);
   const payloadLng = numericValue(payloadPosition?.lng);
   if (payloadLat !== null && payloadLng !== null) {
-    return { lat: payloadLat, lng: payloadLng };
+    return { lat: payloadLat, lng: payloadLng, accepted: true };
   }
 
-  if (!payload?.accepted) {
-    return null;
+  const candidatePosition = payload?.candidate_position;
+  const candidateLat = numericValue(candidatePosition?.lat);
+  const candidateLng = numericValue(candidatePosition?.lng);
+  if (candidateLat !== null && candidateLng !== null) {
+    return { lat: candidateLat, lng: candidateLng, accepted: false };
   }
 
   const result = payload?.result || {};
@@ -131,12 +141,15 @@ function deriveMapPosition(payload) {
     return {
       lat: tileX * tileUnit + (localX * tileUnit) / mapWidth,
       lng: tileY * tileUnit + (localY * tileUnit) / mapHeight,
+      accepted: !!payload?.accepted,
     };
   }
 
-  const x = numericValue(result.x);
-  const y = numericValue(result.y);
-  return x !== null && y !== null ? { lat: x, lng: y } : null;
+  const x = firstNumeric(result.x, result.candidate_x);
+  const y = firstNumeric(result.y, result.candidate_y);
+  return x !== null && y !== null
+    ? { lat: x, lng: y, accepted: !!payload?.accepted }
+    : null;
 }
 
 async function updateLiveTrackerMarker() {
@@ -160,7 +173,11 @@ async function updateLiveTrackerMarker() {
       return;
     }
 
-    ensureMarker()?.setLatLng([position.lat, position.lng]);
+    const nextMarker = ensureMarker();
+    nextMarker?.setLatLng([position.lat, position.lng]);
+    nextMarker
+      ?.getElement()
+      ?.classList.toggle("live-tracker-marker--candidate", !position.accepted);
   } catch {
     removeMarker();
   }
