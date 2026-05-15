@@ -14,7 +14,7 @@ export const mapBounds = ref([
   [0, 0],
 ]);
 
-export const createMap = (areaCode = "teyvat-main") => {
+export const createMap = (areaCode = "mondstadt") => {
   let mapConfig = create_map_tiles(areaCode);
   let tiles = mapConfig.tiles;
   let tilesConfig = mapConfig.tiles_config || {};

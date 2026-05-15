@@ -39,7 +39,7 @@
             >
               <div class="row items-center">
                 <q-img
-                  :src="`/imgs/itemicon_${item.name}.png`"
+                  :src="item.iconUrl || `/imgs/itemicon_${item.name}.png`"
                   style="width: 32rem; height: 32rem; margin-left: 12rem"
                 />
                 <span class="item_name">{{ item.name }}</span>

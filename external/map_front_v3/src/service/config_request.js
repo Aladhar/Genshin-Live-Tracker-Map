@@ -1,22 +1,20 @@
 import axios from "axios";
 
+const configUrl = "https://assets.yuanshen.site/webapp.json";
+
 const localFallbackConfig = {
   webMap: {
     blockArea: [],
   },
   tiles: {
-    "teyvat-main": {
-      code: "genshin-mainmap",
-      center: [14336, 12288],
-      size: [25600, 34880],
-      tilesOffset: [0, 0],
-      imageManifest: "genshin-mainmap",
-      imageBaseUrl: "/imgs/genshin-mainmap",
+    mondstadt: {
+      code: "twt642",
+      center: [3568, 6969],
+      size: [30370, 20480],
+      tilesOffset: [-17408, -4096],
       settings: {
-        center: [0, 0],
-        zoom: -5,
-        minZoom: -6,
-        maxZoom: 1,
+        center: [1438, -3333],
+        zoom: 0,
       },
     },
   },
@@ -24,14 +22,15 @@ const localFallbackConfig = {
 };
 
 function fetch_config() {
-  if (import.meta.env.DEV) {
-    return Promise.resolve(localFallbackConfig);
-  }
-
-  const url = `https://assets.yuanshen.site/webapp.json?r=${Math.random()}`;
   return axios
-    .get(url, { timeout: 3000 })
-    .then((res) => res.data || localFallbackConfig)
+    .get(`${configUrl}?r=${Date.now()}`, { timeout: 10000 })
+    .then((res) => {
+      const config = res.data || {};
+      if (config.webMap && config.tiles) {
+        return config;
+      }
+      return localFallbackConfig;
+    })
     .catch(() => localFallbackConfig);
 }
 

@@ -50,19 +50,27 @@ function create_map_layer(
   }
 
   if (imageManifest === "genshin-mainmap" && imageBaseUrl) {
-    const overlays = localGenshinMainMap.images.map(
-      ([x, y, width, height, filename]) => {
+    const overlays = [
+      L.rectangle(bounds, {
+        pane: "tilePane",
+        stroke: false,
+        fillColor: "#071820",
+        fillOpacity: 1,
+        interactive: false,
+      }),
+    ];
+    overlays.push(
+      ...localGenshinMainMap.images.map(([x, y, , , filename]) => {
         const top = x * localGenshinMainMap.tileUnit;
         const left = y * localGenshinMainMap.tileUnit;
+        const bottom = top + localGenshinMainMap.tileUnit;
+        const right = left + localGenshinMainMap.tileUnit;
         return L.imageOverlay(
           `${imageBaseUrl}/${filename}`,
-          L.latLngBounds(
-            L.latLng(top, left),
-            L.latLng(top + width, left + height),
-          ),
-          { interactive: false },
+          L.latLngBounds(L.latLng(top, left), L.latLng(bottom, right)),
+          { interactive: false, zIndex: 10 },
         );
-      },
+      }),
     );
     return L.layerGroup(overlays);
   }
@@ -101,6 +109,8 @@ function create_map_config(area_config_code = "") {
   let tiles_key = "";
   if (map_tiles_config.value[area_config_code]) {
     tiles_key = area_config_code;
+  } else if (map_tiles_config.value["mondstadt"]) {
+    tiles_key = "mondstadt";
   } else if (map_tiles_config.value["teyvat-main"]) {
     tiles_key = "teyvat-main";
   } else if (map_tiles_config.value["提瓦特-base0"]) {

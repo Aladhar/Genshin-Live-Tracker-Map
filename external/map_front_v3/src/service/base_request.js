@@ -1,62 +1,64 @@
-import { api } from "../boot/axios";
-import { get_Cookies } from "../api/common";
+import {
+  offlineAreaList,
+  offlineIcons,
+  offlineItems,
+  offlineItemTypes,
+  offlineMarkers,
+} from "./local_mondstadt_data";
 
-const offlineAreaList = [
-  {
-    id: 1,
-    parentId: -1,
-    name: "Teyvat",
-    code: "C_MD",
-    sortIndex: 1,
-    hiddenFlag: 0,
-  },
-  {
-    id: 101,
-    parentId: 1,
-    name: "Genshin Main Map",
-    code: "teyvat-main",
-    sortIndex: 1,
-    hiddenFlag: 0,
-  },
-];
+function page_record(record) {
+  return {
+    data: {
+      data: {
+        record,
+      },
+    },
+  };
+}
 
-function offline_response(url) {
+function matching_markers(itemIdList = []) {
+  if (!itemIdList.length) {
+    return offlineMarkers;
+  }
+  const wanted = new Set(itemIdList);
+  return offlineMarkers.filter((marker) =>
+    marker.itemList.some((item) => wanted.has(item.itemId)),
+  );
+}
+
+function offline_response(url, data = {}) {
   if (url === "/area/get/list") {
     return { data: { data: offlineAreaList } };
   }
   if (url.startsWith("/item_type/get/list")) {
-    return { data: { data: { record: [] } } };
+    return page_record(offlineItemTypes);
   }
-  if (url === "/item/get/list" || url === "/icon/get/list") {
-    return { data: { data: { record: [] } } };
+  if (url === "/item/get/list") {
+    const areaIds = data?.areaIdList || [];
+    const record = areaIds.length
+      ? offlineItems.filter((item) => areaIds.includes(item.areaId))
+      : offlineItems;
+    return page_record(record);
   }
-  if (url === "/marker/get/list_byid" || url === "/marker/get/list_byinfo") {
-    return { data: { data: [] } };
+  if (url === "/icon/get/list") {
+    return page_record(offlineIcons);
+  }
+  if (url === "/marker/get/list_byinfo") {
+    return { data: { data: matching_markers(data?.itemIdList || []) } };
+  }
+  if (url === "/marker/get/list_byid") {
+    const wanted = new Set(data?.markerIdList || []);
+    return {
+      data: {
+        data: offlineMarkers.filter((marker) => wanted.has(marker.id)),
+      },
+    };
   }
   return { data: { data: {} } };
 }
 
-function default_request(url, data, method = "post") {
-  if (process.env.DEV) {
-    return Promise.resolve(offline_response(url));
-  }
-
-  return api({
-    method: method,
-    url: url,
-    data: JSON.stringify(data),
-    transformRequest: (data) => {
-      if (get_Cookies("_yuanshen_map_usertoken") == null) {
-        alert("Your session has expired. Please refresh the page.");
-        window.location.reload();
-      }
-      return data;
-    },
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${get_Cookies("_yuanshen_map_usertoken")}`,
-    },
-  }).catch(() => offline_response(url));
+function default_request(url, data) {
+  return Promise.resolve(offline_response(url, data));
 }
 /**
  * 列出地区

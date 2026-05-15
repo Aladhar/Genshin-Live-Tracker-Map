@@ -88,7 +88,10 @@ module.exports = configure(function (/* ctx */) {
       // polyfillModulePreload: true,
       // distDir
 
-      // extendViteConf (viteConf) {},
+      extendViteConf(viteConf) {
+        viteConf.build = viteConf.build || {};
+        viteConf.build.cssCodeSplit = false;
+      },
       // viteVuePluginOptions: {},
 
       vitePlugins: [
@@ -108,7 +111,7 @@ module.exports = configure(function (/* ctx */) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
       // https: true
-      open: true, // opens browser window automatically
+      open: false,
       proxy: {
         // 将所有以/api开头的请求代理
         "/api": {

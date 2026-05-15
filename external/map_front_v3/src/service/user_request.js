@@ -1,5 +1,5 @@
 import axios from "axios";
-import { create_notify, get_Storage } from "../api/common";
+import { get_Storage } from "../api/common";
 import { client_list } from "../api/client";
 import { Cookies } from "quasar";
 
@@ -18,43 +18,11 @@ function set_user_data(data = {}) {
 
 //游客权限认证
 function quest_request() {
-  if (process.env.DEV) {
-    return Promise.resolve({
-      data: {
-        access_token: "local-offline-token",
-        expires_in: 86400,
-      },
-    });
-  }
-
-  return axios({
-    method: "post",
-    url: `${process.env.VITE_API_BASE}/oauth/token`,
-    timeout: 3000,
-    params: {
-      refresh_token: "all",
-      grant_type: "client_credentials",
+  return Promise.resolve({
+    data: {
+      access_token: "local-offline-token",
+      expires_in: 86400,
     },
-    headers: {
-      Authorization: `Basic Y2xpZW50OnNlY3JldA==`,
-    },
-  }).catch((error) => {
-    if (error.response) {
-      create_notify(
-        `${error.response.status} ${error.response.statusText}`,
-        "negative",
-      );
-    } else if (error.request) {
-      create_notify("Connection failed. Try again later.", "negative");
-    } else {
-      create_notify(error.message, "negative");
-    }
-    return {
-      data: {
-        access_token: "local-offline-token",
-        expires_in: 86400,
-      },
-    };
   });
 }
 

@@ -1,7 +1,7 @@
 ﻿export const localGenshinMainMap = {
   source: "KongYing processed mapimg_mainmap Unity assets",
-  tileUnit: 2048,
-  bounds: { minX: -14336, minY: -12288, maxX: 11264, maxY: 22592 },
+  tileUnit: 1024,
+  bounds: { minX: -7168, minY: -6144, maxX: 6144, maxY: 11328 },
   images: [
     [-7, -4, 1024, 1024, "UI_MapBack_-7_-4.png"],
     [-7, -3, 1024, 1024, "UI_MapBack_-7_-3.png"],
