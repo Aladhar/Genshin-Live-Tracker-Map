@@ -90,6 +90,10 @@ import { set_Storage } from "../api/common";
 import { query_itemlayer_byid } from "../service/base_request";
 import { mapLoadConfig } from "../api/config";
 import { map, mapDom, mapLayerMap, createMap } from "src/api/map_obj";
+import {
+  startLiveTrackerMarker,
+  stopLiveTrackerMarker,
+} from "src/api/live_tracker_marker";
 import { map_plugin_config } from "../api/config";
 import { opIsOfficial } from "../api/operation";
 import { defineAsyncComponent } from "vue";
@@ -493,6 +497,7 @@ export default {
       }
       this.opacity_switch();
       this.mark_count();
+      startLiveTrackerMarker();
     });
 
     setInterval(() => {
@@ -502,6 +507,9 @@ export default {
         });
       }
     }, 300e3);
+  },
+  beforeUnmount() {
+    stopLiveTrackerMarker();
   },
   computed: {
     //请参考pinia不使用组合式api的用法的说明文档

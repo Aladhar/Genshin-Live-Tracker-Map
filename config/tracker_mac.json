@@ -1,0 +1,50 @@
+{
+  "debug_output_enabled": true,
+  "debug_output_dir": "debug_output/mac",
+  "capture_backend": "window",
+  "target_window_title": "Genshin Impact",
+  "target_window_min_width": 800,
+  "target_window_min_height": 500,
+  "monitor_index": 0,
+  "kongying_manifest": "data/kongying/manifest.json",
+  "tracker_interval_seconds": 0.75,
+  "frontend_tile_unit": 1024,
+  "minimap_crop": {
+    "mode": "auto",
+    "roi_x_ratio": 0.0,
+    "roi_y_ratio": 0.0,
+    "roi_width_ratio": 0.28,
+    "roi_height_ratio": 0.34,
+    "min_radius_ratio": 0.085,
+    "max_radius_ratio": 0.17,
+    "hough_dp": 1.2,
+    "hough_param1": 80,
+    "hough_param2": 24,
+    "expected_center_x_ratio": 0.092,
+    "expected_center_y_ratio": 0.15,
+    "padding_ratio": 0.05,
+    "clean_noise": true,
+    "player_marker_radius_ratio": 0.13,
+    "outer_ring_margin_ratio": 0.035,
+    "fixed_x_ratio": 0.025,
+    "fixed_y_ratio": 0.015,
+    "fixed_size_ratio": 0.24,
+    "fixed_width_ratio": 0.145,
+    "fixed_height_ratio": 0.24
+  },
+  "match_regions": [
+    "MainMap"
+  ],
+  "match_scales": [
+    0.8
+  ],
+  "nearby_tile_radius": 1,
+  "initial_tile_names": [],
+  "min_match_confidence": 0.91,
+  "min_match_score_margin": 0.006,
+  "match_mask_radius_ratio": 0.48,
+  "match_inner_exclusion_ratio": 0.13,
+  "match_preprocess_mode": "raw_gray",
+  "match_method": "sqdiff_normed",
+  "latest_output_path": "external/map_front_v3/public/tracker/latest.json"
+}

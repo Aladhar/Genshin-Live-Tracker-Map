@@ -17,6 +17,9 @@ class LocalizationError(RuntimeError):
     pass
 
 
+_MAP_PREPROCESS_CACHE: dict[tuple[str, str, int], np.ndarray] = {}
+
+
 @dataclass(frozen=True)
 class MatchCandidate:
     score: float
@@ -135,6 +138,22 @@ def _preprocess_for_match(image: np.ndarray, mode: str = "gray") -> np.ndarray:
     clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
     equalized = clahe.apply(gray)
     return cv2.GaussianBlur(equalized, (3, 3), 0)
+
+
+def _preprocessed_map_image(asset: MapImageAsset, map_image: np.ndarray, mode: str) -> np.ndarray:
+    try:
+        mtime_ns = asset.path.stat().st_mtime_ns
+    except OSError:
+        mtime_ns = 0
+
+    cache_key = (str(asset.path), mode, mtime_ns)
+    cached = _MAP_PREPROCESS_CACHE.get(cache_key)
+    if cached is not None:
+        return cached
+
+    processed = _preprocess_for_match(map_image, mode)
+    _MAP_PREPROCESS_CACHE[cache_key] = processed
+    return processed
 
 
 def build_circular_minimap_mask(
@@ -419,6 +438,10 @@ def localize_minimap(
 
     base_template = _preprocess_for_match(minimap_crop, preprocess_mode)
     base_mask = build_circular_minimap_mask(minimap_crop.shape, mask_radius_ratio, inner_exclusion_ratio)
+    scaled_templates = [
+        (scale, *_resize_template_and_mask(base_template, base_mask, scale))
+        for scale in scales
+    ]
 
     candidates: list[MatchCandidate] = []
 
@@ -426,10 +449,9 @@ def localize_minimap(
         map_image = _read_image_bgr(asset.path)
         if map_image is None:
             continue
-        map_processed = _preprocess_for_match(map_image, preprocess_mode)
+        map_processed = _preprocessed_map_image(asset, map_image, preprocess_mode)
 
-        for scale in scales:
-            template, mask = _resize_template_and_mask(base_template, base_mask, scale)
+        for scale, template, mask in scaled_templates:
             template_height, template_width = template.shape[:2]
             map_height, map_width = map_processed.shape[:2]
             if map_width < template_width or map_height < template_height:
