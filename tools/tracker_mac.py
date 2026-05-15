@@ -91,6 +91,8 @@ def frontend_map_position(result_dict: dict[str, Any], config: dict[str, Any]) -
     lng = float(tile_y) * tile_unit + float(local_y) * tile_unit / float(map_height)
     return {"lat": lat, "lng": lng}
 
+Genshin Live Tracker & Map where is LocalHost UI Map being updated from trackercapture from MAC
+
 
 def payload_from_result(
     result,
